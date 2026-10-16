@@ -1,7 +1,22 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "applied": false,
+  "approved_cutover_window_only": true,
   "canonical_origin": "https://neuralint.io",
+  "destination_account": "mehrdadxzaker",
+  "destination_verification_during_preparation": false,
+  "verification_handoff": {
+    "current_account_verification": "Inspect; do not remove or claim during preparation",
+    "risk": "Destination verification can release an existing Pages binding; an already verified domain requires a coordinated release",
+    "sequence": [
+      "Inspect both accounts and record current Pages, TLS, DNS and verification settings",
+      "Confirm DNS/provider access without changing records or completing domain verification",
+      "Transfer the repository only during the separately approved maintenance window",
+      "Coordinate any organization verification release and personal verification in that window",
+      "Confirm the moved repository custom-domain binding, Pages permissions and TLS",
+      "Apply the approved www CNAME change and verify root, www and app support/legal routes"
+    ]
+  },
   "records": [
     {
       "type": "CNAME",
@@ -11,13 +26,15 @@
     }
   ],
   "prerequisites": [
-    "Verify neuralint.io in the destination account using the GitHub-provided TXT value",
+    "Review existing account-level verification and the GitHub-provided TXT challenge without completing a claim early",
+    "Confirm Vercel project access and destination Git installation eligibility",
     "Confirm Pages custom domain and TLS binding before the DNS change",
     "Approve the repository transfer and maintenance window"
   ],
   "preserve": [
     "Existing apex A/AAAA/ALIAS records unless separately reviewed",
     "Canonical origin and app legal/support routes",
-    "Existing hosted projects and environment values"
+    "Existing hosted projects and environment values",
+    "Xpounder-com/neuralint-platform ownership, Azure trust and runtime settings"
   ]
 }

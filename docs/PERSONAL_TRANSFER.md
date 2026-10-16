@@ -15,21 +15,34 @@ for the later maintenance window.
 
 ## Later cutover
 
-1. Verify `neuralint.io` in the destination account using GitHub's actual TXT
-   challenge. A source file cannot substitute for account-level verification.
-2. Inspect the current Pages custom-domain binding and TLS settings. Confirm
-   that the destination Pages repository is bound to `neuralint.io` before
-   changing DNS; Actions artifacts alone do not configure that binding.
-3. Transfer the repository in the approved window. Change only the www CNAME
-   from `xpounder-com.github.io` to `mehrdadxzaker.github.io` once Pages is ready.
-   Preserve existing apex records and other DNS settings unless a separately
-   reviewed configuration requires otherwise. The canonical domain stays the
-   same. No DNS record or Pages setting is changed by this branch.
-4. Inspect any active Vercel Git integration and GitHub App repository access
+1. Inspect the current Pages custom-domain binding, TLS, DNS, and verified-domain
+   settings in both accounts without changing them. Record any Xpounder domain
+   verification that would need to be released during cutover. Confirm access
+   to the DNS provider and prepare the account-specific TXT challenge procedure.
+   Do not complete destination verification during preparation: GitHub says
+   verification can immediately release another account's Pages binding, and an
+   already verified domain cannot simply be claimed by another account.
+2. Inspect any active Vercel Git integration and GitHub App repository access
    under the new owner. Retain its project, domain, environment, and deployment
-   settings. The earlier audit could not establish a live team connection;
-   do not infer one from a historical deployment.
+   settings. A successful existing PR preview does not establish destination
+   Git access. Resolve any provider access limitation before scheduling cutover.
+3. During the separately approved maintenance window, pause owner-dependent
+   publication and transfer the repository. Coordinate release of any existing
+   organization domain verification and completion of the personal account's
+   actual TXT challenge in that same window. Do not assume that the custom
+   domain remains publishable across the owner change or promise zero downtime.
+4. Confirm the moved repository is bound to `neuralint.io`, with Pages source,
+   publishing permissions, and TLS ready. Actions artifacts and the exported
+   `CNAME` alone do not configure that binding. Only then change the www CNAME
+   from `xpounder-com.github.io` to `mehrdadxzaker.github.io` as approved. Preserve
+   existing apex records and other DNS settings unless separately reviewed.
+   The canonical domain stays the same.
 5. Publish and verify root, www, TLS, redirects, sitemap, and app legal/support
    routes. No live build/deployment, domain claim, or Git reconnection runs here.
 
-References: [GitHub custom domains](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+`neuralint-platform` remains in Xpounder and is outside this move. Its Azure
+trust, runtime, database, and release settings are independent of this website
+and are not prerequisites for the landing repository's ownership change.
+
+References: [GitHub custom domains](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site),
+[account-level verification and domain release](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages).

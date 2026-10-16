@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "applied": false,
+  "canonical_origin": "https://neuralint.io",
+  "records": [
+    {
+      "type": "CNAME",
+      "name": "www.neuralint.io",
+      "current_target": "xpounder-com.github.io.",
+      "planned_target": "mehrdadxzaker.github.io."
+    }
+  ],
+  "prerequisites": [
+    "Verify neuralint.io in the destination account using the GitHub-provided TXT value",
+    "Confirm Pages custom domain and TLS binding before the DNS change",
+    "Approve the repository transfer and maintenance window"
+  ],
+  "preserve": [
+    "Existing apex A/AAAA/ALIAS records unless separately reviewed",
+    "Canonical origin and app legal/support routes",
+    "Existing hosted projects and environment values"
+  ]
+}

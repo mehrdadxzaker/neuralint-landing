@@ -3,6 +3,7 @@
   "applied": false,
   "approved_cutover_window_only": true,
   "canonical_origin": "https://neuralint.io",
+  "hosting": "GitHub Pages",
   "destination_account": "mehrdadxzaker",
   "destination_verification_during_preparation": false,
   "verification_handoff": {
@@ -27,14 +28,14 @@
   ],
   "prerequisites": [
     "Review existing account-level verification and the GitHub-provided TXT challenge without completing a claim early",
-    "Confirm Vercel project access and destination Git installation eligibility",
+    "Confirm destination GitHub Pages publishing permissions and Actions workflow eligibility",
     "Confirm Pages custom domain and TLS binding before the DNS change",
     "Approve the repository transfer and maintenance window"
   ],
   "preserve": [
     "Existing apex A/AAAA/ALIAS records unless separately reviewed",
     "Canonical origin and app legal/support routes",
-    "Existing hosted projects and environment values",
+    "Existing Pages workflow and app configuration",
     "Xpounder-com/neuralint-platform ownership, Azure trust and runtime settings"
   ]
 }

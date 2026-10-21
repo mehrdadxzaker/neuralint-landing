@@ -526,7 +526,7 @@ export default function ResearchPage() {
           <div className="profile-card">
             <img
               className="profile-portrait"
-              src="/mehrdad-zaker-headshot.jpeg"
+              src="/mehrdad-zaker-three-quarter-transparent.webp"
               alt="Mehrdad Zaker"
               loading="lazy"
               decoding="async"

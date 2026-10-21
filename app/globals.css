@@ -1062,7 +1062,7 @@ a {
   width: 100%;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: var(--blue);
+  background: transparent;
   object-fit: cover;
   object-position: center 30%;
 }

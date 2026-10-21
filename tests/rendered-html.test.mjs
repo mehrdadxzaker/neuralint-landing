@@ -34,7 +34,7 @@ test("server-renders the research and maker portfolio", async () => {
   assert.match(html, /Maker(?:&apos;|&#x27;|')s portfolio/i);
   assert.match(html, /San Francisco \+ Chicago/);
   assert.match(html, /Switch to dark theme/);
-  assert.match(html, /\/mehrdad-zaker-headshot\.jpeg/);
+  assert.match(html, /\/mehrdad-zaker-three-quarter-transparent\.webp/);
   assert.match(html, /Personal site &amp; writing/);
 
   for (const project of [
@@ -86,6 +86,7 @@ test("supports a persistent dark theme and narrow mobile layouts", async () => {
   assert.match(exporter, /localStorage\.setItem\("nil-theme"/);
   assert.match(exporter, /data-theme-bootstrap/);
   assert.match(exporter, /mehrdad-zaker-headshot\.jpeg/);
+  assert.match(exporter, /mehrdad-zaker-three-quarter-transparent\.webp/);
 });
 
 test("server-renders the researcher profile", async () => {
@@ -97,7 +98,7 @@ test("server-renders the researcher profile", async () => {
   assert.match(html, /reinforcement-learning/i);
   assert.match(html, /Neural Intelligence Labs/);
   assert.match(html, /San Francisco \+ Chicago/);
-  assert.match(html, /\/mehrdad-zaker-headshot\.jpeg/);
+  assert.match(html, /\/mehrdad-zaker-three-quarter-transparent\.webp/);
   assert.match(html, /Personal site &amp; writing/);
 });
 

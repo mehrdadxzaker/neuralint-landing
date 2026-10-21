@@ -127,6 +127,7 @@ for (const asset of [
   "favicon.svg",
   "og.webp",
   "mehrdad-zaker-headshot.jpeg",
+  "mehrdad-zaker-three-quarter-transparent.webp",
 ]) {
   await cp(path.join("public", asset), path.join(outputDir, asset));
 }

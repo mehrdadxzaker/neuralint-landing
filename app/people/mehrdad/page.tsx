@@ -38,7 +38,7 @@ export default function MehrdadProfile() {
             <aside className="profile-page-aside">
               <img
                 className="profile-portrait"
-                src="/mehrdad-zaker-headshot.jpeg"
+                src="/mehrdad-zaker-three-quarter-transparent.webp"
                 alt="Mehrdad Zaker"
                 decoding="async"
               />

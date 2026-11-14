@@ -125,10 +125,15 @@ export function appMetadata(app: AppInfo): Metadata {
     linkedfull: "LinkedFull — AI Fashion Search & Virtual Try-On",
   };
   const title = titles[app.slug];
+  const searchDescriptions: Partial<Record<AppSlug, string>> = {
+    "persian-swipe": "Swipe or tap to type Persian on iPhone and iPad. Offline Farsi keyboard with نیم‌فاصله, suggestions and local learning. US$1.99 once. No Full Access required.",
+    "persian-ink": "Write Persian with Apple Pencil on iPad. Review handwriting recognition and insert text in supported apps. Offline after setup. US$1.99 once, no subscription.",
+  };
+  const description = searchDescriptions[app.slug] ?? app.description;
   return {
-    title: { absolute: title + " | NeuralInt" }, description: app.description, alternates: { canonical: appUrl(app) },
-    openGraph: { title, description: app.description, url: appUrl(app), type: "website", images: [{ url: app.image, alt: app.name + " app icon" }] },
-    twitter: { card: "summary", title, description: app.description, images: [app.image] },
+    title: { absolute: title + " | NeuralInt" }, description, alternates: { canonical: appUrl(app) },
+    openGraph: { title, description, url: appUrl(app), type: "website", images: [{ url: app.image, alt: app.name + " app icon" }] },
+    twitter: { card: "summary", title, description, images: [app.image] },
   };
 }
 

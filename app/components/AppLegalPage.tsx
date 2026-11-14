@@ -58,6 +58,7 @@ export function AppLegalPage({
         </a>
         <nav className="nav legal-nav" aria-label="App legal navigation">
           <a href="/apps/">Apps</a>
+          <a className="nav-language" href="/fa/" lang="fa" dir="rtl">فارسی</a>
           <Link href="/">Research</Link>
           <ThemeToggle />
         </nav>

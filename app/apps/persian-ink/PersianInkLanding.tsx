@@ -21,9 +21,10 @@ export default function PersianInkLanding() {
       <header className="pi-shell pi-topbar">
         <AppIdentity />
         <nav className="pi-nav" aria-label="Persian Ink navigation">
-          <a href="#how-it-works">How it works</a>
+          <a className="pi-nav-language" href="/fa/" lang="fa" dir="rtl">فارسی</a>
+          <a className="pi-nav-secondary" href="#how-it-works">How it works</a>
           <a href="#setup">Setup</a>
-          <a href="/apps/persian-ink/support/">Support</a>
+          <a className="pi-nav-secondary" href="/apps/persian-ink/support/">Support</a>
           <ThemeToggle />
         </nav>
       </header>
@@ -90,6 +91,7 @@ export default function PersianInkLanding() {
           <div className="pi-beta-actions"><a className="pi-button" href={persianInkRelease.testFlightDownloadUrl}>Download TestFlight <span aria-hidden="true">↗</span></a><a className="pi-text-link" href="/apps/persian-ink/support/">Full setup &amp; troubleshooting</a></div>
         </section>
         <p className="pi-shell pi-requirements">iPadOS 16 or later. Compatible Apple Pencil required for handwriting. Existing Notes drawings, photos and PDFs are not converted. Local App Store prices may vary.</p>
+        <div className="pi-shell persian-crosslink"><p lang="fa" dir="rtl">راهنمای فارسی نصب و انتخاب کیبورد: <a href="/fa/">تایپ با حرکت انگشت یا نوشتن با اپل پنسل ←</a></p><p>Prefer swipe typing on iPhone or iPad? <a href="/apps/persian-swipe/">Explore Persian Swipe ↗</a></p></div>
       </main>
       <footer className="pi-shell pi-footer">
         <div><AppIdentity /><p>An iPad. A Pencil. Your Persian.</p></div>

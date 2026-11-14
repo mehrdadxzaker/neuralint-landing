@@ -7,6 +7,8 @@ const catalogResponse = await fetch(new URL("/apps/catalog.json", baseUrl));
 if (!catalogResponse.ok) throw new Error("Unable to export app catalog: " + catalogResponse.status);
 const catalog = await catalogResponse.json();
 const routes = [
+  { source: "/persian-keyboards", output: "persian-keyboards/index.html", language: "en" },
+  { source: "/fa", output: "fa/index.html", language: "fa" },
   { source: "/about", output: "about/index.html" },
   { source: "/contact", output: "contact/index.html" },
   { source: "/privacy", output: "privacy/index.html" },
@@ -91,6 +93,7 @@ function makeStatic(html, route) {
     documentEnd === -1 ? html : html.slice(0, documentEnd + "</html>".length);
 
   const result = completeDocument
+    .replace(/<html\b([^>]*)>/i, (tag, attributes) => route.language === "fa" ? '<html' + attributes.replace(/\s(?:lang|dir)="[^"]*"/g, "") + ' lang="fa" dir="rtl">' : tag)
     .replace(
       /<script\b(?![^>]*(?:data-theme-bootstrap|type=["']application\/ld\+json["']))[^>]*>[\s\S]*?<\/script>/gi,
       "",
@@ -109,13 +112,15 @@ function makeStatic(html, route) {
   if (!title || !description) throw new Error("Missing page metadata: " + route.source);
   const canonical = "https://neuralint.io" + (route.source === "/" ? "/" : route.source + "/");
   const app = catalog.apps.find(app => route.source === "/apps/" + app.slug || route.source.startsWith("/apps/" + app.slug + "/"));
-  const image = app?.image ?? "https://neuralint.io/og.webp";
+  const isKeyboardGuide = route.source === "/fa" || route.source === "/persian-keyboards";
+  const image = app?.image ?? (isKeyboardGuide ? "https://neuralint.io/apps/persian-swipe/app-icon-calligraphy.jpg" : "https://neuralint.io/og.webp");
   const escape = value => value.replace(/"/g, "&quot;");
   const social = {
     "og:title": title, "og:description": description, "og:url": canonical,
     "og:type": "website", "og:site_name": "Neural Intelligence Labs", "og:image": image,
-    "og:image:alt": app ? app.name + " app icon" : "Neural Intelligence Labs",
-    "twitter:card": app ? "summary" : "summary_large_image",
+    "og:image:alt": app ? app.name + " app icon" : isKeyboardGuide ? "Persian Swipe" : "Neural Intelligence Labs",
+    "og:locale": route.language === "fa" ? "fa_IR" : "en_US",
+    "twitter:card": app || isKeyboardGuide ? "summary" : "summary_large_image",
     "twitter:title": title, "twitter:description": description, "twitter:image": image,
   };
   const socialTags = Object.entries(social).map(([key, value]) =>
@@ -210,6 +215,8 @@ await writeFile(path.join(outputDir, "llms.txt"),
   "## When these apps are useful\n\n" +
   "Compare Persian handwriting with swipe typing, build focused work sessions, set up parent-initiated family announcements, or explore fashion search. Read requirements, paid-feature limits and release status before choosing an installation link.\n\n" +
   "## Product information\n\n" +
+  "- [Persian keyboards for iPhone and iPad](https://neuralint.io/persian-keyboards/): Compare offline swipe typing with Apple Pencil handwriting, compatibility and setup.\n" +
+  "- [راهنمای کیبورد فارسی](https://neuralint.io/fa/): Persian-language comparison, App Store links and keyboard setup for Persian Swipe and Persian Ink.\n" +
   "- [App directory](https://neuralint.io/apps/): Compare the apps and open each product page.\n" +
   "- [App catalog JSON](https://neuralint.io/apps/catalog.json): Structured descriptions, requirements, prices, and release status from the same product facts as the website.\n" +
   "- [App terms](https://neuralint.io/apps/terms/): Terms for the NeuralInt app family.\n\n" +

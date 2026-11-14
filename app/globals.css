@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./apps/persian-ink/marketing.css";
+@import "./persian-keyboards/marketing.css";
 
 :root {
   --ink: #171913;
@@ -1245,6 +1246,12 @@ a {
 
   .nav a:not(.nav-cta) {
     display: none;
+  }
+
+  .legal-nav a.nav-language {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 
   .hero {

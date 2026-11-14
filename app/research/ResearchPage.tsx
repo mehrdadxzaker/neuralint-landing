@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ThemeToggle from "../components/ThemeToggle";
 import { apps, appUrl } from "../content/apps";
+import PersianAppsBanner from "../components/PersianAppsBanner";
 
 const programs = [
   {
@@ -218,6 +219,7 @@ function Header() {
         <a href="#programs">Research</a>
         <a href="#portfolio">Portfolio</a>
         <a href="/apps/">Apps</a>
+        <a href="/persian-keyboards/">Persian keyboards</a>
         <a href="/people/mehrdad/">People</a>
         <a href="#index-case">Index</a>
         <ThemeToggle />
@@ -234,6 +236,7 @@ export default function ResearchPage() {
     <main className="site">
       <div className="shell">
         <Header />
+        <PersianAppsBanner />
         <section className="hero">
           <div>
             <p className="eyebrow">

@@ -65,6 +65,19 @@ for (const url of urls) {
 }
 const directoryHtml = htmlByUrl.get(origin + "/apps/");
 const homepage = htmlByUrl.get(origin + "/");
+const languagePages = { en: origin + "/persian-keyboards/", fa: origin + "/fa/", "x-default": origin + "/persian-keyboards/" };
+for (const url of new Set(Object.values(languagePages))) {
+  const html = htmlByUrl.get(url);
+  assert.ok(html, "Keyboard guide in sitemap: " + url);
+  const languageLinks = [...html.matchAll(/<link\b[^>]*>/g)].map(match => attrs(match[0])).filter(tag => tag.rel === "alternate" && (tag.hreflang || tag.hrefLang));
+  assert.deepEqual(Object.fromEntries(languageLinks.map(tag => [tag.hreflang ?? tag.hrefLang, tag.href])), languagePages, "Reciprocal language alternatives: " + url);
+  for (const id of ["6811263515", "6832685437"]) assert.ok(html.includes("id" + id), "Direct App Store purchase link: " + url);
+  assert.match(html, /id="compare"/);
+  assert.match(html, /id="setup"/);
+}
+assert.match(htmlByUrl.get(languagePages.fa), /<html\b[^>]*lang="fa"[^>]*dir="rtl"/);
+assert.ok(homepage.indexOf('class="persian-apps-banner"') < homepage.indexOf('class="hero"'), "Persian apps visible before research hero");
+assert.ok(homepage.includes('href="/fa/"'), "Persian guide reachable from homepage");
 const directory = schemasByUrl.get(origin + "/apps/").find(data => data["@type"] === "CollectionPage");
 assert.equal(directory.mainEntity.itemListElement.length, catalog.apps.length);
 for (const app of catalog.apps) {

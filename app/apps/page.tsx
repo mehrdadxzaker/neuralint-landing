@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import ThemeToggle from "../components/ThemeToggle";
 import { apps, appUrl, siteOrigin } from "../content/apps";
 import StructuredData from "../components/StructuredData";
+import PersianAppsBanner from "../components/PersianAppsBanner";
 
 const title = "Persian Keyboards, Focus & Family Apps";
 const description = "Explore NeuralInt apps: Persian Ink handwriting, Persian Swipe typing, Trailhead focus sessions, Lady family routines, and LinkedFull fashion search.";
@@ -44,6 +45,7 @@ export default function AppsPage() {
       </header>
 
       <main className="shell apps-main">
+        <PersianAppsBanner />
         <section className="apps-heading">
           <p className="eyebrow">NeuralInt · App factory</p>
           <h1>Useful software,<br />made with care.</h1>

@@ -248,10 +248,13 @@ export default function ResearchPage() {
       <div className="shell">
         <section className="section" id="people">
           <div className="profile-card">
-            <img
+            <Image
               className="profile-portrait"
-              src="/mehrdad-zaker-three-quarter-transparent.webp"
+              src="/mehrdad-zaker-portrait-840.webp"
               alt="Mehrdad Zaker"
+              width={840}
+              height={1050}
+              unoptimized
               loading="lazy"
               decoding="async"
             />

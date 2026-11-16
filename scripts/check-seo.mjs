@@ -94,6 +94,14 @@ for (const url of urls) assert.ok(reached.has(url), "Indexable page must be reac
 
 const directoryHtml = htmlByUrl.get(origin + "/apps/");
 const homepage = htmlByUrl.get(origin + "/");
+// Portraits must render as descriptive static images, available without an image server.
+for (const url of [origin + "/", origin + "/people/mehrdad/"]) {
+  const images = [...htmlByUrl.get(url).matchAll(/<img\b[^>]*>/gi)].map(match => attrs(match[0]));
+  const portrait = images.find(image => image.class?.split(/\s+/).includes("profile-portrait"));
+  assert.ok(portrait, "Portrait present in static HTML: " + url);
+  assert.equal(portrait.src, "/mehrdad-zaker-portrait-840.webp", "Static portrait source: " + url);
+  assert.equal(portrait.alt, "Mehrdad Zaker", "Descriptive portrait alternative: " + url);
+}
 // These body links must remain ordinary crawlable anchors in the static export.
 assert.match(htmlByUrl.get(origin + "/about/"), /<a\b[^>]*href="\/#portfolio"[^>]*>maker portfolio<\/a>/);
 assert.match(htmlByUrl.get(origin + "/contact/"), /<a\b[^>]*href="\/"[^>]*>research portfolio<\/a>/);
@@ -162,3 +170,4 @@ const notFound = await readFile(path.join(root, "404.html"), "utf8");
 assert.match(notFound, /name="robots" content="noindex"/);
 assert.match(notFound, /<h1>Page not found<\/h1>/);
 console.log("SEO checks passed: " + urls.length + " canonical pages; catalog apps; app, publisher and breadcrumb data; truthful offers; metadata; links; discovery files; reviewer exclusions and legacy redirects.");
+await import("./check-links.mjs");

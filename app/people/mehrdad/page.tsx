@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import ThemeToggle from "../../components/ThemeToggle";
 import { BrandMark, SiteMobileMenu } from "../../components/SiteNavigation";
@@ -38,10 +39,14 @@ export default function MehrdadProfile() {
         <main id="main-content" className="profile-page-main" tabIndex={-1}>
           <div className="profile-page-grid">
             <aside className="profile-page-aside">
-              <img
+              <Image
                 className="profile-portrait"
-                src="/mehrdad-zaker-three-quarter-transparent.webp"
+                src="/mehrdad-zaker-portrait-840.webp"
                 alt="Mehrdad Zaker"
+                width={840}
+                height={1050}
+                unoptimized
+                loading="eager"
                 decoding="async"
               />
             </aside>

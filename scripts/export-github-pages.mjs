@@ -165,6 +165,7 @@ for (const asset of [
   "og.webp",
   "mehrdad-zaker-headshot.jpeg",
   "mehrdad-zaker-three-quarter-transparent.webp",
+  "mehrdad-zaker-portrait-840.webp",
 ]) {
   await cp(path.join("public", asset), path.join(outputDir, asset));
 }
@@ -199,19 +200,20 @@ const appLines = catalog.apps.map(app =>
 ).join("\n");
 await writeFile(path.join(outputDir, "llms.txt"),
   "# NeuralInt\n\n> Neural Intelligence Labs builds focused apps and researches AI agent environments.\n\n" +
+  "Compare Persian handwriting with swipe typing, build focused work sessions, set up parent-initiated family announcements, or explore fashion search. Read requirements, paid-feature limits and release status before choosing an installation link. App Store prices vary by country; a free download does not imply that every feature is free.\n\n" +
   "## Apps\n\n" + appLines + "\n\n" +
-  "## When these apps are useful\n\n" +
-  "Compare Persian handwriting with swipe typing, build focused work sessions, set up parent-initiated family announcements, or explore fashion search. Read requirements, paid-feature limits and release status before choosing an installation link.\n\n" +
   "## Product information\n\n" +
   "- [Persian keyboards for iPhone and iPad](https://neuralint.io/persian-keyboards/): Compare offline swipe typing with Apple Pencil handwriting, compatibility and setup.\n" +
-  "- [راهنمای کیبورد فارسی](https://neuralint.io/fa/): Persian-language comparison, App Store links and keyboard setup for Persian Swipe and Persian Ink.\n" +
+  "- [راهنمای صفحه‌کلید فارسی](https://neuralint.io/fa/): Persian-language comparison, App Store links and keyboard setup for Persian Swipe and Persian Ink.\n" +
   "- [App directory](https://neuralint.io/apps/): Compare the apps and open each product page.\n" +
   "- [App catalog JSON](https://neuralint.io/apps/catalog.json): Structured descriptions, requirements, prices, and release status from the same product facts as the website.\n" +
   "- [App terms](https://neuralint.io/apps/terms/): Terms for the NeuralInt app family.\n\n" +
   "## Research\n\n- [Neural Intelligence Labs](https://neuralint.io/): Research and maker portfolio.\n" +
   "- [Mehrdad Zaker](https://neuralint.io/people/mehrdad/): Founder profile.\n\n" +
-  "App Store prices vary by country. Free download does not imply that every feature is free. " +
-  "This optional overview supplements the public pages, robots.txt and sitemap; it does not grant access or change crawler policy.\n",
+  "## About and contact\n\n" +
+  "- [About NeuralInt](https://neuralint.io/about/): Information about the lab and its work.\n" +
+  "- [Contact](https://neuralint.io/contact/): App support and research or product inquiries.\n" +
+  "- [Website privacy](https://neuralint.io/privacy/): Privacy information for this website.\n",
 );
 // Preserve the former Persian Swipe marketing URL and its inbound deep links.
 await mkdir(path.join(outputDir, "apps/persian-swipe/review"), { recursive: true });

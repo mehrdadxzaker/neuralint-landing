@@ -150,7 +150,7 @@ export default function ResearchPage() {
                   <div className="current-project-meta"><span>{project.type}</span><span>{project.status}</span></div>
                   <h3>{project.title}</h3>
                   <p><PersianText text={project.description} /></p>
-                  {project.href && <a className="current-project-link" href={project.href}>{project.linkLabel}</a>}
+                  {project.href && <a className="current-project-link" href={project.href} aria-label={`${project.linkLabel} — ${project.title}`}>{project.linkLabel}</a>}
                 </div>
               </article>
             ))}

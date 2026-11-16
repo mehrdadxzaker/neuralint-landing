@@ -27,15 +27,14 @@ const staticThemeRuntime = `<script data-theme-runtime>
     document.documentElement.style.colorScheme = theme;
 
     document.querySelectorAll(".theme-toggle").forEach(function (button) {
-      var nextTheme = isDark ? "light" : "dark";
-      button.setAttribute("aria-label", "Switch to " + nextTheme + " theme");
+      button.setAttribute("aria-label", "Dark mode");
       button.setAttribute("aria-pressed", String(isDark));
-      button.setAttribute("title", "Switch to " + nextTheme + " theme");
+      button.setAttribute("title", "Dark mode");
 
       var icon = button.querySelector(".theme-toggle-icon");
       var label = button.querySelector(".theme-toggle-label");
-      if (icon) icon.textContent = isDark ? "☀" : "☾";
-      if (label) label.textContent = isDark ? "Light" : "Dark";
+      if (icon) icon.textContent = isDark ? "☾" : "☀";
+      if (label) label.textContent = "Dark mode";
     });
   }
 

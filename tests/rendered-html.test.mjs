@@ -33,7 +33,8 @@ test("server-renders the research and maker portfolio", async () => {
   assert.match(html, /Reinforcement learning environments for/);
   assert.match(html, /Maker(?:&apos;|&#x27;|')s portfolio/i);
   assert.match(html, /San Francisco \+ Chicago/);
-  assert.match(html, /Switch to light theme/);
+  assert.match(html, /aria-label="Dark mode"/);
+  assert.match(html, /aria-pressed="true"/);
   assert.match(html, /\/mehrdad-zaker-three-quarter-transparent\.webp/);
   assert.match(html, /Personal site &amp; writing/);
 

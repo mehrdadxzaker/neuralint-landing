@@ -97,7 +97,7 @@
 .pi-offline h3 { font-size: 37px; }
 .pi-offline p { max-width: 740px; margin-top: 12px; font-size: 15px; color: #e4ddd3; }
 .pi-offline > a { flex-shrink: 0; color: #f3c8c0; border-bottom: 1px solid #bba49a; font-size: 14px; }
-.pi-sdk-note { margin-top: 26px !important; font-size: 11px; color: #d2c5b9; }
+.pi-sdk-note { margin-top: 26px !important; font-size: 14px; line-height: 1.5; color: #d2c5b9; }
 .pi-sdk-note a { text-decoration: underline; }
 .pi-everyday { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: 100px; padding-block: 110px; }
 .pi-everyday figure { width: min(100%, 465px); justify-self: center; }
@@ -198,7 +198,6 @@
   .pi-example-note { font-size: 11px; max-width: 300px; }
   .pi-offline { margin-top: 26px; padding-top: 28px; gap: 18px; }
   .pi-offline h3 { font-size: 33px; }
-  .pi-sdk-note { font-size: 11px; }
   .pi-everyday { display: flex; flex-direction: column-reverse; gap: 40px; padding-block: 65px; }
   .pi-everyday h2 { font-size: 49px; }
   .pi-everyday .pi-section-lede { margin-bottom: 25px; }

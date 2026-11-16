@@ -69,22 +69,20 @@ export default function ThemeToggle() {
     window.dispatchEvent(new Event("nil-theme-change"));
   }
 
-  const nextTheme = theme === "dark" ? "light" : "dark";
-
   return (
     <button
       className="theme-toggle"
       type="button"
       onClick={toggleTheme}
-      aria-label={`Switch to ${nextTheme} theme`}
+      aria-label="Dark mode"
       aria-pressed={theme === "dark"}
-      title={`Switch to ${nextTheme} theme`}
+      title="Dark mode"
     >
       <span className="theme-toggle-icon" aria-hidden="true">
-        {theme === "dark" ? "☀" : "☾"}
+        {theme === "dark" ? "☾" : "☀"}
       </span>
       <span className="theme-toggle-label">
-        {theme === "dark" ? "Light" : "Dark"}
+        Dark mode
       </span>
     </button>
   );

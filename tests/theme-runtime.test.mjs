@@ -48,11 +48,13 @@ test("exported theme control suppresses transitions through rapid switches", asy
   });
   const clickToggle = () => onClick({ target: { closest: () => buttons[0] } });
 
+  assert.ok(buttons.every(item => item.attributes["aria-label"] === "Dark mode" && item.attributes["aria-pressed"] === "true" && item.label.textContent === "Dark mode"));
+
   clickToggle();
   assert.equal(root.dataset.theme, "light");
   assert.equal(values.get("nil-theme"), "light");
   assert.ok(classes.has("theme-switching"));
-  assert.ok(buttons.every(item => item.attributes["aria-label"] === "Switch to dark theme"));
+  assert.ok(buttons.every(item => item.attributes["aria-label"] === "Dark mode" && item.attributes["aria-pressed"] === "false" && item.label.textContent === "Dark mode"));
   flushFrame();
   assert.ok(classes.has("theme-switching"), "suppression remains through the first frame");
 

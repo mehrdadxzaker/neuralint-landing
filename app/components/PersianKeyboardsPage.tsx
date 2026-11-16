@@ -48,7 +48,7 @@ export const keyboardCopy = {
     setupSteps: [
       ["Install your chosen app", "Open its App Store listing, check device compatibility and the local price, then install and open the app."],
       ["Add the keyboard", "Open Settings → General → Keyboard → Keyboards → Add New Keyboard and choose Persian Swipe or Persian Ink."],
-      ["Switch and write", "In a supported text field, use the globe key to choose your keyboard. Swipe is ready for typing. For Ink, complete the model download first, then turn Full Access off and write with Apple Pencil."],
+      ["Switch and write", "In a supported text field, use the globe key to choose your keyboard. Swipe is ready for typing. For Ink, temporarily turn on Full Access and download the Persian model. Then turn Full Access off and write with Apple Pencil."],
     ],
     faqTitle: "Before you download",
     questions: [
@@ -93,7 +93,7 @@ export const keyboardCopy = {
     setupSteps: [
       ["برنامه را دریافت کنید", "صفحهٔ برنامه را در اپ استور باز کنید، سازگاری دستگاه و بهای برنامه در کشور خود را ببینید، سپس برنامه را دریافت و باز کنید."],
       ["صفحه‌کلید را بیفزایید", "به Settings → General → Keyboard → Keyboards → Add New Keyboard بروید و Persian Swipe یا Persian Ink را برگزینید."],
-      ["صفحه‌کلید را عوض کنید و بنویسید", "در یک جای نوشتن سازگار، با کلید کرهٔ زمین صفحه‌کلید را برگزینید. Swipe برای نوشتن آماده است. در Ink نخست مدل فارسی را دریافت کنید، سپس دسترسی کامل را خاموش کنید و با اپل پنسل بنویسید."],
+      ["صفحه‌کلید را عوض کنید و بنویسید", "در یک جای نوشتن سازگار، با کلید کرهٔ زمین صفحه‌کلید را برگزینید. Swipe برای نوشتن آماده است. در Ink برای دریافت مدل فارسی، دسترسی کامل را برای زمانی کوتاه روشن کنید. پس از دریافت، آن را خاموش کنید و با اپل پنسل بنویسید."],
     ],
     faqTitle: "پیش از دریافت",
     questions: [
@@ -150,7 +150,7 @@ export default function PersianKeyboardsPage({ language }: { language: "en" | "f
           <div className="keyboard-product-identity"><Image src={app.image} alt={app.name + " app icon"} width={72} height={72} unoptimized /><div><p>{device}</p><h2 lang="en" dir="ltr">{app.name}</h2></div></div>
           <h3>{title}</h3><p>{body}</p>
           <ul>{facts.map(fact => <li key={fact}>{fa ? fact : <PersianText text={fact} />}</li>)}</ul>
-          <div className="keyboard-product-actions"><a className="button primary" href={app.storeUrl}>{cta} <span aria-hidden="true">↗</span></a><p>{copy.price}</p><a className="keyboard-text-link" href={"/apps/" + app.slug + "/"}>{copy.details}</a></div>
+          <div className="keyboard-product-actions"><a className="button primary" href={app.storeUrl}>{cta} <span aria-hidden="true">↗</span></a><p>{copy.price}</p><a className="keyboard-text-link" href={"/apps/" + app.slug + "/"} aria-label={`${copy.details} — ${app.name}`}>{copy.details}</a></div>
         </article>)}
       </section>
       <section className="keyboard-section" id="compare">

@@ -190,7 +190,8 @@ test("Persian Ink links to its released App Store app and keeps beta access sepa
   assert.ok(support.indexOf('id="enable"') < support.indexOf('id="model"'));
   assert.match(support, /href="\/apps\/persian-ink\/#beta"/);
   const directory = await (await render("/apps")).text();
-  assert.match(directory, /href="https:\/\/neuralint\.io\/apps\/persian-ink\/">Download &amp; setup/);
+  assert.match(directory, /href="https:\/\/neuralint\.io\/apps\/persian-ink\/">Persian Ink<\/a>/);
+  assert.match(directory, /<a[^>]*href="https:\/\/apps\.apple\.com\/app\/id6832685437"[^>]*aria-label="Open Persian Ink on the App Store"/);
   const catalog = await (await render("/apps/catalog.json")).json();
   assert.equal(catalog.apps.find(app => app.slug === "persian-ink").availability, "available");
 });

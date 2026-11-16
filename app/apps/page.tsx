@@ -7,6 +7,7 @@ import StructuredData from "../components/StructuredData";
 import PersianAppsBanner from "../components/PersianAppsBanner";
 import PersianText from "../components/PersianText";
 import { BrandMark, SiteMobileMenu } from "../components/SiteNavigation";
+import DestinationIcon from "../components/DestinationIcon";
 
 const title = "Persian Keyboards, Focus & Family Apps";
 const description = "Explore NeuralInt apps: Persian Ink handwriting, Persian Swipe typing, Trailhead focus sessions, Lady family routines, and LinkedFull fashion search.";
@@ -64,29 +65,29 @@ export default function AppsPage() {
         </section>
 
         <section className="app-directory" aria-label="NeuralInt apps">
-          {apps.map((app, index) => (
+          {apps.map((app) => (
             <article className={`app-directory-card app-${app.slug}`} key={app.slug}>
               <div className="app-card-identity">
                 <Image className="app-card-icon" src={app.image} alt="" width={128} height={128} unoptimized />
-                <span className="app-card-index" aria-hidden="true">0{index + 1}</span>
+                <div className="app-card-heading">
+                  <p className="app-card-label">{app.accentLabel}</p>
+                  <h2><a href={appUrl(app)}>{app.listingName}</a></h2>
+                </div>
+                {app.available && <a className="app-card-store" href={app.storeUrl} aria-label={`Open ${app.name} on the App Store`} title={`${app.name} on the App Store`}><DestinationIcon kind="store" /></a>}
               </div>
               <div className="app-card-content">
-                <p className="app-card-label">{app.accentLabel}</p>
-                <h2><a href={appUrl(app)}>{app.listingName}</a></h2>
                 <p className="app-card-summary"><PersianText text={app.description} /></p>
                 <div className="app-capabilities">
+                  {!app.available && <span>Not yet available</span>}
                   {(capabilities[app.slug] ?? app.features.slice(0, 3)).map((capability) => (
                     <span key={capability}>{capability}</span>
                   ))}
                 </div>
               </div>
-              <div className="app-card-links">
-                <a href={appUrl(app)}>{app.slug === "persian-ink" ? "Download & setup" : "Explore " + app.name}</a>
-                {app.hasLocalPolicies ? <>
+              {app.hasLocalPolicies && <div className="app-card-links">
                   <a href={appUrl(app) + "privacy/"} aria-label={`Privacy for ${app.name}`}>Privacy</a>
                   <a href={appUrl(app) + "support/"} aria-label={`Support for ${app.name}`}>Support</a>
-                </> : <a href={app.storeUrl}>App Store</a>}
-              </div>
+              </div>}
             </article>
           ))}
         </section>

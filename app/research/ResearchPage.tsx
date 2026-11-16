@@ -5,6 +5,7 @@ import { BrandMark, SiteMobileMenu } from "../components/SiteNavigation";
 import { apps } from "../content/apps";
 import PersianAppsBanner from "../components/PersianAppsBanner";
 import PersianText from "../components/PersianText";
+import DestinationIcon from "../components/DestinationIcon";
 
 const programs = [
   {
@@ -43,25 +44,26 @@ const programs = [
 const currentProjects = [
   ...apps.map((app) => ({
     title: app.listingName,
-    type: app.slug === "persian-ink" || app.slug === "persian-swipe" ? "Persian keyboard" : "iOS app",
-    status: app.available ? "Available on the App Store" : "In development",
+    status: app.available ? null : "In development",
     description: app.description,
     image: app.image,
     alt: app.name + " app icon",
-    href: "/apps/" + app.slug + "/",
-    linkLabel: "Explore app",
+    productUrl: "/apps/" + app.slug + "/",
+    actionUrl: app.available ? app.storeUrl : null,
+    actionLabel: `View ${app.name} on the App Store`,
+    actionKind: "store",
   })),
   {
-    title: "Koto", type: "Developer tools", status: "Open source · alpha",
+    title: "Koto", status: "Alpha",
     description: "An alpha workspace for coordinating coding agents with isolated Git worktrees, reviewed integration, and saved sessions.",
     image: "/projects/koto-logo.webp", alt: "Koto wooden K logo",
-    href: "https://github.com/mehrdadxzaker/Koto", linkLabel: "View source",
+    productUrl: null, actionUrl: "https://github.com/mehrdadxzaker/Koto", actionLabel: "View Koto on GitHub", actionKind: "github",
   },
   {
-    title: "Open Radio", type: "Amateur radio", status: "Open source",
+    title: "Open Radio", status: null,
     description: "RadioDesk is an open-source workspace for amateur-radio station control, signal analysis, RF tools, and local logging.",
     image: "/projects/open-radio-logo.svg", alt: "Open Radio waveform logo",
-    href: "https://github.com/mehrdadxzaker/radiodesk", linkLabel: "View source",
+    productUrl: null, actionUrl: "https://github.com/mehrdadxzaker/radiodesk", actionLabel: "View Open Radio on GitHub", actionKind: "github",
   },
 ];
 
@@ -139,18 +141,18 @@ export default function ResearchPage() {
           <div className="current-project-grid" aria-label="Current projects">
             {currentProjects.map((project) => (
               <article className="current-project-card" key={project.title}>
-                {project.image ? (
+                <div className="current-project-header">
                   <div className="current-project-mark">
                     <Image src={project.image} alt={project.alt} width={192} height={192} unoptimized loading="lazy" />
                   </div>
-                ) : (
-                  <div className="current-project-textmark" aria-hidden="true">{project.title}</div>
-                )}
+                  {project.actionUrl && <a className="current-project-action" href={project.actionUrl} aria-label={project.actionLabel} title={project.actionLabel}>
+                    <DestinationIcon kind={project.actionKind === "store" ? "store" : "github"} />
+                  </a>}
+                </div>
                 <div className="current-project-body">
-                  <div className="current-project-meta"><span>{project.type}</span><span>{project.status}</span></div>
-                  <h3>{project.title}</h3>
+                  <h3>{project.productUrl ? <a href={project.productUrl}>{project.title}</a> : project.title}</h3>
+                  {project.status && <span className="current-project-status">{project.status}</span>}
                   <p><PersianText text={project.description} /></p>
-                  {project.href && <a className="current-project-link" href={project.href} aria-label={`${project.linkLabel} — ${project.title}`}>{project.linkLabel}</a>}
                 </div>
               </article>
             ))}

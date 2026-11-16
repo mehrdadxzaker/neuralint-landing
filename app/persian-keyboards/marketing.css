@@ -16,7 +16,7 @@
 .keyboard-skip:focus { top: 10px; }
 .keyboard-header { display: flex; justify-content: space-between; align-items: center; gap: 20px; min-height: 72px; border-bottom: 1px solid var(--line); }
 .keyboard-header nav { display: flex; align-items: center; gap: 24px; font-size: 14px; }
-.keyboard-hero { padding: 76px 0 52px; max-width: 880px; }
+.keyboard-hero { padding: 64px 0 44px; max-width: 880px; }
 .keyboard-hero .eyebrow { color: var(--muted); font-size: 13px; }
 .keyboard-hero h1 { margin: 22px 0; font-family: var(--serif); font-weight: 700; font-size: clamp(42px, 6.5vw, 82px); line-height: 1.18; letter-spacing: -.045em; }
 .keyboard-site[lang="fa"] .keyboard-hero h1 { font-family: "Persian Ink Vazirmatn", Tahoma, sans-serif; letter-spacing: 0; line-height: 1.55; font-size: clamp(36px, 5vw, 66px); text-wrap: balance; }
@@ -24,24 +24,24 @@
 .keyboard-hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-block: 26px 20px; }
 .keyboard-hero-actions .button { min-height: 52px; font-family: inherit; font-size: 14px; line-height: 1.9; white-space: normal; text-align: center; }
 .keyboard-purchase { max-width: 740px; color: var(--muted); font-size: 14px; line-height: 1.9; }
-.keyboard-products { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.keyboard-product { display: flex; flex-direction: column; padding: 36px; border: 1px solid var(--line); background: var(--card); }
-.keyboard-product-identity { display: flex; align-items: center; gap: 18px; margin-bottom: 28px; }
+.keyboard-products { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.keyboard-product { display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--line); background: var(--card); }
+.keyboard-product-identity { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
 .keyboard-product-identity img { border-radius: 16px; flex: 0 0 72px; }
 .keyboard-product-identity p { margin: 0 0 8px; color: var(--muted); font-size: 12px; }
 .keyboard-product-identity h2 { width: fit-content; margin: 0; font-family: var(--serif); font-size: 24px; font-weight: 700; }
 .keyboard-product h3 { margin: 0 0 16px; font-size: 28px; line-height: 1.6; font-weight: 550; }
 .keyboard-product > p { margin: 0; color: var(--copy); font-size: 16px; line-height: 1.9; }
-.keyboard-product ul { margin-block: 24px 32px; padding-inline-start: 20px; color: var(--copy); font-size: 14px; line-height: 2.1; }
+.keyboard-product ul { margin-block: 20px 24px; padding-inline-start: 20px; color: var(--copy); font-size: 14px; line-height: 2; }
 .keyboard-product-actions { margin-top: auto; }
 .keyboard-product-actions .button { min-height: 52px; white-space: normal; text-align: center; line-height: 1.8; font-family: inherit; }
 .keyboard-product-actions > p { color: var(--muted); font-size: 12px; line-height: 1.9; }
 .keyboard-text-link { display: inline-block; margin-top: 8px; font-size: 13px; text-decoration: underline; text-underline-offset: 5px; }
-.keyboard-section { padding-block: 72px; border-bottom: 1px solid var(--line); scroll-margin-top: 24px; }
+.keyboard-section { padding-block: 60px; border-bottom: 1px solid var(--line); scroll-margin-top: 24px; }
 .keyboard-section > h2, .keyboard-support > h2 { font-family: var(--serif); font-size: 30px; line-height: 1.7; font-weight: 700; margin: 0 0 32px; }
 .keyboard-comparison { overflow-x: auto; }
 .keyboard-comparison table { width: 100%; border-collapse: collapse; text-align: start; font-size: 14px; line-height: 1.9; }
-.keyboard-comparison th, .keyboard-comparison td { padding: 20px 18px; border-bottom: 1px solid var(--line); text-align: start; }
+.keyboard-comparison th, .keyboard-comparison td { padding: 16px 18px; border-bottom: 1px solid var(--line); text-align: start; }
 .keyboard-comparison th { font-weight: 550; }
 .keyboard-comparison td { width: 39%; color: var(--copy); }
 .keyboard-comparison thead { background: var(--paper-2); font-family: inherit; }
@@ -52,7 +52,7 @@
 .keyboard-questions details { border-top: 1px solid var(--line); padding: 24px 0; }
 .keyboard-questions summary { cursor: pointer; font-size: 17px; line-height: 1.9; }
 .keyboard-questions details p { max-width: 870px; font-size: 15px; line-height: 2; color: var(--copy); }
-.keyboard-support { display: grid; grid-template-columns: 1fr 1fr; padding-block: 64px; gap: 32px; border-bottom: 1px solid var(--line); }
+.keyboard-support { display: grid; grid-template-columns: 1fr 1fr; padding-block: 52px; gap: 24px; border-bottom: 1px solid var(--line); }
 .keyboard-support p { display: flex; flex-wrap: wrap; gap: 15px; font-size: 13px; line-height: 2; }
 .keyboard-support strong { flex-basis: 100%; width: fit-content; font-size: 16px; }
 .keyboard-support a { text-decoration: underline; text-underline-offset: 5px; color: var(--muted); }

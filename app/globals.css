@@ -1654,12 +1654,12 @@ a {
 }
 
 .legal-main {
-  padding: 92px 0 128px;
+  padding: 72px 0 96px;
 }
 
 .legal-heading {
   max-width: 1030px;
-  padding-bottom: 72px;
+  padding-bottom: 56px;
 }
 
 .legal-heading .eyebrow,
@@ -1763,7 +1763,7 @@ a {
   display: grid;
   grid-template-columns: minmax(170px, 0.58fr) minmax(0, 1.42fr);
   gap: 34px;
-  padding: 42px 0 48px;
+  padding: 32px 0 36px;
   border-bottom: 1px solid var(--line);
   scroll-margin-top: 24px;
 }
@@ -1938,8 +1938,8 @@ a {
   --app-card-accent: var(--blue);
   display: grid;
   grid-template-rows: auto 1fr auto;
-  min-height: 550px;
-  padding: 40px;
+  min-width: 0;
+  padding: 32px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: var(--card);
@@ -1958,36 +1958,44 @@ a {
 
 .app-card-identity {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 48px;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
 }
 
 .app-card-icon {
   display: block;
-  width: 104px;
-  height: 104px;
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
   object-fit: cover;
   border-radius: 23%;
   box-shadow: 0 9px 24px rgb(0 0 0 / 0.12);
 }
 
-.app-card-index {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  color: var(--copy-soft);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 10px;
+.app-card-heading {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
+.app-card-store {
+  display: inline-flex;
+  flex: 0 0 44px;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--nav-ink);
+  text-decoration: none;
+}
+
+.app-card-store svg { width: 22px; height: 22px; }
+@media (hover: hover) { .app-card-store:hover { background: var(--inverse-bg); color: var(--inverse-fg); } }
+
 .app-card-label {
-  margin: 0 0 12px;
+  margin: 0 0 6px;
   color: var(--copy-soft);
   font-family: var(--font-geist-mono), monospace;
   font-size: 12px;
@@ -1996,9 +2004,9 @@ a {
 }
 
 .app-directory-card h2 {
-  margin: 0 0 18px;
+  margin: 0;
   font-family: var(--serif);
-  font-size: clamp(38px, 4.3vw, 62px);
+  font-size: clamp(30px, 3.3vw, 48px);
   font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 1.03;
@@ -2016,15 +2024,15 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin-top: 24px;
+  margin-top: 18px;
 }
 
 .app-card-links {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
-  margin-top: 52px;
-  padding-top: 20px;
+  margin-top: 24px;
+  padding-top: 16px;
   border-top: 1px solid var(--line);
   color: var(--nav-ink);
   font-size: 12px;
@@ -2161,9 +2169,9 @@ a {
     padding: 28px 24px;
   }
 
-  .app-card-identity { margin-bottom: 36px; }
-  .app-card-icon { width: 88px; height: 88px; }
-  .app-card-links { margin-top: 38px; }
+  .app-card-identity { gap: 12px; margin-bottom: 20px; }
+  .app-card-icon { flex-basis: 64px; width: 64px; height: 64px; }
+  .app-card-links { margin-top: 22px; }
 
   .apps-trust-band {
     gap: 28px;
@@ -2174,6 +2182,17 @@ a {
   .legal-footer-links {
     gap: 14px;
   }
+}
+
+@media (max-width: 420px) {
+  .app-directory-card { padding-inline: 20px; }
+  .app-card-identity { display: grid; grid-template-columns: 48px minmax(0, 1fr) 44px; gap: 8px; }
+  .app-card-heading { display: contents; }
+  .app-card-label { grid-column: 1 / -1; margin-bottom: 2px; }
+  .app-card-icon { grid-column: 1; grid-row: 2; }
+  .app-directory-card h2 { grid-column: 2; grid-row: 2; font-size: clamp(22px, 6.5vw, 27px); overflow-wrap: anywhere; }
+  .app-card-store { grid-column: 3; grid-row: 2; }
+  .app-card-icon { flex-basis: 48px; width: 48px; height: 48px; }
 }
 
 /* Persian Swipe product page: keep the demo and download together. */
@@ -2209,8 +2228,8 @@ a {
 .app-product-intro { display: flex; align-items: center; gap: 24px; margin-top: 28px; }
 .app-product-intro img { flex: 0 0 auto; border-radius: 24px; }
 .app-product-intro p { max-width: 66ch; font-size: 14px; line-height: 1.65; margin: 14px 0 0; }
-.app-directory-card h2 a { color: inherit; text-decoration: none; }
-.app-directory-card h2 a:hover { text-decoration: underline; }
+.app-directory-card h2 a { color: inherit; text-decoration: underline; text-decoration-color: var(--line); text-decoration-thickness: 1px; text-underline-offset: 5px; }
+@media (hover: hover) { .app-directory-card h2 a:hover { text-decoration-color: currentColor; } }
 .app-discovery-links { display: flex; flex-wrap: wrap; gap: 12px 20px; }
 .app-discovery-links a { color: inherit; text-underline-offset: 4px; }
 @media (max-width: 620px) {
@@ -2319,7 +2338,7 @@ a {
 /* Preserve the existing chartreuse signal described in the portfolio copy. */
 .portfolio-note-mark::after { background: #dfff4f; }
 
-/* Current product cards use the actual product identities. */
+/* Portfolio cards keep product identity and destination actions together. */
 .current-project-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2330,29 +2349,57 @@ a {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding: 32px;
+  gap: 20px;
+  padding: 28px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.current-project-mark {
+.current-project-header {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  height: 96px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
 }
 .current-project-mark img {
   display: block;
-  width: 88px;
-  height: 88px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
-  border-radius: 20px;
+  border-radius: 17px;
 }
-.current-project-body { flex: 1; display: flex; flex-direction: column; }
-.current-project-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 16px;
+.current-project-action {
+  display: inline-flex;
+  flex: 0 0 44px;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  transition: color 150ms ease, border-color 150ms ease, background-color 150ms ease;
+}
+.current-project-action svg { display: block; width: 22px; height: 22px; }
+.current-project-action:focus-visible,
+.current-project-body h3 a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+@media (hover: hover) {
+  .current-project-action:hover { color: var(--blue); border-color: var(--blue); background: var(--visual-surface); }
+  .current-project-body h3 a:hover { color: var(--blue); }
+}
+.current-project-body { min-width: 0; }
+.current-project-body h3 {
+  font-family: var(--serif);
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-size: clamp(24px, 2.2vw, 30px);
+  font-weight: 700;
+  letter-spacing: -.035em;
+  line-height: 1.12;
+}
+.current-project-body h3 a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.current-project-status {
+  display: block;
+  margin: 0 0 8px;
   color: var(--muted);
   font-family: var(--font-geist-mono), monospace;
   font-size: 12px;
@@ -2360,44 +2407,21 @@ a {
   letter-spacing: .055em;
   text-transform: uppercase;
 }
-.current-project-meta span + span::before { content: "·"; margin-right: 16px; color: #a38d61; }
-.current-project-body h3 {
-  font-family: var(--serif);
-  margin: 17px 0 14px;
-  color: var(--ink);
-  font-size: clamp(24px, 2.2vw, 30px);
-  font-weight: 700;
-  letter-spacing: -.035em;
-  line-height: 1.12;
-}
-.current-project-body p { margin: 0 0 28px; color: var(--copy); font-size: 15px; line-height: 1.6; }
-.current-project-link {
-  align-self: flex-start;
-  margin-top: auto;
-  padding: 0 0 4px;
-  border-bottom: 1px solid var(--ink);
-  color: var(--ink);
-  font-size: 13px;
-  line-height: 1.5;
-}
-.current-project-link:hover { color: var(--blue); border-color: var(--blue); }
-.current-project-link:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.current-project-body p { margin: 0; color: var(--copy); font-size: 15px; line-height: 1.6; }
 @media (max-width: 900px) { .current-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 620px) {
   .current-project-grid { grid-template-columns: 1fr; }
-  .current-project-card { gap: 20px; padding: 28px 24px; }
-  .current-project-mark { height: 76px; }
-  .current-project-mark img { width: 72px; height: 72px; border-radius: 16px; }
+  .current-project-card { gap: 16px; padding: 24px; }
+  .current-project-mark img { width: 64px; height: 64px; border-radius: 15px; }
 }
-
 @media (min-width: 1101px) {
   .current-project-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-  .current-project-card { grid-column: span 3; padding: 28px; }
+  .current-project-card { grid-column: span 3; }
   .current-project-card:nth-child(n + 5) { grid-column: span 4; }
 }
 @media (min-width: 621px) and (max-width: 1100px) {
   .current-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .current-project-card:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: start; }
+  .current-project-card:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 140px) minmax(0, 1fr); align-items: start; }
 }
 
 /* Persian uses a purpose-designed face rather than a system Arabic fallback. */

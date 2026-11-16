@@ -32,7 +32,7 @@ const staticThemeRuntime = `<script data-theme-runtime>
 
   var theme = document.documentElement.dataset.theme;
   if (theme !== "light" && theme !== "dark") {
-    theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    theme = "dark";
   }
   applyTheme(theme);
 
@@ -93,7 +93,7 @@ function makeStatic(html, route) {
   const socialTags = Object.entries(social).map(([key, value]) =>
     '<meta ' + (key.startsWith("og:") ? "property" : "name") + '="' + key + '" content="' + escape(value) + '"/>'
   ).join("");
-  let finalHtml = result.replace(/<meta\b[^>]*>/g, tag =>
+  let finalHtml = result.replaceAll("https://neuralint.io/neuralint-favicon-lamassu.png", "/neuralint-favicon-lamassu.png").replace(/<meta\b[^>]*>/g, tag =>
     /(?:property|name)="(?:og:|twitter:)[^"]*"/.test(tag) ? "" : tag
   ).replace("</head>", socialTags + "</head>");
   // Supply a self-canonical when absent. Preserve explicit choices so the
@@ -148,6 +148,8 @@ await cp(
 for (const asset of [
   "favicon.png",
   "favicon.svg",
+  "neuralint-logo-lamassu-transparent.webp",
+  "neuralint-favicon-lamassu.png",
   "og.webp",
   "mehrdad-zaker-headshot.jpeg",
   "mehrdad-zaker-three-quarter-transparent.webp",

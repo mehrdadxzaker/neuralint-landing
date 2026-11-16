@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import ThemeToggle from "../../components/ThemeToggle";
+import { BrandMark, SiteMobileMenu } from "../../components/SiteNavigation";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/people/mehrdad/" },
@@ -19,18 +20,18 @@ export default function MehrdadProfile() {
             href="/"
             aria-label="Neural Intelligence Labs research home"
           >
-            <span className="mark" aria-hidden="true" />
+            <BrandMark />
             <span>Neural Intelligence Labs</span>
           </Link>
           <nav className="nav" aria-label="Profile navigation">
             <Link href="/">Research</Link>
             <a href="/apps/">Apps</a>
-            <Link href="/#index-case">Index</Link>
             <ThemeToggle />
             <a className="nav-cta" href="https://www.linkedin.com/in/mehrdadzaker">
               Connect
             </a>
           </nav>
+          <SiteMobileMenu extraLinks={[["Connect", "https://www.linkedin.com/in/mehrdadzaker"]]} />
         </header>
 
         <div className="profile-page-main">

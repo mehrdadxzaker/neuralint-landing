@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
+import { BrandMark } from "./SiteNavigation";
 import StructuredData from "./StructuredData";
 import { getApp, siteOrigin } from "../content/apps";
 
@@ -123,7 +124,7 @@ export default function PersianKeyboardsPage({ language }: { language: "en" | "f
     <StructuredData data={data} />
     <a className="keyboard-skip" href="#keyboards">{fa ? "رفتن به محتوای اصلی" : "Skip to content"}</a>
     <header className="shell keyboard-header">
-      <a className="wordmark" href="/apps/" aria-label="NeuralInt apps"><span className="mark" aria-hidden="true" /><span lang="en" dir="ltr">NeuralInt</span></a>
+      <a className="wordmark" href="/apps/" aria-label="NeuralInt apps"><BrandMark /><span lang="en" dir="ltr">NeuralInt</span></a>
       <nav aria-label={fa ? "راهبری" : "Navigation"}>
         <a href="#compare">{fa ? "مقایسه" : "Compare"}</a>
         <a href="#setup">{fa ? "روش نصب" : "Setup"}</a>

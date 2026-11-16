@@ -1,47 +1,14 @@
 import { cp, mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { exportRoutes, indexableUrls, validatePageRoutes } from "./site-routes.mjs";
 
 const baseUrl = process.env.SITE_EXPORT_URL ?? "http://localhost:3001";
 const outputDir = path.resolve("static-site");
 const catalogResponse = await fetch(new URL("/apps/catalog.json", baseUrl));
 if (!catalogResponse.ok) throw new Error("Unable to export app catalog: " + catalogResponse.status);
 const catalog = await catalogResponse.json();
-const routes = [
-  { source: "/persian-keyboards", output: "persian-keyboards/index.html", language: "en" },
-  { source: "/fa", output: "fa/index.html", language: "fa" },
-  { source: "/about", output: "about/index.html" },
-  { source: "/contact", output: "contact/index.html" },
-  { source: "/privacy", output: "privacy/index.html" },
-  ...catalog.apps.filter(app => app.slug !== "persian-ink").map(app => ({
-    source: "/apps/" + app.slug, output: "apps/" + app.slug + "/index.html",
-  })),
-  { source: "/apps/persian-ink", output: "apps/persian-ink/index.html" },
-  { source: "/apps/persian-ink/privacy", output: "apps/persian-ink/privacy/index.html" },
-  { source: "/apps/persian-ink/support", output: "apps/persian-ink/support/index.html" },
-  { source: "/apps/persian-ink/review", output: "apps/persian-ink/review/index.html", indexable: false },
-  { source: "/apps/persian-swipe/privacy", output: "apps/persian-swipe/privacy/index.html" },
-  { source: "/apps/persian-swipe/support", output: "apps/persian-swipe/support/index.html" },
-
-  { source: "/", output: "index.html" },
-  { source: "/people/mehrdad", output: "people/mehrdad/index.html" },
-  { source: "/apps", output: "apps/index.html" },
-  { source: "/apps/terms", output: "apps/terms/index.html" },
-  {
-    source: "/apps/trailhead/privacy",
-    output: "apps/trailhead/privacy/index.html",
-  },
-  {
-    source: "/apps/trailhead/support",
-    output: "apps/trailhead/support/index.html",
-  },
-  {
-    source: "/apps/trailhead/review",
-    output: "apps/trailhead/review/index.html", indexable: false,
-  },
-  { source: "/apps/lady/privacy", output: "apps/lady/privacy/index.html" },
-  { source: "/apps/lady/support", output: "apps/lady/support/index.html" },
-  { source: "/apps/lady/review", output: "apps/lady/review/index.html", indexable: false },
-];
+const routes = exportRoutes(catalog);
+await validatePageRoutes(routes);
 
 const staticThemeRuntime = `<script data-theme-runtime>
 (function () {
@@ -193,9 +160,7 @@ await writeFile(path.join(outputDir, "research/index.html"), `<!doctype html>
 <meta http-equiv="refresh" content="0;url=/"></head>
 <body><p>Research is now on the <a href="/">Neural Intelligence Labs homepage</a>.</p></body></html>`);
 
-const canonicalUrls = routes.filter(route => route.indexable !== false).map(({ source }) =>
-  `https://neuralint.io${source === "/" ? "/" : `${source}/`}`,
-);
+const canonicalUrls = indexableUrls(routes);
 await writeFile(path.join(outputDir, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${canonicalUrls.map(url => `  <url><loc>${url}</loc></url>`).join("\n")}\n</urlset>\n`,
 );

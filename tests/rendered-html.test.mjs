@@ -128,10 +128,8 @@ test("server-renders the NeuralInt app directory and legal routes", async () => 
 });
 
 test("static export includes every app policy and review route", async () => {
-  const exporter = await readFile(
-    new URL("../scripts/export-github-pages.mjs", import.meta.url),
-    "utf8",
-  );
+  const { exportRoutes } = await import("../scripts/site-routes.mjs");
+  const routes = exportRoutes({ apps: [] }).map(route => route.source);
 
   for (const pathname of [
     "/apps/trailhead/privacy",
@@ -146,7 +144,7 @@ test("static export includes every app policy and review route", async () => {
     "/apps/persian-ink/review",
     "/apps/terms",
   ]) {
-    assert.match(exporter, new RegExp(pathname.replaceAll("/", "\\/")));
+    assert.ok(routes.includes(pathname), pathname);
   }
 });
 

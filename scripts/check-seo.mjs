@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 import path from "node:path";
+import { assertIndexableMeta, exportRoutes, indexableUrls, validatePageRoutes } from "./site-routes.mjs";
 
 const root = path.resolve(process.argv[2] ?? "static-site");
 const origin = "https://neuralint.io";
@@ -9,6 +10,9 @@ const sitemap = await readFile(path.join(root, "sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
 assert.ok(urls.length > 0, "Sitemap must list canonical pages");
 assert.equal(new Set(urls).size, urls.length, "Sitemap URLs must be unique");
+const routes = exportRoutes(catalog);
+await validatePageRoutes(routes);
+assert.deepEqual([...urls].sort(), indexableUrls(routes).sort(), "Sitemap must include every indexable export and exclude non-indexable pages");
 assert.deepEqual(catalog.apps.map(app => app.slug).sort(), ["lady", "linkedfull", "persian-ink", "persian-swipe", "trailhead"]);
 const titles = new Set();
 const descriptions = new Set();
@@ -38,7 +42,7 @@ for (const url of urls) {
   const description = descriptionTags[0].content;
   assert.ok(description && !descriptions.has(description), "Unique description: " + url);
   descriptions.add(description);
-  assert.ok(!metas.some(tag => tag.name === "robots" && /noindex/i.test(tag.content)), "Indexable sitemap URL: " + url);
+  assertIndexableMeta(metas, url);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1, "One main heading: " + url);
   for (const [key, expected] of Object.entries({
     "og:title": title, "og:description": description, "og:url": url,
@@ -63,6 +67,28 @@ for (const url of urls) {
     await access(path.join(root, pathname, path.extname(pathname) ? "" : "index.html")).catch(() => assert.fail("Missing link or asset " + pathname + " in " + url));
   }
 }
+// Walk ordinary links from the homepage to catch orphaned indexable pages.
+const reached = new Set([origin + "/"]);
+const pending = [origin + "/"];
+while (pending.length) {
+  const current = pending.shift();
+  const html = htmlByUrl.get(current);
+  if (!html) continue;
+  for (const match of html.matchAll(/<a\b[^>]*>/gi)) {
+    const href = attrs(match[0]).href;
+    if (!href) continue;
+    let destination;
+    try { destination = new URL(decode(href), current); } catch { continue; }
+    if (destination.origin !== origin) continue;
+    const normalized = origin + (destination.pathname.endsWith("/") ? destination.pathname : destination.pathname + "/");
+    if (htmlByUrl.has(normalized) && !reached.has(normalized)) {
+      reached.add(normalized);
+      pending.push(normalized);
+    }
+  }
+}
+for (const url of urls) assert.ok(reached.has(url), "Indexable page must be reachable from homepage: " + url);
+
 const directoryHtml = htmlByUrl.get(origin + "/apps/");
 const homepage = htmlByUrl.get(origin + "/");
 const languagePages = { en: origin + "/persian-keyboards/", fa: origin + "/fa/", "x-default": origin + "/persian-keyboards/" };

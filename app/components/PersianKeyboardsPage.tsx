@@ -59,7 +59,7 @@ export const keyboardCopy = {
     ],
     support: "Setup & support",
     privacy: "Privacy",
-    footer: "Made by NeuralInt. For the Persian you use every day.",
+    footer: ["Made by ", ". For the Persian you use every day."],
   },
   fa: {
     title: "صفحه‌کلید فارسی آیفون و آیپد | Persian Swipe و Persian Ink",
@@ -104,7 +104,7 @@ export const keyboardCopy = {
     ],
     support: "راهنمای راه‌اندازی و پشتیبانی (انگلیسی)",
     privacy: "نگهداری از داده‌های شخصی (انگلیسی)",
-    footer: "ساختهٔ NeuralInt، برای فارسیِ هر روز شما.",
+    footer: ["ساختهٔ ", "، برای فارسیِ هر روز شما."],
   },
 };
 
@@ -126,7 +126,7 @@ export default function PersianKeyboardsPage({ language }: { language: "en" | "f
     <StructuredData data={data} />
     <a className="keyboard-skip" href="#keyboards">{fa ? "رفتن به بخش اصلی" : "Skip to content"}</a>
     <header className="shell keyboard-header">
-      <Link className="wordmark" href="/" aria-label="NeuralInt home"><BrandMark /><span lang="en" dir="ltr">NeuralInt</span></Link>
+      <Link className="wordmark" href="/" aria-label="Neural Intelligence Labs home"><BrandMark /><span lang="en" dir="ltr">Neural Intelligence Labs</span></Link>
       <nav aria-label={fa ? "راهبری" : "Navigation"}>
         <a href="#compare">{fa ? "سنجش" : "Compare"}</a>
         <a href="#setup">{fa ? "راه‌اندازی" : "Setup"}</a>
@@ -161,6 +161,6 @@ export default function PersianKeyboardsPage({ language }: { language: "en" | "f
       <section className="keyboard-section keyboard-questions"><h2>{copy.faqTitle}</h2>{copy.questions.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</section>
       <section className="keyboard-support"><h2>{fa ? "برای آغاز آماده‌اید؟" : "Ready to write?"}</h2><div>{[swipe, ink].map(app => <p key={app.slug}><strong lang="en" dir="ltr">{app.name}</strong><a href={"/apps/" + app.slug + "/support/"} aria-label={`${copy.support} — ${app.name}`}>{copy.support}</a><a href={"/apps/" + app.slug + "/privacy/"} aria-label={`${copy.privacy} — ${app.name}`}>{copy.privacy}</a></p>)}</div></section>
     </main>
-    <footer className="shell keyboard-footer"><p>{copy.footer}</p><nav aria-label={fa ? "درباره" : "Information"}><a href="/apps/">{fa ? "همهٔ برنامه‌ها" : "All apps"}</a><a href="mailto:mehrdadz@neuralint.io">{fa ? "پیام به پشتیبانی" : "Contact support"}</a><a href="/apps/terms/">{fa ? "آیین کاربری (انگلیسی)" : "Terms"}</a></nav></footer>
+    <footer className="shell keyboard-footer"><p>{copy.footer[0]}<bdi lang="en" dir="ltr">Neural Intelligence Labs</bdi>{copy.footer[1]}</p><nav aria-label={fa ? "درباره" : "Information"}><a href="/apps/">{fa ? "همهٔ برنامه‌ها" : "All apps"}</a><a href="mailto:mehrdadz@neuralint.io">{fa ? "پیام به پشتیبانی" : "Contact support"}</a><a href="/apps/terms/">{fa ? "آیین کاربری (انگلیسی)" : "Terms"}</a></nav></footer>
   </div>;
 }

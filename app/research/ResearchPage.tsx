@@ -23,21 +23,6 @@ const programs = [
     title: "Curriculum & transfer",
     body: "Task generation and curricula that transfer skills from shell operations to software engineering and stateful web work.",
   },
-  {
-    number: "04",
-    title: "Planning under constraints",
-    body: "Reasoning, search, and recovery for long-horizon agents operating with limited context, time, permissions, and evidence.",
-  },
-  {
-    number: "05",
-    title: "Operational state",
-    body: "Memory and state architectures that make long-running work resumable, auditable, and robust to interruption.",
-  },
-  {
-    number: "06",
-    title: "Industrial agent systems",
-    body: "Applying reliable agent techniques to document operations, robotics, manufacturing, procurement, and finance.",
-  },
 ];
 
 // The public app catalog is the source of truth for descriptions and availability.
@@ -70,7 +55,7 @@ const currentProjects = [
 function Header() {
   return (
     <header className="topbar">
-      <Link className="wordmark" href="/" aria-label="Neural Intelligence Labs research home">
+      <Link className="wordmark" href="/" aria-label="Neural Intelligence Labs home">
         <BrandMark />
         <span>Neural Intelligence Labs</span>
       </Link>
@@ -116,7 +101,7 @@ export default function ResearchPage() {
               observable state, trustworthy verification, and recovery from failure.
             </p>
             <div className="button-row">
-              <a className="button primary" href="#focus">
+              <a className="button primary" href="#programs">
                 Current focus
               </a>
               <a className="button secondary" href="#portfolio">
@@ -161,7 +146,7 @@ export default function ResearchPage() {
 
 
         <section className="section" id="programs">
-          <div className="section-head">
+          <div className="section-head" id="focus">
             <span className="section-index">02 / Research program</span>
             <div>
               <h2 className="section-title">
@@ -184,67 +169,6 @@ export default function ResearchPage() {
             ))}
           </div>
         </section>
-      </div>
-
-      <div className="focus-band" id="focus">
-        <div className="shell">
-          <section className="section">
-            <div className="focus-grid">
-              <div>
-                <span className="report-status">First report in development</span>
-                <h2 className="report-title">
-                  Executable Worlds for Learning Software Agents
-                </h2>
-                <p className="report-summary">
-                  A practical research framework for building RL environments
-                  across software engineering, terminal, and web tasks—where every
-                  episode can be reset, every outcome can be verified, and every
-                  failure produces useful evidence.
-                </p>
-              </div>
-              <aside className="report-spec" aria-label="Report scope">
-                <div className="spec-row">
-                  <span>Format</span>
-                  <span>Technical report + reference environment</span>
-                </div>
-                <div className="spec-row">
-                  <span>Scope</span>
-                  <span>SWE · Terminal · Web</span>
-                </div>
-                <div className="spec-row">
-                  <span>Thesis</span>
-                  <span>Environment quality bounds agent learning</span>
-                </div>
-                <div className="spec-row">
-                  <span>Target</span>
-                  <span>In development</span>
-                </div>
-              </aside>
-            </div>
-            <div className="method-flow" aria-label="Environment lifecycle">
-              <div className="method-step">
-                <code>STATE_01</code>
-                <strong>Initialize</strong>
-                <span>Materialize a controlled, inspectable task state.</span>
-              </div>
-              <div className="method-step">
-                <code>ACT_02</code>
-                <strong>Interact</strong>
-                <span>Expose consequential actions through real tools.</span>
-              </div>
-              <div className="method-step">
-                <code>VERIFY_03</code>
-                <strong>Evaluate</strong>
-                <span>Check outcomes against independent reward contracts.</span>
-              </div>
-              <div className="method-step">
-                <code>RESET_04</code>
-                <strong>Recover</strong>
-                <span>Capture evidence, reset cheaply, and vary the next episode.</span>
-              </div>
-            </div>
-          </section>
-        </div>
       </div>
 
       <div className="shell">

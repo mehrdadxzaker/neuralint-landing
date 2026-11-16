@@ -39,9 +39,9 @@ export default function AppsPage() {
       <StructuredData data={directoryData} />
       <a className="skip-link" href="#apps-content">Skip to content</a>
       <header className="shell topbar legal-topbar">
-        <Link className="wordmark" href="/" aria-label="NeuralInt home">
+        <Link className="wordmark" href="/" aria-label="Neural Intelligence Labs home">
           <BrandMark />
-          <span>NeuralInt</span>
+          <span>Neural Intelligence Labs</span>
         </Link>
         <nav className="nav legal-nav" aria-label="Apps navigation">
           <Link href="/">Research</Link>

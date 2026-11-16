@@ -17,6 +17,12 @@ const expectedUrls = [];
 for (const route of routes) {
   const html = await readFile(path.join(root, route.output), "utf8");
   assert.ok(html.includes(`href="${stylesheet}"`), "Versioned stylesheet: " + route.source);
+  for (const match of html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
+    if (!/\bclass="[^"]*\bwordmark\b/.test(match[1])) continue;
+    assert.match(match[1], /href="\/"/, "Corporate wordmark links home: " + route.source);
+    assert.match(match[1], /aria-label="Neural Intelligence Labs home"/, "Corporate wordmark accessible name: " + route.source);
+    assert.match(match[2], /<span(?:\s[^>]*)?>Neural Intelligence Labs<\/span>/, "Corporate wordmark name: " + route.source);
+  }
   if (!excludedFromIndex(metaTags(html))) expectedUrls.push(canonicalUrl(route.source));
 }
 assert.deepEqual([...urls].sort(), expectedUrls.sort(), "Sitemap must include every indexable export and exclude non-indexable pages");

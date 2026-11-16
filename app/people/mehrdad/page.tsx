@@ -20,7 +20,7 @@ export default function MehrdadProfile() {
           <Link
             className="wordmark"
             href="/"
-            aria-label="Neural Intelligence Labs research home"
+            aria-label="Neural Intelligence Labs home"
           >
             <BrandMark />
             <span>Neural Intelligence Labs</span>

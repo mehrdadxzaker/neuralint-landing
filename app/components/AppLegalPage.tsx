@@ -55,9 +55,9 @@ export function AppLegalPage({
     <div className={`app-legal-site ${app ? `app-${app.slug}` : "app-neuralint"}`}>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <header className="shell topbar legal-topbar">
-        <Link className="wordmark" href="/" aria-label="NeuralInt home">
+        <Link className="wordmark" href="/" aria-label="Neural Intelligence Labs home">
           <BrandMark />
-          <span>NeuralInt</span>
+          <span>Neural Intelligence Labs</span>
         </Link>
         <nav className="nav legal-nav" aria-label="App legal navigation">
           <a href="/apps/">Apps</a>

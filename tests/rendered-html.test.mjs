@@ -37,6 +37,9 @@ test("server-renders the research and maker portfolio", async () => {
   assert.match(html, /aria-pressed="true"/);
   assert.match(html, /\/mehrdad-zaker-portrait-840\.webp/);
   assert.match(html, /Personal site &amp; writing/);
+  assert.equal((html.match(/<article class="program">/g) ?? []).length, 3, "Research shows three program cards");
+  assert.doesNotMatch(html, /First report in development/);
+  assert.match(html, /id="focus"/, "Existing focus links remain valid");
 
   for (const project of [
     "Persian Ink", "Persian Swipe", "Trailhead: Deep Focus",

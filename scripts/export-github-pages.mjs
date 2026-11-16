@@ -1,6 +1,7 @@
 import { cp, mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { addMissingCanonical, canonicalUrl, excludedFromIndex, exportRoutes, metaTags } from "./site-routes.mjs";
+import { stylesheetHref } from "./site-assets.mjs";
 
 const baseUrl = process.env.SITE_EXPORT_URL ?? "http://localhost:3001";
 const outputDir = path.resolve("static-site");
@@ -9,6 +10,12 @@ if (!catalogResponse.ok) throw new Error("Unable to export app catalog: " + cata
 const catalog = await catalogResponse.json();
 const routes = await exportRoutes();
 const indexableRoutes = [];
+const compiledAssets = await readdir("dist/client/assets");
+const cssFile = compiledAssets.find((file) => file.endsWith(".css"));
+if (!cssFile) throw new Error("Unable to find the compiled site stylesheet.");
+const cssPath = path.join("dist/client/assets", cssFile);
+const cssContents = await readFile(cssPath);
+const cssHref = stylesheetHref(cssContents);
 
 const staticThemeRuntime = `<script data-theme-runtime>
 (function () {
@@ -83,7 +90,7 @@ function makeStatic(html, route) {
     .replace(/<link\b[^>]*rel=["']modulepreload["'][^>]*\/?>/gi, "")
     .replace(
       /<link rel="stylesheet" href="\/(?:app\/globals\.css|assets\/[^"]+\.css)"[^>]*\/?>/i,
-      '<link rel="stylesheet" href="/assets/site.css"/>',
+      '<link rel="stylesheet" href="' + cssHref + '"/>',
     )
     .replace(/\sdata-rsc-[\w-]+="[^"]*"/gi, "")
     .replace("</body>", `${staticThemeRuntime}</body>`);
@@ -148,17 +155,8 @@ await cp("public/projects", path.join(outputDir, "projects"), {
 });
 await cp("public/apps", path.join(outputDir, "apps"), { recursive: true });
 
-const compiledAssets = await readdir("dist/client/assets");
-const cssFile = compiledAssets.find((file) => file.endsWith(".css"));
-
-if (!cssFile) {
-  throw new Error("Unable to find the compiled site stylesheet.");
-}
-
-await cp(
-  path.join("dist/client/assets", cssFile),
-  path.join(outputDir, "assets/site.css"),
-);
+// Cached HTML from earlier deployments can still request the stable path.
+await writeFile(path.join(outputDir, "assets/site.css"), cssContents);
 
 for (const asset of [
   "favicon.png",

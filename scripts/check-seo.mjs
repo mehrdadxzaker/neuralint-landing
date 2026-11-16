@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 import path from "node:path";
 import { assertIndexableMeta, canonicalUrl, excludedFromIndex, exportRoutes, metaTags } from "./site-routes.mjs";
+import { stylesheetHref } from "./site-assets.mjs";
 
 const root = path.resolve(process.argv[2] ?? "static-site");
 const origin = "https://neuralint.io";
@@ -11,9 +12,11 @@ const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]
 assert.ok(urls.length > 0, "Sitemap must list canonical pages");
 assert.equal(new Set(urls).size, urls.length, "Sitemap URLs must be unique");
 const routes = await exportRoutes();
+const stylesheet = stylesheetHref(await readFile(path.join(root, "assets/site.css")));
 const expectedUrls = [];
 for (const route of routes) {
   const html = await readFile(path.join(root, route.output), "utf8");
+  assert.ok(html.includes(`href="${stylesheet}"`), "Versioned stylesheet: " + route.source);
   if (!excludedFromIndex(metaTags(html))) expectedUrls.push(canonicalUrl(route.source));
 }
 assert.deepEqual([...urls].sort(), expectedUrls.sort(), "Sitemap must include every indexable export and exclude non-indexable pages");

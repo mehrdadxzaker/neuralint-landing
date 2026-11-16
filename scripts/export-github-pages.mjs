@@ -46,7 +46,12 @@ const staticThemeRuntime = `<script data-theme-runtime>
 
   document.addEventListener("click", function (event) {
     var button = event.target.closest(".theme-toggle");
-    if (!button) return;
+    if (!button) {
+      var menuLink = event.target.closest(".site-mobile-menu-links a");
+      var menu = menuLink && menuLink.closest("details.site-mobile-menu");
+      if (menu) menu.open = false;
+      return;
+    }
 
     var nextTheme =
       document.documentElement.dataset.theme === "dark" ? "light" : "dark";

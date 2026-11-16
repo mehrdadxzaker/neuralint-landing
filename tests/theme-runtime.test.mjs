@@ -67,4 +67,10 @@ test("exported theme control suppresses transitions through rapid switches", asy
   assert.ok(classes.has("theme-switching"));
   flushFrame();
   assert.equal(classes.has("theme-switching"), false, "normal transitions are restored");
+
+  const menu = { open: true };
+  const link = { closest: selector => selector === "details.site-mobile-menu" ? menu : null };
+  onClick({ target: { closest: selector => selector === ".site-mobile-menu-links a" ? link : null } });
+  assert.equal(menu.open, false, "mobile navigation closes before following a link");
+  assert.equal(root.dataset.theme, "dark", "following a menu link does not change the theme");
 });

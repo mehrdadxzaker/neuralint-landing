@@ -12,6 +12,8 @@ const indexableRoutes = [];
 
 const staticThemeRuntime = `<script data-theme-runtime>
 (function () {
+  var transitionReleaseFrame = null;
+
   function applyTheme(theme) {
     var isDark = theme === "dark";
     document.documentElement.dataset.theme = theme;
@@ -42,8 +44,21 @@ const staticThemeRuntime = `<script data-theme-runtime>
 
     var nextTheme =
       document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    localStorage.setItem("nil-theme", nextTheme);
+    var root = document.documentElement;
+    if (transitionReleaseFrame !== null) {
+      cancelAnimationFrame(transitionReleaseFrame);
+    }
+    root.classList.add("theme-switching");
+    void root.offsetHeight;
     applyTheme(nextTheme);
+    void root.offsetHeight;
+    transitionReleaseFrame = requestAnimationFrame(function () {
+      transitionReleaseFrame = requestAnimationFrame(function () {
+        root.classList.remove("theme-switching");
+        transitionReleaseFrame = null;
+      });
+    });
+    localStorage.setItem("nil-theme", nextTheme);
   });
 })();
 </script>`;

@@ -46,6 +46,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* A theme change updates every surface at once; do not animate between palettes. */
+html.theme-switching,
+html.theme-switching *,
+html.theme-switching::before,
+html.theme-switching::after,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
 body {
   margin: 0;
   background: var(--paper);

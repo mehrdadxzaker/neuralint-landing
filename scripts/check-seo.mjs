@@ -94,6 +94,9 @@ for (const url of urls) assert.ok(reached.has(url), "Indexable page must be reac
 
 const directoryHtml = htmlByUrl.get(origin + "/apps/");
 const homepage = htmlByUrl.get(origin + "/");
+// These body links must remain ordinary crawlable anchors in the static export.
+assert.match(htmlByUrl.get(origin + "/about/"), /<a\b[^>]*href="\/#portfolio"[^>]*>maker portfolio<\/a>/);
+assert.match(htmlByUrl.get(origin + "/contact/"), /<a\b[^>]*href="\/"[^>]*>research portfolio<\/a>/);
 const languagePages = { en: origin + "/persian-keyboards/", fa: origin + "/fa/", "x-default": origin + "/persian-keyboards/" };
 for (const url of new Set(Object.values(languagePages))) {
   const html = htmlByUrl.get(url);

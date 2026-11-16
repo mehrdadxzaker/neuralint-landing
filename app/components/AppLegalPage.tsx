@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import ThemeToggle from "./ThemeToggle";
 import { BrandMark, SiteMobileMenu } from "./SiteNavigation";
+import PersianText from "./PersianText";
 
 export type NeuralIntApp = {
   name: string;
@@ -52,11 +53,12 @@ export function AppLegalPage({
 }: AppLegalPageProps) {
   return (
     <div className={`app-legal-site ${app ? `app-${app.slug}` : "app-neuralint"}`}>
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <header className="shell topbar legal-topbar">
-        <a className="wordmark" href="/apps/" aria-label="NeuralInt apps home">
+        <Link className="wordmark" href="/" aria-label="NeuralInt home">
           <BrandMark />
           <span>NeuralInt</span>
-        </a>
+        </Link>
         <nav className="nav legal-nav" aria-label="App legal navigation">
           <a href="/apps/">Apps</a>
           <a className="nav-language" href="/fa/" lang="fa" dir="rtl">فارسی</a>
@@ -66,11 +68,11 @@ export function AppLegalPage({
         <SiteMobileMenu extraLinks={[["فارسی", "/fa/"]]} />
       </header>
 
-      <main className="shell legal-main">
+      <main id="main-content" className="shell legal-main" tabIndex={-1}>
         <header className="legal-heading">
           <p className="eyebrow">{eyebrow}</p>
           <h1>{title}</h1>
-          <p className="legal-lede">{lede}</p>
+          <p className="legal-lede"><PersianText text={lede} /></p>
           {hero}
           <div className="legal-meta">
             <span>Last updated {updated}</span>

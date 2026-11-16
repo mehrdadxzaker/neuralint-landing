@@ -4,6 +4,7 @@ import ThemeToggle from "../components/ThemeToggle";
 import { BrandMark, SiteMobileMenu } from "../components/SiteNavigation";
 import { apps } from "../content/apps";
 import PersianAppsBanner from "../components/PersianAppsBanner";
+import PersianText from "../components/PersianText";
 
 const programs = [
   {
@@ -89,9 +90,13 @@ function Header() {
 
 export default function ResearchPage() {
   return (
-    <main className="site">
+    <div className="site">
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="shell">
         <Header />
+      </div>
+      <main id="main-content" tabIndex={-1}>
+      <div className="shell">
         <PersianAppsBanner />
         <section className="hero">
           <div>
@@ -144,7 +149,7 @@ export default function ResearchPage() {
                 <div className="current-project-body">
                   <div className="current-project-meta"><span>{project.type}</span><span>{project.status}</span></div>
                   <h3>{project.title}</h3>
-                  <p>{project.description}</p>
+                  <p><PersianText text={project.description} /></p>
                   {project.href && <a className="current-project-link" href={project.href}>{project.linkLabel}</a>}
                 </div>
               </article>
@@ -291,6 +296,9 @@ export default function ResearchPage() {
           </div>
         </section>
 
+      </div>
+      </main>
+      <div className="shell">
         <footer className="footer">
           <span>© 2026 Neural Intelligence Labs</span>
           <span>San Francisco + Chicago</span>
@@ -300,6 +308,6 @@ export default function ResearchPage() {
           <a href="/privacy/">Privacy</a>
         </footer>
       </div>
-    </main>
+    </div>
   );
 }

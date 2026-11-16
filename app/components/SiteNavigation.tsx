@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
+import PersianText from "./PersianText";
 
 const navigation = [
   ["Research", "/#programs"],
@@ -22,7 +23,7 @@ export function SiteMobileMenu({ extraLinks = [] }: { extraLinks?: ReadonlyArray
       <div className="site-mobile-menu-panel">
         <nav className="site-mobile-menu-links" aria-label="Mobile navigation">
           {navigation.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
-          {extraLinks.map(([label, href]) => <a className="site-mobile-menu-extra" key={href} href={href}>{label}</a>)}
+          {extraLinks.map(([label, href]) => <a className="site-mobile-menu-extra" key={href} href={href}><PersianText text={label} /></a>)}
         </nav>
         <div className="site-mobile-menu-theme"><ThemeToggle /></div>
       </div>

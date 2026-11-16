@@ -12,7 +12,8 @@ export const metadata: Metadata = {
 
 export default function MehrdadProfile() {
   return (
-    <main className="profile-page">
+    <div className="profile-page">
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="shell">
         <header className="topbar">
           <Link
@@ -34,7 +35,7 @@ export default function MehrdadProfile() {
           <SiteMobileMenu extraLinks={[["Connect", "https://www.linkedin.com/in/mehrdadzaker"]]} />
         </header>
 
-        <div className="profile-page-main">
+        <main id="main-content" className="profile-page-main" tabIndex={-1}>
           <div className="profile-page-grid">
             <aside className="profile-page-aside">
               <img
@@ -93,7 +94,7 @@ export default function MehrdadProfile() {
               </section>
             </article>
           </div>
-        </div>
+        </main>
 
         <footer className="footer">
           <span>© 2026 Neural Intelligence Labs</span>
@@ -102,6 +103,6 @@ export default function MehrdadProfile() {
           <Link href="/">Back to research</Link>
         </footer>
       </div>
-    </main>
+    </div>
   );
 }

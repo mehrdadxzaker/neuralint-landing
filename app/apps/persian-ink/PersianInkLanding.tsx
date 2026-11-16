@@ -68,7 +68,7 @@ export default function PersianInkLanding() {
           <div className="pi-everyday-copy">
             <h2 id="pi-everyday-title">For the places<br />you write.</h2>
             <p className="pi-section-lede">Draft a note. Send a thought. Keep the Persian that sounds like you.</p>
-            <div className="pi-feature-row"><h3>More than handwriting</h3><p>Persian and English keys, numbers, punctuation and <span lang="fa" dir="rtl">نیم‌فاصله</span> for the finishing touches.</p></div>
+            <div className="pi-feature-row"><h3>More than handwriting</h3><p>Persian and English keys, numbers, punctuation and <bdi lang="fa" dir="rtl">نیم‌فاصله</bdi> for the finishing touches.</p></div>
             <div className="pi-feature-row"><h3>Made for supported text fields</h3><p>Tested in Apple Notes and a native text editor. Protected fields and apps that block third-party keyboards use Apple’s keyboard.</p></div>
             <a className="pi-text-link" href="/apps/persian-ink/support/#limits">See what is supported <span aria-hidden="true">↗</span></a>
           </div>

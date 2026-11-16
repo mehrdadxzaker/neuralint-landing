@@ -5,6 +5,7 @@ import ThemeToggle from "../components/ThemeToggle";
 import { apps, appUrl, siteOrigin } from "../content/apps";
 import StructuredData from "../components/StructuredData";
 import PersianAppsBanner from "../components/PersianAppsBanner";
+import PersianText from "../components/PersianText";
 import { BrandMark, SiteMobileMenu } from "../components/SiteNavigation";
 
 const title = "Persian Keyboards, Focus & Family Apps";
@@ -21,6 +22,7 @@ const capabilities: Record<string, string[]> = {
   lady: ["Family reminders", "Google Cast", "No recordings"],
   linkedfull: ["AI fashion search", "Photo inspiration", "Virtual try-on"],
 };
+
 const directoryData = {
   "@context": "https://schema.org", "@type": "CollectionPage",
   "@id": siteOrigin + "/apps/#directory", name: title, description,
@@ -34,11 +36,12 @@ export default function AppsPage() {
   return (
     <div className="app-legal-site app-neuralint">
       <StructuredData data={directoryData} />
+      <a className="skip-link" href="#apps-content">Skip to content</a>
       <header className="shell topbar legal-topbar">
-        <a className="wordmark" href="/apps/" aria-label="NeuralInt apps home">
+        <Link className="wordmark" href="/" aria-label="NeuralInt home">
           <BrandMark />
           <span>NeuralInt</span>
-        </a>
+        </Link>
         <nav className="nav legal-nav" aria-label="Apps navigation">
           <Link href="/">Research</Link>
           <a href="mailto:mehrdadz@neuralint.io">Contact</a>
@@ -47,7 +50,7 @@ export default function AppsPage() {
         <SiteMobileMenu extraLinks={[["Contact", "mailto:mehrdadz@neuralint.io"]]} />
       </header>
 
-      <main className="shell apps-main">
+      <main id="apps-content" className="shell apps-main" tabIndex={-1}>
         <PersianAppsBanner />
         <section className="apps-heading">
           <p className="eyebrow">NeuralInt · App factory</p>
@@ -70,7 +73,7 @@ export default function AppsPage() {
               <div className="app-card-content">
                 <p className="app-card-label">{app.accentLabel}</p>
                 <h2><a href={appUrl(app)}>{app.listingName}</a></h2>
-                <p className="app-card-summary">{app.description}</p>
+                <p className="app-card-summary"><PersianText text={app.description} /></p>
                 <div className="app-capabilities">
                   {(capabilities[app.slug] ?? app.features.slice(0, 3)).map((capability) => (
                     <span key={capability}>{capability}</span>
@@ -80,8 +83,8 @@ export default function AppsPage() {
               <div className="app-card-links">
                 <a href={appUrl(app)}>{app.slug === "persian-ink" ? "Download & setup" : "Explore " + app.name}</a>
                 {app.hasLocalPolicies ? <>
-                  <a href={appUrl(app) + "privacy/"}>Privacy</a>
-                  <a href={appUrl(app) + "support/"}>Support</a>
+                  <a href={appUrl(app) + "privacy/"} aria-label={`Privacy for ${app.name}`}>Privacy</a>
+                  <a href={appUrl(app) + "support/"} aria-label={`Support for ${app.name}`}>Support</a>
                 </> : <a href={app.storeUrl}>App Store</a>}
               </div>
             </article>

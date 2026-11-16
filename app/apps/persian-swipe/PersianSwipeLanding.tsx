@@ -11,7 +11,7 @@ export default function Page() {
         <p className="swipe-persian" lang="fa" dir="rtl">فارسی را با کشیدن انگشت بنویسید.</p>
         <DownloadButton />
         <p className="swipe-purchase">One-time purchase. No subscription.</p>
-        <ul className="swipe-benefits"><li>Works offline. No Full Access required.</li><li>Swipe or tap, with نیم‌فاصله and word suggestions.</li><li>Your words and learning stay on your device.</li></ul>
+        <ul className="swipe-benefits"><li>Works offline. No Full Access required.</li><li>Swipe or tap, with <bdi lang="fa" dir="rtl">نیم‌فاصله</bdi> and word suggestions.</li><li>Your words and learning stay on your device.</li></ul>
         <a className="swipe-demo-link" href="#swipe-demo">Watch the swipe demo ↓</a>
       </div>
       <figure className="swipe-demo" id="swipe-demo">
@@ -23,7 +23,7 @@ export default function Page() {
       </figure>
     </div>}
     sections={[{id:"typing",label:"Swipe or tap"},{id:"learning",label:"Learns from corrections"},{id:"privacy",label:"Local by design"},{id:"availability",label:"Get Persian Swipe"}]}>
-    <LegalSection id="typing" title="Write with swipes or taps"><p>Trace a Persian word, lift to insert, and select another candidate when needed. Add نیم‌فاصله with the half-space key, or hold Space and slide to move the cursor. Guided setup and a practice keyboard help you get started.</p></LegalSection>
+    <LegalSection id="typing" title="Write with swipes or taps"><p>Trace a Persian word, lift to insert, and select another candidate when needed. Add <bdi lang="fa" dir="rtl">نیم‌فاصله</bdi> with the half-space key, or hold Space and slide to move the cursor. Guided setup and a practice keyboard help you get started.</p></LegalSection>
     <LegalSection id="learning" title="Learns from your corrections"><p>Delete or edit a wrong swipe, type the intended word, and finish with Space or Return. Similar future swipes can then prefer the corrected word. Personalization runs locally and can be disabled or cleared.</p></LegalSection>
     <LegalSection id="privacy" title="Your typing stays yours"><p>No account, ads, analytics SDK, servers, or Full Access. Recognition and learning run on your device. Available wherever iOS supports custom keyboards.</p></LegalSection>
     <LegalSection id="availability" title="Make Persian Swipe your keyboard"><p>A one-time paid App Store download for iPhone and iPad, with no subscriptions or in-app purchases. Apple displays the current price and availability for your storefront.</p><DownloadButton /></LegalSection>

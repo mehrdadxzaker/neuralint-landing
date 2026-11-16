@@ -36,7 +36,7 @@ export default function PersianInkSupportPage() {
       </LegalSection>
       <LegalSection id="write" title="Write and insert">
         <p>Use Apple Pencil in the white panel. Finish any missing dots, tap Recognize and review the candidates. Tap one to insert its literal text. The panel clears for your next line.</p>
-        <p>Recognition quality varies with handwriting. Use Persian or English character keys to correct a result, enter names and numbers, or add نیم‌فاصله. Review text before sending or saving it in another app.</p>
+        <p>Recognition quality varies with handwriting. Use Persian or English character keys to correct a result, enter names and numbers, or add <bdi lang="fa" dir="rtl">نیم‌فاصله</bdi>. Review text before sending or saving it in another app.</p>
       </LegalSection>
       <LegalSection id="offline" title="Offline use and temporary ink">
         <p>Handwriting recognition needs the Persian model installed first. After setup, recognition and character typing work offline with Allow Full Access off. Keep the model on your iPad; a missing model does not trigger a silent cloud fallback.</p>

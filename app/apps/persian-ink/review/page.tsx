@@ -23,7 +23,7 @@ export default function PersianInkReviewPage() {
         <p>Persian Ink focuses on entering handwriting through its own keyboard panel. It requires no account or sign-in. Photo/PDF recognition and a separate document library are outside this release.</p>
       </LegalSection>
       <LegalSection id="workflow" title="Try the keyboard workflow">
-        <p>After the required model setup, open a blank note in Apple Notes or use the practice page in Persian Ink. Choose Persian Ink with the globe key. Write a line with Apple Pencil, tap Recognize, review the candidate and tap it to insert. Character typing, نیم‌فاصله and the next-keyboard key are also available.</p>
+        <p>After the required model setup, open a blank note in Apple Notes or use the practice page in Persian Ink. Choose Persian Ink with the globe key. Write a line with Apple Pencil, tap Recognize, review the candidate and tap it to insert. Character typing, <bdi lang="fa" dir="rtl">نیم‌فاصله</bdi> and the next-keyboard key are also available.</p>
         <p>For first-time setup, connect to the internet and temporarily enable Allow Full Access in the keyboard’s Settings page. Return to Persian Ink in a text field, tap Download Persian model and keep the keyboard open until installation is confirmed. Then turn Allow Full Access off and try recognition offline. See Support for the complete setup path.</p>
       </LegalSection>
       <LegalSection id="privacy" title="Offline recognition and privacy">

@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import { BrandMark } from "./SiteNavigation";
 import StructuredData from "./StructuredData";
+import PersianText from "./PersianText";
 import { getApp, siteOrigin } from "../content/apps";
 
 const swipe = getApp("persian-swipe");
@@ -124,7 +126,7 @@ export default function PersianKeyboardsPage({ language }: { language: "en" | "f
     <StructuredData data={data} />
     <a className="keyboard-skip" href="#keyboards">{fa ? "رفتن به بخش اصلی" : "Skip to content"}</a>
     <header className="shell keyboard-header">
-      <a className="wordmark" href="/apps/" aria-label="NeuralInt apps"><BrandMark /><span lang="en" dir="ltr">NeuralInt</span></a>
+      <Link className="wordmark" href="/" aria-label="NeuralInt home"><BrandMark /><span lang="en" dir="ltr">NeuralInt</span></Link>
       <nav aria-label={fa ? "راهبری" : "Navigation"}>
         <a href="#compare">{fa ? "سنجش" : "Compare"}</a>
         <a href="#setup">{fa ? "راه‌اندازی" : "Setup"}</a>
@@ -147,7 +149,7 @@ export default function PersianKeyboardsPage({ language }: { language: "en" | "f
         ].map(({ app, title, body, facts, cta, device }) => <article key={app.slug} className="keyboard-product">
           <div className="keyboard-product-identity"><Image src={app.image} alt={app.name + " app icon"} width={72} height={72} unoptimized /><div><p>{device}</p><h2 lang="en" dir="ltr">{app.name}</h2></div></div>
           <h3>{title}</h3><p>{body}</p>
-          <ul>{facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
+          <ul>{facts.map(fact => <li key={fact}>{fa ? fact : <PersianText text={fact} />}</li>)}</ul>
           <div className="keyboard-product-actions"><a className="button primary" href={app.storeUrl}>{cta} <span aria-hidden="true">↗</span></a><p>{copy.price}</p><a className="keyboard-text-link" href={"/apps/" + app.slug + "/"}>{copy.details}</a></div>
         </article>)}
       </section>
@@ -157,7 +159,7 @@ export default function PersianKeyboardsPage({ language }: { language: "en" | "f
       </section>
       <section className="keyboard-section" id="setup"><h2>{copy.setupTitle}</h2><ol className="keyboard-steps">{copy.setupSteps.map(([title, body], i) => <li key={title}><span aria-hidden="true">0{i + 1}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}</ol></section>
       <section className="keyboard-section keyboard-questions"><h2>{copy.faqTitle}</h2>{copy.questions.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</section>
-      <section className="keyboard-support"><h2>{fa ? "برای آغاز آماده‌اید؟" : "Ready to write?"}</h2><div>{[swipe, ink].map(app => <p key={app.slug}><strong lang="en" dir="ltr">{app.name}</strong><a href={"/apps/" + app.slug + "/support/"}>{copy.support}</a><a href={"/apps/" + app.slug + "/privacy/"}>{copy.privacy}</a></p>)}</div></section>
+      <section className="keyboard-support"><h2>{fa ? "برای آغاز آماده‌اید؟" : "Ready to write?"}</h2><div>{[swipe, ink].map(app => <p key={app.slug}><strong lang="en" dir="ltr">{app.name}</strong><a href={"/apps/" + app.slug + "/support/"} aria-label={`${copy.support} — ${app.name}`}>{copy.support}</a><a href={"/apps/" + app.slug + "/privacy/"} aria-label={`${copy.privacy} — ${app.name}`}>{copy.privacy}</a></p>)}</div></section>
     </main>
     <footer className="shell keyboard-footer"><p>{copy.footer}</p><nav aria-label={fa ? "درباره" : "Information"}><a href="/apps/">{fa ? "همهٔ برنامه‌ها" : "All apps"}</a><a href="mailto:mehrdadz@neuralint.io">{fa ? "پیام به پشتیبانی" : "Contact support"}</a><a href="/apps/terms/">{fa ? "آیین کاربری (انگلیسی)" : "Terms"}</a></nav></footer>
   </div>;

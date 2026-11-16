@@ -132,6 +132,20 @@ test("server-renders the NeuralInt app directory and legal routes", async () => 
   }
 });
 
+test("site navigation and app links remain identifiable and keyboard friendly", async () => {
+  for (const pathname of ["/", "/apps", "/about", "/fa", "/people/mehrdad"]) {
+    const html = await (await render(pathname)).text();
+    assert.match(html, /<a\b(?=[^>]*class="wordmark")(?=[^>]*href="\/")/, `${pathname}: NeuralInt logo links home`);
+    assert.match(html, /<a\b[^>]*href="#(?:apps-content|main-content|keyboards)"[^>]*>[^<]*(?:Skip to content|رفتن به بخش اصلی)/, `${pathname}: skip link`);
+  }
+  const directory = await (await render("/apps")).text();
+  for (const name of ["Persian Ink", "Persian Swipe", "Trailhead", "Lady"]) {
+    assert.ok(directory.includes(`aria-label="Privacy for ${name}"`));
+    assert.ok(directory.includes(`aria-label="Support for ${name}"`));
+  }
+  assert.match(directory, /<bdi\s+lang="fa"\s+dir="rtl">نیم‌فاصله<\/bdi>/);
+});
+
 test("static export includes every app policy and review route", async () => {
   const { exportRoutes } = await import("../scripts/site-routes.mjs");
   const routes = (await exportRoutes()).map(route => route.source);

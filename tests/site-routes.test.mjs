@@ -3,34 +3,41 @@ import { mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { test } from "node:test";
-import { assertIndexableMeta, indexableUrls, validatePageRoutes } from "../scripts/site-routes.mjs";
+import { addMissingCanonical, assertIndexableMeta, canonicalUrl, excludedFromIndex, exportRoutes, metaTags } from "../scripts/site-routes.mjs";
 
-test("new App Router pages must be registered for export", async () => {
+test("new static App Router pages are discovered for export without registration", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "neuralint-routes-"));
   try {
-    for (const route of ["", "research", "apps/persian-swipe/review", "new-page"]) {
+    for (const route of ["", "research", "apps/persian-swipe/review", "apps/new-app", "apps/new-app/privacy"]) {
       await mkdir(path.join(root, route), { recursive: true });
       await writeFile(path.join(root, route, "page.tsx"), "");
     }
-    await assert.rejects(validatePageRoutes([{ source: "/" }], root), /Missing from export: \/new-page/);
-    await validatePageRoutes([{ source: "/" }, { source: "/new-page" }], root);
-    await assert.rejects(validatePageRoutes([{ source: "/" }, { source: "/new-page" }, { source: "/stale" }], root), /no source page: \/stale/);
-  } finally {
-    await rm(root, { recursive: true, force: true });
+    const routes = await exportRoutes(root);
+    assert.deepEqual(routes.map(({ source, output }) => [source, output]), [
+      ["/", "index.html"], ["/apps/new-app", "apps/new-app/index.html"], ["/apps/new-app/privacy", "apps/new-app/privacy/index.html"],
+    ]);
+    assert.equal(canonicalUrl("/apps/new-app"), "https://neuralint.io/apps/new-app/");
+    await mkdir(path.join(root, "[dynamic]"));
+    await assert.rejects(exportRoutes(root), /Unsupported App Router directory/);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test("rendered crawler directives determine sitemap eligibility", () => {
+  for (const html of [
+    `<meta name="robots" content="noindex, follow">`,
+    `<meta name='googlebot' content='NONE'>`,
+    `<meta http-equiv="refresh" content="0;url=/">`,
+  ]) {
+    const tags = metaTags(html);
+    assert.equal(excludedFromIndex(tags), true);
+    assert.throws(() => assertIndexableMeta(tags, "/example/"));
   }
+  assert.equal(excludedFromIndex(metaTags(`<meta name="robots" content="index, follow">`)), false);
 });
 
-test("sitemap URLs include registered pages except explicitly excluded pages", () => {
-  assert.deepEqual(indexableUrls([{ source: "/" }, { source: "/new-page" }, { source: "/review", indexable: false }]), [
-    "https://neuralint.io/", "https://neuralint.io/new-page/",
-  ]);
-});
-
-test("indexable pages reject crawler exclusions and refresh redirects", () => {
-  for (const tag of [
-    { name: "robots", content: "noindex, follow" },
-    { name: "googlebot", content: "NONE" },
-    { "http-equiv": "refresh", content: "0;url=/" },
-  ]) assert.throws(() => assertIndexableMeta([tag], "/example/"));
-  assert.doesNotThrow(() => assertIndexableMeta([{ name: "robots", content: "index, follow" }], "/example/"));
+test("missing canonical is supplied without replacing an explicit one", () => {
+  const url = "https://neuralint.io/new-page/";
+  assert.match(addMissingCanonical("<head></head>", url), /href="https:\/\/neuralint.io\/new-page\/"/);
+  const explicit = '<head><link rel="canonical" href="https://neuralint.io/other/"/></head>';
+  assert.equal(addMissingCanonical(explicit, url), explicit);
 });

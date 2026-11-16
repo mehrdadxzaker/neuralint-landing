@@ -1,14 +1,14 @@
 import { cp, mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { exportRoutes, indexableUrls, validatePageRoutes } from "./site-routes.mjs";
+import { addMissingCanonical, canonicalUrl, excludedFromIndex, exportRoutes, metaTags } from "./site-routes.mjs";
 
 const baseUrl = process.env.SITE_EXPORT_URL ?? "http://localhost:3001";
 const outputDir = path.resolve("static-site");
 const catalogResponse = await fetch(new URL("/apps/catalog.json", baseUrl));
 if (!catalogResponse.ok) throw new Error("Unable to export app catalog: " + catalogResponse.status);
 const catalog = await catalogResponse.json();
-const routes = exportRoutes(catalog);
-await validatePageRoutes(routes);
+const routes = await exportRoutes();
+const indexableRoutes = [];
 
 const staticThemeRuntime = `<script data-theme-runtime>
 (function () {
@@ -93,9 +93,15 @@ function makeStatic(html, route) {
   const socialTags = Object.entries(social).map(([key, value]) =>
     '<meta ' + (key.startsWith("og:") ? "property" : "name") + '="' + key + '" content="' + escape(value) + '"/>'
   ).join("");
-  return result.replace(/<meta\b[^>]*>/g, tag =>
+  let finalHtml = result.replace(/<meta\b[^>]*>/g, tag =>
     /(?:property|name)="(?:og:|twitter:)[^"]*"/.test(tag) ? "" : tag
   ).replace("</head>", socialTags + "</head>");
+  // Supply a self-canonical when absent. Preserve explicit choices so the
+  // SEO check can flag any mismatch instead of silently rewriting it.
+  if (!excludedFromIndex(metaTags(finalHtml))) {
+    finalHtml = addMissingCanonical(finalHtml, canonical);
+  }
+  return finalHtml;
 
 }
 
@@ -104,13 +110,16 @@ await mkdir(outputDir, { recursive: true });
 
 for (const route of routes) {
   const response = await fetch(new URL(route.source, baseUrl));
+  if (response.redirected) throw new Error(`Unexpected server redirect while exporting ${route.source}; add an explicit static redirect instead`);
   if (!response.ok) {
     throw new Error(`Unable to export ${route.source}: ${response.status}`);
   }
 
   const destination = path.join(outputDir, route.output);
   await mkdir(path.dirname(destination), { recursive: true });
-  await writeFile(destination, makeStatic(await response.text(), route));
+  const html = makeStatic(await response.text(), route);
+  await writeFile(destination, html);
+  if (!excludedFromIndex(metaTags(html))) indexableRoutes.push(route);
 }
 
 await mkdir(path.join(outputDir, "assets"), { recursive: true });
@@ -160,7 +169,7 @@ await writeFile(path.join(outputDir, "research/index.html"), `<!doctype html>
 <meta http-equiv="refresh" content="0;url=/"></head>
 <body><p>Research is now on the <a href="/">Neural Intelligence Labs homepage</a>.</p></body></html>`);
 
-const canonicalUrls = indexableUrls(routes);
+const canonicalUrls = indexableRoutes.map(route => canonicalUrl(route.source));
 await writeFile(path.join(outputDir, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${canonicalUrls.map(url => `  <url><loc>${url}</loc></url>`).join("\n")}\n</urlset>\n`,
 );

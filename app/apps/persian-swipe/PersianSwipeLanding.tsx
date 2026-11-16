@@ -8,7 +8,7 @@ export default function Page() {
   return <AppLegalPage app={persianSwipeApp} eyebrow="Persian Swipe · iPhone & iPad" title="Persian, in one motion." lede="Swipe through the letters. Lift to write. An offline Farsi keyboard for everyday messages and your favorite verse." updated="November 8, 2026"
     hero={<div className="swipe-hero">
       <div className="swipe-pitch">
-        <p className="swipe-persian" lang="fa" dir="rtl">فارسی را با حرکت انگشت بنویسید.</p>
+        <p className="swipe-persian" lang="fa" dir="rtl">فارسی را با کشیدن انگشت بنویسید.</p>
         <DownloadButton />
         <p className="swipe-purchase">One-time purchase. No subscription.</p>
         <ul className="swipe-benefits"><li>Works offline. No Full Access required.</li><li>Swipe or tap, with نیم‌فاصله and word suggestions.</li><li>Your words and learning stay on your device.</li></ul>
@@ -27,7 +27,7 @@ export default function Page() {
     <LegalSection id="learning" title="Learns from your corrections"><p>Delete or edit a wrong swipe, type the intended word, and finish with Space or Return. Similar future swipes can then prefer the corrected word. Personalization runs locally and can be disabled or cleared.</p></LegalSection>
     <LegalSection id="privacy" title="Your typing stays yours"><p>No account, ads, analytics SDK, servers, or Full Access. Recognition and learning run on your device. Available wherever iOS supports custom keyboards.</p></LegalSection>
     <LegalSection id="availability" title="Make Persian Swipe your keyboard"><p>A one-time paid App Store download for iPhone and iPad, with no subscriptions or in-app purchases. Apple displays the current price and availability for your storefront.</p><DownloadButton /></LegalSection>
-    <LegalSection id="persian-guide" title="A keyboard for the way you write"><p lang="fa" dir="rtl">برای آشنایی با کیبورد فارسی، نیم‌فاصله و روش نصب، <a href="/fa/">راهنمای فارسی را بخوانید</a>.</p><p>Prefer handwriting with Apple Pencil on iPad? <a href="/apps/persian-ink/">Explore Persian Ink</a> or <a href="/persian-keyboards/">compare both Persian keyboards</a>.</p></LegalSection>
+    <LegalSection id="persian-guide" title="A keyboard for the way you write"><p lang="fa" dir="rtl">برای آشنایی با صفحه‌کلید فارسی، نیم‌فاصله و روش راه‌اندازی، <a href="/fa/">راهنمای فارسی را بخوانید</a>.</p><p>Prefer handwriting with Apple Pencil on iPad? <a href="/apps/persian-ink/">Explore Persian Ink</a> or <a href="/persian-keyboards/">compare both Persian keyboards</a>.</p></LegalSection>
     <AppPageLinks app={persianSwipeApp} />
   </AppLegalPage>;
 }

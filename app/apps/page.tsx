@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import ThemeToggle from "../components/ThemeToggle";
 import { apps, appUrl, siteOrigin } from "../content/apps";
@@ -62,8 +63,11 @@ export default function AppsPage() {
         <section className="app-directory" aria-label="NeuralInt apps">
           {apps.map((app, index) => (
             <article className={`app-directory-card app-${app.slug}`} key={app.slug}>
-              <div className="app-card-index">0{index + 1}</div>
-              <div>
+              <div className="app-card-identity">
+                <Image className="app-card-icon" src={app.image} alt="" width={128} height={128} unoptimized />
+                <span className="app-card-index" aria-hidden="true">0{index + 1}</span>
+              </div>
+              <div className="app-card-content">
                 <p className="app-card-label">{app.accentLabel}</p>
                 <h2><a href={appUrl(app)}>{app.listingName}</a></h2>
                 <p className="app-card-summary">{app.description}</p>

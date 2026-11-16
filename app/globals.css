@@ -19,7 +19,7 @@
   --inverse-fg: #f3f0e7;
   --light-panel: #f3f0e7;
   --dark-text: #171913;
-  --serif: Georgia, "Times New Roman", serif;
+  --serif: "Iowan Old Style", Baskerville, "Times New Roman", serif;
   color-scheme: light;
 }
 
@@ -50,7 +50,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-family: var(--font-geist-sans), "Persian Ink Vazirmatn", Arial, sans-serif;
   text-rendering: optimizeLegibility;
   transition:
     background-color 220ms ease,
@@ -230,14 +230,14 @@ a {
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(64px, 8vw, 126px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.065em;
   line-height: 0.86;
 }
 
 .hero h1 em {
   color: var(--blue);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .hero-copy {
@@ -361,7 +361,7 @@ a {
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(42px, 5vw, 72px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.048em;
   line-height: 1;
 }
@@ -407,7 +407,7 @@ a {
   margin: 0 0 18px;
   font-family: var(--serif);
   font-size: 29px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1.07;
 }
@@ -466,7 +466,7 @@ a {
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(46px, 5.5vw, 82px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.052em;
   line-height: 0.98;
 }
@@ -530,7 +530,7 @@ a {
   margin-bottom: 8px;
   font-family: var(--serif);
   font-size: 22px;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .method-step span {
@@ -668,7 +668,7 @@ a {
   margin: 0 0 9px;
   font-family: var(--serif);
   font-size: clamp(40px, 4vw, 64px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.052em;
   line-height: 0.95;
 }
@@ -813,7 +813,7 @@ a {
   margin: 0 0 18px;
   font-family: var(--serif);
   font-size: clamp(46px, 5vw, 76px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.052em;
   line-height: 0.95;
 }
@@ -863,7 +863,7 @@ a {
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(48px, 6.2vw, 92px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.058em;
   line-height: 0.93;
 }
@@ -944,7 +944,7 @@ a {
   margin: 36px 0 10px;
   font-family: var(--serif);
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.035em;
 }
 
@@ -1090,7 +1090,7 @@ a {
   margin: 0 0 8px;
   font-family: var(--serif);
   font-size: clamp(48px, 5.2vw, 78px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 1;
 }
@@ -1138,7 +1138,7 @@ a {
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(56px, 7vw, 102px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.058em;
   line-height: 0.92;
 }
@@ -1186,7 +1186,7 @@ a {
   margin: 0 0 14px;
   font-family: var(--serif);
   font-size: clamp(60px, 8vw, 112px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.06em;
   line-height: 0.88;
 }
@@ -1649,9 +1649,9 @@ a {
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(62px, 8vw, 118px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.06em;
-  line-height: 0.9;
+  line-height: 1.03;
 }
 
 .legal-lede {
@@ -1748,7 +1748,7 @@ a {
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(25px, 2.6vw, 36px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1.05;
 }
@@ -1911,14 +1911,15 @@ a {
   --app-card-accent: var(--blue);
   display: grid;
   grid-template-rows: auto 1fr auto;
-  min-height: 560px;
-  padding: 30px;
+  min-height: 550px;
+  padding: 40px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  background:
-    linear-gradient(145deg, transparent 55%, color-mix(in srgb, var(--app-card-accent) 11%, transparent)),
-    var(--card);
+  background: var(--card);
+  transition: background-color 180ms ease;
 }
+
+.app-directory-card:hover { background: var(--visual-surface); }
 
 .app-directory-card.app-trailhead {
   --app-card-accent: #71916a;
@@ -1928,23 +1929,39 @@ a {
   --app-card-accent: #8069bd;
 }
 
+.app-card-identity {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.app-card-icon {
+  display: block;
+  width: 104px;
+  height: 104px;
+  object-fit: cover;
+  border-radius: 23%;
+  box-shadow: 0 9px 24px rgb(0 0 0 / 0.12);
+}
+
 .app-card-index {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 38px;
   height: 38px;
-  margin-bottom: 90px;
   border: 1px solid var(--line);
   border-radius: 50%;
-  color: var(--app-card-accent);
+  color: var(--copy-soft);
   font-family: var(--font-geist-mono), monospace;
   font-size: 10px;
 }
 
 .app-card-label {
   margin: 0 0 12px;
-  color: var(--app-card-accent);
+  color: var(--copy-soft);
   font-family: var(--font-geist-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.06em;
@@ -1954,10 +1971,10 @@ a {
 .app-directory-card h2 {
   margin: 0 0 18px;
   font-family: var(--serif);
-  font-size: clamp(54px, 6vw, 82px);
-  font-weight: 400;
+  font-size: clamp(38px, 4.3vw, 62px);
+  font-weight: 700;
   letter-spacing: -0.055em;
-  line-height: 0.9;
+  line-height: 1.03;
 }
 
 .app-card-summary {
@@ -2017,7 +2034,7 @@ a {
   margin: 12px 0 0;
   font-family: var(--serif);
   font-size: clamp(34px, 4vw, 58px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.045em;
   line-height: 1;
 }
@@ -2111,13 +2128,13 @@ a {
   }
 
   .app-directory-card {
-    min-height: 500px;
-    padding: 24px;
+    min-height: 0;
+    padding: 28px 24px;
   }
 
-  .app-card-index {
-    margin-bottom: 70px;
-  }
+  .app-card-identity { margin-bottom: 36px; }
+  .app-card-icon { width: 88px; height: 88px; }
+  .app-card-links { margin-top: 38px; }
 
   .apps-trust-band {
     gap: 28px;
@@ -2191,7 +2208,7 @@ a {
   --inverse-fg: #f3f3f3;
   --light-panel: #181818;
   --dark-text: #101010;
-  --serif: var(--font-geist-sans), Arial, sans-serif;
+  --serif: "Iowan Old Style", Baskerville, "Times New Roman", serif;
   color-scheme: dark;
 }
 :root[data-theme="light"] {
@@ -2223,7 +2240,7 @@ a {
 .nav .nav-cta:hover { opacity: .78; }
 .theme-toggle { font-weight: 400; }
 .hero { display: block; min-height: 0; padding: 100px 0 105px; }
-.hero h1 { max-width: 1050px; font-family: var(--serif); font-size: clamp(56px, 7vw, 96px); font-weight: 400; letter-spacing: -0.055em; line-height: 1.03; }
+.hero h1 { max-width: 1050px; font-family: var(--serif); font-size: clamp(56px, 7vw, 96px); font-weight: 700; letter-spacing: -0.055em; line-height: 1.03; }
 .hero h1 em { color: inherit; font-style: normal; }
 .hero-copy { max-width: 760px; padding: 32px 0 0; }
 .hero-copy p { font-size: clamp(17px, 1.55vw, 21px); line-height: 1.55; }
@@ -2231,7 +2248,7 @@ a {
 .button { font-weight: 400; }
 .button.primary:hover, .button.secondary:hover { background: var(--paper-2); border-color: var(--ink); color: var(--ink); }
 .section { padding: 110px 0; }
-.section-title, .report-title, .project-copy h3, .program h3 { font-weight: 400; }
+.section-title, .report-title, .project-copy h3, .program h3 { font-weight: 700; }
 .program { min-height: 280px; }
 .program-num { margin-bottom: 65px; }
 .report-status, .method-step code { color: #c2ad7d; }
@@ -2316,10 +2333,11 @@ a {
 }
 .current-project-meta span + span::before { content: "·"; margin-right: 16px; color: #a38d61; }
 .current-project-body h3 {
+  font-family: var(--serif);
   margin: 17px 0 14px;
   color: var(--ink);
   font-size: clamp(24px, 2.2vw, 30px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -.035em;
   line-height: 1.12;
 }
@@ -2352,3 +2370,6 @@ a {
   .current-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .current-project-card:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: start; }
 }
+
+/* Persian uses a purpose-designed face rather than a system Arabic fallback. */
+:lang(fa) { font-family: "Persian Ink Vazirmatn", Tahoma, sans-serif; letter-spacing: normal; }

@@ -1,16 +1,16 @@
 .persian-apps-banner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
 .persian-banner-intro { display: grid; gap: 7px; }
-.persian-banner-intro > span { width: fit-content; font: 600 25px/1.6 Tahoma, Arial, sans-serif; }
+.persian-banner-intro > span { width: fit-content; font: 600 25px/1.6 "Persian Ink Vazirmatn", Tahoma, sans-serif; }
 .persian-banner-intro > a { color: var(--muted); font-size: 12px; }
 .persian-banner-links { display: flex; align-items: center; gap: 24px; }
 .persian-banner-links > a { display: grid; gap: 6px; font-size: 14px; font-weight: 650; }
 .persian-banner-links > a > span { font-size: 11px; color: var(--muted); font-weight: 400; }
-.persian-banner-links > .persian-language-link { padding: 12px 15px; background: var(--acid); color: var(--dark-text); border-radius: 2px; font-family: Tahoma, Arial, sans-serif; }
+.persian-banner-links > .persian-language-link { padding: 12px 15px; background: var(--acid); color: var(--dark-text); border-radius: 2px; font-family: "Persian Ink Vazirmatn", Tahoma, sans-serif; }
 .persian-apps-banner a:focus-visible, .keyboard-site a:focus-visible, .keyboard-site summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 5px; }
 .persian-crosslink { padding-block: 20px 40px; color: var(--muted); font-size: 14px; line-height: 1.8; }
 .persian-crosslink a { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
 .keyboard-site { min-height: 100vh; }
-.keyboard-site[lang="fa"] { font-family: Tahoma, Arial, sans-serif; }
+.keyboard-site[lang="fa"] { font-family: "Persian Ink Vazirmatn", Tahoma, sans-serif; }
 .keyboard-site .shell { max-width: 1180px; }
 .keyboard-skip { position: absolute; top: -100px; inset-inline-start: 20px; padding: 15px; z-index: 30; background: var(--acid); color: var(--dark-text); }
 .keyboard-skip:focus { top: 10px; }
@@ -18,8 +18,8 @@
 .keyboard-header nav { display: flex; align-items: center; gap: 24px; font-size: 14px; }
 .keyboard-hero { padding: 76px 0 52px; max-width: 880px; }
 .keyboard-hero .eyebrow { color: var(--muted); font-size: 13px; }
-.keyboard-hero h1 { margin: 22px 0; font-weight: 500; font-size: clamp(42px, 6.5vw, 82px); line-height: 1.18; letter-spacing: -.045em; }
-.keyboard-site[lang="fa"] .keyboard-hero h1 { letter-spacing: 0; line-height: 1.55; font-size: clamp(36px, 5vw, 66px); text-wrap: balance; }
+.keyboard-hero h1 { margin: 22px 0; font-family: var(--serif); font-weight: 700; font-size: clamp(42px, 6.5vw, 82px); line-height: 1.18; letter-spacing: -.045em; }
+.keyboard-site[lang="fa"] .keyboard-hero h1 { font-family: "Persian Ink Vazirmatn", Tahoma, sans-serif; letter-spacing: 0; line-height: 1.55; font-size: clamp(36px, 5vw, 66px); text-wrap: balance; }
 .keyboard-lede { max-width: 780px; color: var(--copy); font-size: 21px; line-height: 1.8; }
 .keyboard-hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-block: 26px 20px; }
 .keyboard-hero-actions .button { min-height: 52px; font-family: inherit; font-size: 14px; line-height: 1.9; white-space: normal; text-align: center; }
@@ -29,7 +29,7 @@
 .keyboard-product-identity { display: flex; align-items: center; gap: 18px; margin-bottom: 28px; }
 .keyboard-product-identity img { border-radius: 16px; flex: 0 0 72px; }
 .keyboard-product-identity p { margin: 0 0 8px; color: var(--muted); font-size: 12px; }
-.keyboard-product-identity h2 { width: fit-content; margin: 0; font-family: var(--font-geist-sans), Arial, sans-serif; font-size: 24px; font-weight: 550; }
+.keyboard-product-identity h2 { width: fit-content; margin: 0; font-family: var(--serif); font-size: 24px; font-weight: 700; }
 .keyboard-product h3 { margin: 0 0 16px; font-size: 28px; line-height: 1.6; font-weight: 550; }
 .keyboard-product > p { margin: 0; color: var(--copy); font-size: 16px; line-height: 1.9; }
 .keyboard-product ul { margin-block: 24px 32px; padding-inline-start: 20px; color: var(--copy); font-size: 14px; line-height: 2.1; }
@@ -38,13 +38,13 @@
 .keyboard-product-actions > p { color: var(--muted); font-size: 12px; line-height: 1.9; }
 .keyboard-text-link { display: inline-block; margin-top: 8px; font-size: 13px; text-decoration: underline; text-underline-offset: 5px; }
 .keyboard-section { padding-block: 72px; border-bottom: 1px solid var(--line); scroll-margin-top: 24px; }
-.keyboard-section > h2, .keyboard-support > h2 { font-size: 30px; line-height: 1.7; font-weight: 500; margin: 0 0 32px; }
+.keyboard-section > h2, .keyboard-support > h2 { font-family: var(--serif); font-size: 30px; line-height: 1.7; font-weight: 700; margin: 0 0 32px; }
 .keyboard-comparison { overflow-x: auto; }
 .keyboard-comparison table { width: 100%; border-collapse: collapse; text-align: start; font-size: 14px; line-height: 1.9; }
 .keyboard-comparison th, .keyboard-comparison td { padding: 20px 18px; border-bottom: 1px solid var(--line); text-align: start; }
 .keyboard-comparison th { font-weight: 550; }
 .keyboard-comparison td { width: 39%; color: var(--copy); }
-.keyboard-comparison thead { background: var(--paper-2); font-family: var(--font-geist-sans), Arial, sans-serif; }
+.keyboard-comparison thead { background: var(--paper-2); font-family: inherit; }
 .keyboard-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; list-style: none; padding: 0; margin: 0; }
 .keyboard-steps li > span { display: block; width: fit-content; border-bottom: 2px solid var(--blue); padding-bottom: 10px; font-family: var(--font-geist-mono), monospace; color: var(--blue); }
 .keyboard-steps h3 { margin-block: 24px 12px; font-size: 18px; line-height: 1.8; font-weight: 550; }
@@ -86,3 +86,5 @@
   .keyboard-steps li > span { align-self: flex-start; margin-top: 8px; }
   .keyboard-steps h3 { margin-top: 0; }
 }
+
+.keyboard-site[lang="fa"] :is(h1, h2, h3):lang(fa) { font-family: "Persian Ink Vazirmatn", Tahoma, sans-serif; letter-spacing: normal; }

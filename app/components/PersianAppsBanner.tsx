@@ -2,7 +2,7 @@ export default function PersianAppsBanner() {
   return (
     <aside className="persian-apps-banner" aria-label="Persian keyboards by NeuralInt">
       <div className="persian-banner-intro">
-        <span lang="fa" dir="rtl">فارسی، به شیوهٔ شما.</span>
+        <span lang="fa" dir="rtl">فارسی، درست و حسابی</span>
         <a href="/persian-keyboards/">Persian keyboards for iPhone &amp; iPad <span aria-hidden="true">↗</span></a>
       </div>
       <nav className="persian-banner-links" aria-label="Persian apps">

@@ -32,16 +32,15 @@ export default function PersianInkLanding() {
         <section className="pi-shell pi-hero" aria-labelledby="pi-title">
           <div className="pi-hero-copy" id="download">
             <h1 id="pi-title">Your<br />handwriting.<br /><em>Persian text.</em></h1>
+            <p className="pi-lettering" lang="fa" dir="rtl">فارسی، درست و حسابی</p>
             <p className="pi-lede">Write with Apple Pencil. Bring Persian to Notes and other supported apps.</p>
             <div className="pi-actions"><InstallActions statusId="pi-hero-release-status" /></div>
           </div>
           <figure className="pi-hero-figure">
-            <p className="pi-lettering" lang="fa" dir="rtl">به خط خودت</p>
             <div className="pi-product-stage">
               <div className="pi-tablet pi-tablet-detail"><div className="pi-tablet-window">
                 <Image src={`${assets}01-pencil-panel.png`} alt="Actual Persian Ink keyboard showing its Apple Pencil handwriting panel" width={2064} height={2752} unoptimized loading="eager" fetchPriority="high" />
               </div></div>
-              <Image className="pi-pencil" src={`${assets}pencil-illustration.webp`} alt="" width={1024} height={1536} unoptimized aria-hidden="true" />
             </div>
             <figcaption>Actual app screen · handwriting panel detail</figcaption>
           </figure>
@@ -52,9 +51,9 @@ export default function PersianInkLanding() {
             <h2 id="pi-workflow-title">Write. Review. Insert.</h2>
             <p className="pi-section-lede">A familiar gesture. A few careful words.</p>
             <ol className="pi-workflow-steps">
-              <li><div className="pi-step-art"><span className="pi-step-number">01</span><span className="pi-ink-example" lang="fa" dir="rtl">سلام</span></div><h3>Write a line</h3><p>Use Apple Pencil in the keyboard panel.</p></li>
-              <li><div className="pi-step-art"><span className="pi-step-number">02</span><span className="pi-candidate-example" lang="fa" dir="rtl">سلام</span></div><h3>Review the words</h3><p>Finish the dots. Tap Recognize. Choose a candidate.</p></li>
-              <li><div className="pi-step-art"><span className="pi-step-number">03</span><span className="pi-text-example" lang="fa" dir="rtl">سلام</span></div><h3>Keep your thought going</h3><p>Insert the text into your supported app.</p></li>
+              <li><div className="pi-step-art"><span className="pi-step-number">01</span><span className="pi-ink-example" lang="fa" dir="rtl">درود</span></div><h3>Write a line</h3><p>Use Apple Pencil in the keyboard panel.</p></li>
+              <li><div className="pi-step-art"><span className="pi-step-number">02</span><span className="pi-candidate-example" lang="fa" dir="rtl">درود</span></div><h3>Review the words</h3><p>Tap Recognize. Choose a candidate.</p></li>
+              <li><div className="pi-step-art"><span className="pi-step-number">03</span><span className="pi-text-example" lang="fa" dir="rtl">درود</span></div><h3>Keep your thought going</h3><p>Insert the text into your supported app.</p></li>
             </ol>
             <p className="pi-example-note">Illustrated workflow. Recognition quality varies with handwriting.</p>
             <div className="pi-offline">
@@ -65,7 +64,7 @@ export default function PersianInkLanding() {
           </div>
         </section>
         <section className="pi-shell pi-everyday" aria-labelledby="pi-everyday-title">
-          <figure><div className="pi-tablet pi-tablet-portrait"><Image src={`${assets}02-character-typing.png`} alt="Actual app screen with the Persian character keyboard and the public greeting سلام typed in the practice page" width={2064} height={2752} unoptimized loading="lazy" /></div><figcaption>Actual app screen · Persian character keyboard</figcaption></figure>
+          <figure><div className="pi-tablet pi-tablet-portrait"><Image src={`${assets}02-character-typing.png`} alt="Actual app screen showing the Persian character keyboard" width={2064} height={2752} unoptimized loading="lazy" /></div><figcaption>Actual app screen · Persian character keyboard detail</figcaption></figure>
           <div className="pi-everyday-copy">
             <h2 id="pi-everyday-title">For the places<br />you write.</h2>
             <p className="pi-section-lede">Draft a note. Send a thought. Keep the Persian that sounds like you.</p>
@@ -91,7 +90,7 @@ export default function PersianInkLanding() {
           <div className="pi-beta-actions"><a className="pi-button" href={persianInkRelease.testFlightDownloadUrl}>Download TestFlight <span aria-hidden="true">↗</span></a><a className="pi-text-link" href="/apps/persian-ink/support/">Full setup &amp; troubleshooting</a></div>
         </section>
         <p className="pi-shell pi-requirements">iPadOS 16 or later. Compatible Apple Pencil required for handwriting. Existing Notes drawings, photos and PDFs are not converted. Local App Store prices may vary.</p>
-        <div className="pi-shell persian-crosslink"><p lang="fa" dir="rtl">راهنمای فارسی نصب و انتخاب کیبورد: <a href="/fa/">تایپ با حرکت انگشت یا نوشتن با اپل پنسل ←</a></p><p>Prefer swipe typing on iPhone or iPad? <a href="/apps/persian-swipe/">Explore Persian Swipe ↗</a></p></div>
+        <div className="pi-shell persian-crosslink"><p lang="fa" dir="rtl">راهنمای فارسی راه‌اندازی و گزینش صفحه‌کلید: <a href="/fa/">نوشتن با کشیدن انگشت یا اپل پنسل ←</a></p><p>Prefer swipe typing on iPhone or iPad? <a href="/apps/persian-swipe/">Explore Persian Swipe ↗</a></p></div>
       </main>
       <footer className="pi-shell pi-footer">
         <div><AppIdentity /><p>An iPad. A Pencil. Your Persian.</p></div>

@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   description:
     "Neural Intelligence Labs researches reinforcement learning environments, planning, and verification for software, terminal, and web agents.",
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
+    icon: "/neuralint-favicon-lamassu.png",
+    shortcut: "/neuralint-favicon-lamassu.png",
   },
   openGraph: {
     title: "AI Agent RL Environments | Neural Intelligence Labs",
@@ -67,7 +67,7 @@ export default function RootLayout({
             alternateName: "NeuralInt",
             url: "https://neuralint.io/",
             description: "A research lab and product studio building focused apps and reinforcement learning environments for AI agents.",
-            logo: "https://neuralint.io/favicon.png",
+            logo: "https://neuralint.io/neuralint-logo-lamassu-transparent.webp",
             email: "mehrdadz@neuralint.io",
             contactPoint: {
               "@type": "ContactPoint",
@@ -86,7 +86,7 @@ export default function RootLayout({
         <script
           data-theme-bootstrap=""
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("nil-theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem("nil-theme");if(t!=="light"&&t!=="dark"){t="dark"}document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t}catch(e){}})();`,
           }}
         />
       </head>

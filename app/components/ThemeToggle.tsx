@@ -11,13 +11,11 @@ function preferredTheme(): Theme {
     return stored;
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+  return "dark";
 }
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
     const activeTheme =
@@ -28,20 +26,24 @@ export default function ThemeToggle() {
     document.documentElement.dataset.theme = activeTheme;
     document.documentElement.style.colorScheme = activeTheme;
 
-    const animationFrame = window.requestAnimationFrame(() => {
-      setTheme(activeTheme);
-    });
+    const syncTheme = () => setTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
+    const animationFrame = window.requestAnimationFrame(() => setTheme(activeTheme));
+    window.addEventListener("nil-theme-change", syncTheme);
 
-    return () => window.cancelAnimationFrame(animationFrame);
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("nil-theme-change", syncTheme);
+    };
   }, []);
 
   function toggleTheme() {
-    const nextTheme = theme === "dark" ? "light" : "dark";
+    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
 
     document.documentElement.dataset.theme = nextTheme;
     document.documentElement.style.colorScheme = nextTheme;
     window.localStorage.setItem("nil-theme", nextTheme);
     setTheme(nextTheme);
+    window.dispatchEvent(new Event("nil-theme-change"));
   }
 
   const nextTheme = theme === "dark" ? "light" : "dark";

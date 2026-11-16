@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { BrandMark, SiteMobileMenu } from "./SiteNavigation";
 
 export type NeuralIntApp = {
   name: string;
@@ -53,7 +54,7 @@ export function AppLegalPage({
     <div className={`app-legal-site ${app ? `app-${app.slug}` : "app-neuralint"}`}>
       <header className="shell topbar legal-topbar">
         <a className="wordmark" href="/apps/" aria-label="NeuralInt apps home">
-          <span className="mark" aria-hidden="true" />
+          <BrandMark />
           <span>NeuralInt</span>
         </a>
         <nav className="nav legal-nav" aria-label="App legal navigation">
@@ -62,6 +63,7 @@ export function AppLegalPage({
           <Link href="/">Research</Link>
           <ThemeToggle />
         </nav>
+        <SiteMobileMenu extraLinks={[["فارسی", "/fa/"]]} />
       </header>
 
       <main className="shell legal-main">

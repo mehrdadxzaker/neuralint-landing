@@ -4,6 +4,7 @@ import ThemeToggle from "../components/ThemeToggle";
 import { apps, appUrl, siteOrigin } from "../content/apps";
 import StructuredData from "../components/StructuredData";
 import PersianAppsBanner from "../components/PersianAppsBanner";
+import { BrandMark, SiteMobileMenu } from "../components/SiteNavigation";
 
 const title = "Persian Keyboards, Focus & Family Apps";
 const description = "Explore NeuralInt apps: Persian Ink handwriting, Persian Swipe typing, Trailhead focus sessions, Lady family routines, and LinkedFull fashion search.";
@@ -34,7 +35,7 @@ export default function AppsPage() {
       <StructuredData data={directoryData} />
       <header className="shell topbar legal-topbar">
         <a className="wordmark" href="/apps/" aria-label="NeuralInt apps home">
-          <span className="mark" aria-hidden="true" />
+          <BrandMark />
           <span>NeuralInt</span>
         </a>
         <nav className="nav legal-nav" aria-label="Apps navigation">
@@ -42,6 +43,7 @@ export default function AppsPage() {
           <a href="mailto:mehrdadz@neuralint.io">Contact</a>
           <ThemeToggle />
         </nav>
+        <SiteMobileMenu extraLinks={[["Contact", "mailto:mehrdadz@neuralint.io"]]} />
       </header>
 
       <main className="shell apps-main">

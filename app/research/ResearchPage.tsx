@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import ThemeToggle from "../components/ThemeToggle";
-import { apps, appUrl } from "../content/apps";
+import { BrandMark, SiteMobileMenu } from "../components/SiteNavigation";
+import { apps } from "../content/apps";
 import PersianAppsBanner from "../components/PersianAppsBanner";
 
 const programs = [
@@ -36,175 +38,29 @@ const programs = [
   },
 ];
 
-const projects = [
+// The public app catalog is the source of truth for descriptions and availability.
+const currentProjects = [
+  ...apps.map((app) => ({
+    title: app.listingName,
+    type: app.slug === "persian-ink" || app.slug === "persian-swipe" ? "Persian keyboard" : "iOS app",
+    status: app.available ? "Available on the App Store" : "In development",
+    description: app.description,
+    image: app.image,
+    alt: app.name + " app icon",
+    href: "/apps/" + app.slug + "/",
+    linkLabel: "Explore app",
+  })),
   {
-    code: "NIL–01",
-    type: "Agent runtime",
-    title: "Selva",
-    hook: "Agents that can pick up where they left off.",
-    description:
-      "A stateful runtime for long-running agent work—keeping plans, tool actions, evidence, checkpoints, and recovery separate from the conversation window.",
-    story:
-      "The idea: an agent should survive interruption without losing the plot.",
-    image: "/projects/selva.webp",
-    alt: "A chartreuse signal finding a reliable path through a branching agent-state architecture.",
-    status: "Prototype",
-    href: null,
+    title: "Koto", type: "Developer tools", status: "Open source · alpha",
+    description: "An alpha workspace for coordinating coding agents with isolated Git worktrees, reviewed integration, and saved sessions.",
+    image: "/projects/koto-logo.webp", alt: "Koto wooden K logo",
+    href: "https://github.com/mehrdadxzaker/Koto", linkLabel: "View source",
   },
   {
-    code: "NIL–02",
-    type: "Software engineering",
-    title: "RepoFix",
-    hook: "Find the fault. Make the smallest repair. Prove it.",
-    description:
-      "A repository-repair workflow that turns debugging into an evidence loop: reproduce one failure, isolate the layer, propose a focused patch, and run the decisive test.",
-    story:
-      "The idea: a useful coding agent returns a verified repair, not a plausible diff.",
-    image: "/projects/repofix.webp",
-    alt: "A fractured software graph passing through a diagnostic bridge and reconnecting as a verified repository.",
-    status: "Prototype",
-    href: null,
-  },
-  {
-    code: "NIL–03",
-    type: "Document operations",
-    title: "Index",
-    hook: "Documents in. Reconciled action out.",
-    description:
-      "An AI document-operations workspace for reviewing invoices and inbox documents, reconciling records, routing approvals, and syncing clean evidence into business systems.",
-    story:
-      "The idea: automation becomes trustworthy when every action carries its proof.",
-    image: "/projects/index.webp",
-    alt: "Messy invoices and records flowing through blue reconciliation gates into a verified system of record.",
-    status: "Product",
-    href: "#index-case",
-  },
-  {
-    code: "NIL–04",
-    type: "RL environments",
-    title: "Executable Worlds",
-    hook: "Give software agents a world they can learn from.",
-    description:
-      "A research build for resettable, verifiable training environments spanning terminal, repository, and browser tasks—with state, consequences, rewards, and recovery.",
-    story:
-      "The idea: environment quality sets the ceiling on what an agent can learn.",
-    image: "/projects/executable-worlds.webp",
-    alt: "One reinforcement-learning loop connecting terminal, repository, and web task environments.",
-    status: "Research build",
-    href: null,
-  },
-  {
-    code: "NIL–05",
-    type: "Personal productivity",
-    title: "Trailhead: Deep Focus",
-    hook: "Protect attention long enough to do work that matters.",
-    description:
-      "A focus timer that turns completed work sessions into progress along a simulated national-park trail, with optional Screen Time distraction shielding and Live Activities.",
-    story:
-      "The idea: focus should feel like a space you enter, not a punishment you endure.",
-    image: "/projects/deep-focus.webp",
-    alt: "Distraction signals passing through a blue filter into a quiet, protected focus chamber.",
-    status: "Available on iOS",
-    href: "/apps/trailhead/",
-  },
-  {
-    code: "NIL–06",
-    type: "AI fashion commerce",
-    title: "LinkedFull",
-    hook: "Turn a look you love into something you can actually find.",
-    description:
-      "A prompt-to-style shopping app that uses text or visual inspiration to discover fashion across multiple stores, personalize recommendations, and preview choices with virtual try-on.",
-    story:
-      "The idea: shopping should begin with your taste—not a retailer’s endless feed.",
-    image: "/projects/linkedfull.webp",
-    alt: "Fashion inspiration moving through visual search and multi-store matching into a coordinated virtual outfit.",
-    status: "Available on iOS",
-    href: "/apps/linkedfull/",
-  },
-];
-
-const indexWorkflows = [
-  {
-    title: "Invoice match",
-    label: "PO · receipt · tax",
-    body: "Tie every mismatch to its source document, proposed owner, and approval path.",
-  },
-  {
-    title: "Inbox triage",
-    label: "Assigned work queue",
-    body: "Turn loose documents into tagged, assigned, reviewable work.",
-  },
-  {
-    title: "Posting proof",
-    label: "Audit before approval",
-    body: "Show GL, cash, inventory, risk, and source evidence before anything syncs.",
-  },
-  {
-    title: "Customer follow up",
-    label: "Never stall silently",
-    body: "Connect orders, invoices, payments, and notes to the missing next step.",
-  },
-  {
-    title: "Inventory holds",
-    label: "Stock exceptions",
-    body: "Link counts, shortages, and reorder triggers to the documents behind them.",
-  },
-  {
-    title: "Cash dashboard",
-    label: "Late work visible",
-    body: "Keep open AR, approvals, and blocked work visible in one cash queue.",
-  },
-];
-
-const indexStages = [
-  ["01", "Discover", "Map document sets, client systems, and exception rates."],
-  [
-    "02",
-    "Configure",
-    "Define blueprint fields, validators, queues, and evidence-backed review states.",
-  ],
-  [
-    "03",
-    "Validate",
-    "Run partner-led acceptance with evidence attached to every extracted value.",
-  ],
-  [
-    "04",
-    "Launch",
-    "Sync approved work into the ERP, TMS, CRM, or vertical system of record.",
-  ],
-];
-
-const indexPartnerPaths = [
-  {
-    title: "Certified implementer",
-    body: "For ERP and accounting consultants configuring Index inside client rollouts.",
-    items: [
-      "Blueprint catalog access",
-      "Implementation playbooks",
-      "Partner enablement",
-      "Client handoff support",
-    ],
-  },
-  {
-    title: "Solution partner",
-    body: "For firms building a repeatable document-operations practice with Index.",
-    items: [
-      "Partner-branded workspace",
-      "Document operations playbook",
-      "Named solutions lead",
-      "Priority blueprint requests",
-    ],
-  },
-  {
-    title: "Embedded OEM",
-    body: "For software platforms embedding Index workflows inside their own product.",
-    items: [
-      "Embedded review surfaces",
-      "API and webhook guidance",
-      "Security review support",
-      "Roadmap alignment",
-    ],
+    title: "Open Radio", type: "Amateur radio", status: "Open source",
+    description: "RadioDesk is an open-source workspace for amateur-radio station control, signal analysis, RF tools, and local logging.",
+    image: "/projects/open-radio-logo.svg", alt: "Open Radio waveform logo",
+    href: "https://github.com/mehrdadxzaker/radiodesk", linkLabel: "View source",
   },
 ];
 
@@ -212,7 +68,7 @@ function Header() {
   return (
     <header className="topbar">
       <Link className="wordmark" href="/" aria-label="Neural Intelligence Labs research home">
-        <span className="mark" aria-hidden="true" />
+        <BrandMark />
         <span>Neural Intelligence Labs</span>
       </Link>
       <nav className="nav" aria-label="Primary navigation">
@@ -221,12 +77,12 @@ function Header() {
         <a href="/apps/">Apps</a>
         <a href="/persian-keyboards/">Persian keyboards</a>
         <a href="/people/mehrdad/">People</a>
-        <a href="#index-case">Index</a>
         <ThemeToggle />
         <a className="nav-cta" href="#collaborate">
           Collaborate
         </a>
       </nav>
+      <SiteMobileMenu />
     </header>
   );
 }
@@ -264,9 +120,42 @@ export default function ResearchPage() {
           <div className="hero-orbit" aria-hidden="true" />
         </section>
 
+        <section className="section portfolio-section" id="portfolio">
+          <div className="section-head">
+            <span className="section-index">01 / Maker&apos;s portfolio</span>
+            <div>
+              <h2 className="section-title">Apps and tools for everyday life.</h2>
+              <p className="lead">
+                Explore NeuralInt apps for Persian writing, focused work, family routines,
+                and fashion discovery, alongside open-source tools.
+              </p>
+            </div>
+          </div>
+          <div className="current-project-grid" aria-label="Current projects">
+            {currentProjects.map((project) => (
+              <article className="current-project-card" key={project.title}>
+                {project.image ? (
+                  <div className="current-project-mark">
+                    <Image src={project.image} alt={project.alt} width={192} height={192} unoptimized loading="lazy" />
+                  </div>
+                ) : (
+                  <div className="current-project-textmark" aria-hidden="true">{project.title}</div>
+                )}
+                <div className="current-project-body">
+                  <div className="current-project-meta"><span>{project.type}</span><span>{project.status}</span></div>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  {project.href && <a className="current-project-link" href={project.href}>{project.linkLabel}</a>}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+
         <section className="section" id="programs">
           <div className="section-head">
-            <span className="section-index">01 / Research program</span>
+            <span className="section-index">02 / Research program</span>
             <div>
               <h2 className="section-title">
                 The environment is part of the intelligence.
@@ -352,182 +241,6 @@ export default function ResearchPage() {
       </div>
 
       <div className="shell">
-        <section className="section portfolio-section" id="portfolio">
-          <div className="section-head">
-            <span className="section-index">02 / Maker&apos;s portfolio</span>
-            <div>
-              <h2 className="section-title">
-                Things I built to make agents useful.
-              </h2>
-              <p className="lead">
-                Products, prototypes, and research systems from Neural Intelligence
-                Labs. Each one starts with the same question: what would make an
-                intelligent system more capable, legible, and trustworthy?
-              </p>
-            </div>
-          </div>
-          <div className="portfolio-grid">
-            {projects.map((project, index) => (
-              <article
-                className={`project-card ${index === 0 || index === 3 ? "project-card-wide" : ""}`}
-                key={project.title}
-              >
-                <figure className="project-visual">
-                  <img
-                    src={project.image}
-                    alt={project.alt}
-                    width="1536"
-                    height="1024"
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                  <figcaption className="project-stamp">
-                    <span>{project.code}</span>
-                    <span>MZ / NIL</span>
-                  </figcaption>
-                </figure>
-                <div className="project-copy">
-                  <div className="project-meta">
-                    <span>{project.type}</span>
-                    <span>{project.status}</span>
-                  </div>
-                  <h3>{project.title}</h3>
-                  <p className="project-hook">{project.hook}</p>
-                  <p className="project-description">{project.description}</p>
-                  <div className="project-foot">
-                    <p>{project.story}</p>
-                    {project.href ? (
-                      <a className="project-link" href={project.href}>
-                        Explore product
-                      </a>
-                    ) : (
-                      <span className="project-progress">
-                        Case study in progress
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </article>
-            ))}
-            <aside className="studio-forward">
-              <div className="studio-forward-index">
-                <span>Next</span>
-                <strong>06 → ∞</strong>
-              </div>
-              <div>
-                <p className="eyebrow">In the workshop</p>
-                <h3>Explore our apps.</h3>
-                <p>
-                  Persian keyboards, focused work, family routines, and fashion
-                  discovery. Find the app, its requirements, and a clear path to install.
-                </p>
-              </div>
-              <nav className="app-discovery-links" aria-label="Explore NeuralInt apps">
-                {apps.map(app => <a href={appUrl(app)} key={app.slug}>{app.name}</a>)}
-              </nav>
-              <span className="portfolio-note-mark" aria-hidden="true" />
-            </aside>
-          </div>
-          <article className="index-case" id="index-case">
-            <div className="index-case-intro">
-              <div>
-                <span className="section-index">NIL–03 / Index</span>
-                <h3>
-                  AI document operations for finance and operations teams.
-                </h3>
-              </div>
-              <div>
-                <p>
-                  Index turns invoices, inbox documents, approvals, and posting
-                  evidence into one review-to-sync workspace. It is the document
-                  layer between messy operational work and the systems clients
-                  already run.
-                </p>
-                <a
-                  className="button index-button"
-                  href="mailto:mehrdadz@neuralint.io?subject=Index%20partner%20or%20demo"
-                >
-                  Discuss Index
-                </a>
-              </div>
-            </div>
-
-            <div className="index-case-block">
-              <div className="index-case-label">
-                <span>01</span>
-                <strong>Workflow blueprints</strong>
-              </div>
-              <div className="index-workflow-grid">
-                {indexWorkflows.map((workflow) => (
-                  <div className="index-workflow" key={workflow.title}>
-                    <span>{workflow.label}</span>
-                    <h4>{workflow.title}</h4>
-                    <p>{workflow.body}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="index-case-block">
-              <div className="index-case-label">
-                <span>02</span>
-                <strong>Implementation model</strong>
-              </div>
-              <div className="index-stage-grid">
-                {indexStages.map(([number, title, body]) => (
-                  <div className="index-stage" key={number}>
-                    <span>{number}</span>
-                    <h4>{title}</h4>
-                    <p>{body}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="index-connectors">
-                Connects with Salesforce, QuickBooks, HubSpot, Stripe, NetSuite,
-                Anrok, DocuSign, Gmail, Mercury, Plaid, Slack, and the vertical
-                systems clients already depend on.
-              </p>
-            </div>
-
-            <div className="index-case-block">
-              <div className="index-case-label">
-                <span>03</span>
-                <strong>Partner paths</strong>
-              </div>
-              <div className="index-partner-grid">
-                {indexPartnerPaths.map((path) => (
-                  <div className="index-partner" key={path.title}>
-                    <h4>{path.title}</h4>
-                    <p>{path.body}</p>
-                    <ul>
-                      {path.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="index-case-outro">
-              <p className="eyebrow">Start with one workflow</p>
-              <h3>Blueprint. Proof path. Launch kit.</h3>
-              <p>
-                Begin with invoice match, customer follow up, posting proof, or
-                the cash dashboard—then expand after the operating path is
-                working.
-              </p>
-            </div>
-          </article>
-          <div className="portfolio-note">
-            <span className="portfolio-note-mark" aria-hidden="true" />
-            <p>
-              One visual language, many systems. The registration mark and
-              chartreuse signal identify work made inside Neural Intelligence
-              Labs—before you read the name.
-            </p>
-          </div>
-        </section>
-
         <section className="section" id="people">
           <div className="profile-card">
             <img
@@ -585,7 +298,6 @@ export default function ResearchPage() {
           <a href="/about/">About</a>
           <a href="/contact/">Contact</a>
           <a href="/privacy/">Privacy</a>
-          <a href="#index-case">Explore Index ↑</a>
         </footer>
       </div>
     </main>

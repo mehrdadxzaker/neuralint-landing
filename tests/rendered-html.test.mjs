@@ -33,36 +33,38 @@ test("server-renders the research and maker portfolio", async () => {
   assert.match(html, /Reinforcement learning environments for/);
   assert.match(html, /Maker(?:&apos;|&#x27;|')s portfolio/i);
   assert.match(html, /San Francisco \+ Chicago/);
-  assert.match(html, /Switch to dark theme/);
+  assert.match(html, /Switch to light theme/);
   assert.match(html, /\/mehrdad-zaker-three-quarter-transparent\.webp/);
   assert.match(html, /Personal site &amp; writing/);
 
   for (const project of [
-    "Selva",
-    "RepoFix",
-    "Index",
-    "Executable Worlds",
-    "Trailhead: Deep Focus",
-    "LinkedFull",
+    "Persian Ink", "Persian Swipe", "Trailhead: Deep Focus",
+    "Lady: Family Routines", "LinkedFull", "Koto", "Open Radio",
   ]) {
     assert.match(html, new RegExp(`>${project}<`));
   }
+  assert.doesNotMatch(html, /(?:>Selva<|>RepoFix<|href="\/?#index-case")/);
+  assert.ok(html.indexOf('id="portfolio"') < html.indexOf('id="programs"'), "Current projects appear before research");
 });
 
-test("uses the shared visual system and web-optimized project artwork", async () => {
-  const source = await readFile(
-    new URL("../app/research/ResearchPage.tsx", import.meta.url),
-    "utf8",
-  );
-
-  assert.match(source, /NIL–01/);
-  assert.match(source, /MZ \/ NIL/);
-  assert.match(source, /One visual language, many systems/);
-  assert.equal((source.match(/\/projects\/[^"]+\.webp/g) ?? []).length, 6);
-  assert.doesNotMatch(source, /\/projects\/[^"]+\.png/);
+test("homepage projects use real app icons, local product links and the Open Radio mark", async () => {
+  const html = await (await render()).text();
+  for (const [slug, image] of [
+    ["persian-ink", "app-icon-calligraphy.jpg"],
+    ["persian-swipe", "app-icon-calligraphy.jpg"],
+    ["trailhead", "app-icon.jpg"], ["lady", "app-icon.jpg"],
+    ["linkedfull", "app-icon.jpg"],
+  ]) {
+    assert.ok(html.includes(`/apps/${slug}/${image}`), `App icon for ${slug}`);
+    assert.ok(html.includes(`href="/apps/${slug}/"`), `Local product link for ${slug}`);
+  }
+  assert.match(html, /\/projects\/open-radio-logo\.svg/);
+  assert.match(html, /\/projects\/koto-logo\.webp/);
+  assert.match(html, /https:\/\/github\.com\/mehrdadxzaker\/Koto/);
+  assert.match(html, /https:\/\/github\.com\/mehrdadxzaker\/radiodesk/);
 });
 
-test("supports a persistent dark theme and narrow mobile layouts", async () => {
+test("supports a dark default, persistent theme choices, and narrow mobile layouts", async () => {
   const [toggle, styles, exporter, layout] = await Promise.all([
     readFile(
       new URL("../app/components/ThemeToggle.tsx", import.meta.url),
@@ -77,11 +79,14 @@ test("supports a persistent dark theme and narrow mobile layouts", async () => {
   ]);
 
   assert.match(toggle, /localStorage\.setItem\("nil-theme"/);
-  assert.match(toggle, /prefers-color-scheme: dark/);
+  assert.match(toggle, /localStorage\.getItem\("nil-theme"\)/);
+  assert.match(toggle, /stored === "light" \|\| stored === "dark"/);
+  assert.match(toggle, /return "dark"/);
   assert.match(styles, /:root\[data-theme="dark"\]/);
   assert.match(styles, /@media \(max-width: 620px\)/);
   assert.match(styles, /@media \(max-width: 480px\)/);
   assert.match(layout, /data-theme-bootstrap/);
+  assert.match(layout, /localStorage\.getItem\("nil-theme"\)/);
   assert.match(exporter, /data-theme-runtime/);
   assert.match(exporter, /localStorage\.setItem\("nil-theme"/);
   assert.match(exporter, /data-theme-bootstrap/);

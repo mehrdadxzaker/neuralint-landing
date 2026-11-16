@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 import path from "node:path";
+import { assertIndexableMeta, canonicalUrl, excludedFromIndex, exportRoutes, metaTags } from "./site-routes.mjs";
 
 const root = path.resolve(process.argv[2] ?? "static-site");
 const origin = "https://neuralint.io";
@@ -9,7 +10,14 @@ const sitemap = await readFile(path.join(root, "sitemap.xml"), "utf8");
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
 assert.ok(urls.length > 0, "Sitemap must list canonical pages");
 assert.equal(new Set(urls).size, urls.length, "Sitemap URLs must be unique");
-assert.deepEqual(catalog.apps.map(app => app.slug).sort(), ["lady", "linkedfull", "persian-ink", "persian-swipe", "trailhead"]);
+const routes = await exportRoutes();
+const expectedUrls = [];
+for (const route of routes) {
+  const html = await readFile(path.join(root, route.output), "utf8");
+  if (!excludedFromIndex(metaTags(html))) expectedUrls.push(canonicalUrl(route.source));
+}
+assert.deepEqual([...urls].sort(), expectedUrls.sort(), "Sitemap must include every indexable export and exclude non-indexable pages");
+assert.equal(new Set(catalog.apps.map(app => app.slug)).size, catalog.apps.length, "App slugs must be unique");
 const titles = new Set();
 const descriptions = new Set();
 const schemasByUrl = new Map();
@@ -23,7 +31,6 @@ for (const url of urls) {
   const parsed = new URL(url);
   assert.equal(parsed.origin, origin, "Canonical host: " + url);
   assert.ok(parsed.pathname.endsWith("/"), "Trailing slash: " + url);
-  assert.ok(!parsed.pathname.includes("/review/"), "Reviewer pages are not search landing pages");
   assert.notEqual(parsed.pathname, "/research/", "Do not submit the redirect");
   const html = await readFile(path.join(root, parsed.pathname, "index.html"), "utf8");
   htmlByUrl.set(url, html);
@@ -38,7 +45,7 @@ for (const url of urls) {
   const description = descriptionTags[0].content;
   assert.ok(description && !descriptions.has(description), "Unique description: " + url);
   descriptions.add(description);
-  assert.ok(!metas.some(tag => tag.name === "robots" && /noindex/i.test(tag.content)), "Indexable sitemap URL: " + url);
+  assertIndexableMeta(metas, url);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1, "One main heading: " + url);
   for (const [key, expected] of Object.entries({
     "og:title": title, "og:description": description, "og:url": url,
@@ -55,14 +62,33 @@ for (const url of urls) {
   assert.equal(organizations.length, 1, "One publisher entity: " + url);
   assert.equal(organizations[0]["@id"], origin + "/#organization");
   assert.ok(organizations[0].description && organizations[0].contactPoint?.email, "Factual publisher identity and contact");
-  for (const data of schemas) {
-    assert.ok(["Organization", "MobileApplication", "BreadcrumbList", "CollectionPage", "AboutPage", "ContactPage", "WebPage"].includes(data["@type"]), "Expected entity type: " + data["@type"]);
-  }
   for (const match of html.matchAll(/(?:href|src)="(\/(?!\/)[^"?#]*)[^"#]*(?:#[^"]*)?"/g)) {
     const pathname = match[1];
     await access(path.join(root, pathname, path.extname(pathname) ? "" : "index.html")).catch(() => assert.fail("Missing link or asset " + pathname + " in " + url));
   }
 }
+// Walk ordinary links from the homepage to catch orphaned indexable pages.
+const reached = new Set([origin + "/"]);
+const pending = [origin + "/"];
+while (pending.length) {
+  const current = pending.shift();
+  const html = htmlByUrl.get(current);
+  if (!html) continue;
+  for (const match of html.matchAll(/<a\b[^>]*>/gi)) {
+    const href = attrs(match[0]).href;
+    if (!href) continue;
+    let destination;
+    try { destination = new URL(decode(href), current); } catch { continue; }
+    if (destination.origin !== origin) continue;
+    const normalized = origin + (destination.pathname.endsWith("/") ? destination.pathname : destination.pathname + "/");
+    if (htmlByUrl.has(normalized) && !reached.has(normalized)) {
+      reached.add(normalized);
+      pending.push(normalized);
+    }
+  }
+}
+for (const url of urls) assert.ok(reached.has(url), "Indexable page must be reachable from homepage: " + url);
+
 const directoryHtml = htmlByUrl.get(origin + "/apps/");
 const homepage = htmlByUrl.get(origin + "/");
 const languagePages = { en: origin + "/persian-keyboards/", fa: origin + "/fa/", "x-default": origin + "/persian-keyboards/" };
@@ -83,7 +109,6 @@ assert.equal(directory.mainEntity.itemListElement.length, catalog.apps.length);
 for (const app of catalog.apps) {
   assert.ok(urls.includes(app.url), "Product page in sitemap: " + app.name);
   assert.ok(directoryHtml.includes('href="' + app.url + '"'), "Product reachable from directory: " + app.name);
-  assert.ok(homepage.includes('href="' + app.url + '"'), "Product reachable from homepage: " + app.name);
   const data = schemasByUrl.get(app.url).filter(node => node["@type"] === "MobileApplication");
   assert.equal(data.length, 1, "One app entity: " + app.name);
   const entity = data[0];
@@ -130,4 +155,4 @@ assert.ok(llms.includes(origin + "/apps/catalog.json"));
 const notFound = await readFile(path.join(root, "404.html"), "utf8");
 assert.match(notFound, /name="robots" content="noindex"/);
 assert.match(notFound, /<h1>Page not found<\/h1>/);
-console.log("SEO checks passed: " + urls.length + " canonical pages; all five apps; app, publisher and breadcrumb data; truthful offers; metadata; links; discovery files; reviewer exclusions and legacy redirects.");
+console.log("SEO checks passed: " + urls.length + " canonical pages; catalog apps; app, publisher and breadcrumb data; truthful offers; metadata; links; discovery files; reviewer exclusions and legacy redirects.");

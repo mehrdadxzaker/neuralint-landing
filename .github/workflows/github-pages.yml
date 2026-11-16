@@ -37,7 +37,7 @@ jobs:
         run: npm run build
 
       - name: Test rendered pages
-        run: node --test tests/rendered-html.test.mjs
+        run: node --test tests/*.test.mjs
 
       - name: Export static site
         run: |

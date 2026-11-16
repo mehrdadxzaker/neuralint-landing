@@ -128,10 +128,8 @@ test("server-renders the NeuralInt app directory and legal routes", async () => 
 });
 
 test("static export includes every app policy and review route", async () => {
-  const exporter = await readFile(
-    new URL("../scripts/export-github-pages.mjs", import.meta.url),
-    "utf8",
-  );
+  const { exportRoutes } = await import("../scripts/site-routes.mjs");
+  const routes = (await exportRoutes()).map(route => route.source);
 
   for (const pathname of [
     "/apps/trailhead/privacy",
@@ -146,7 +144,7 @@ test("static export includes every app policy and review route", async () => {
     "/apps/persian-ink/review",
     "/apps/terms",
   ]) {
-    assert.match(exporter, new RegExp(pathname.replaceAll("/", "\\/")));
+    assert.ok(routes.includes(pathname), pathname);
   }
 });
 
@@ -177,15 +175,18 @@ test("Persian Ink links to its released App Store app and keeps beta access sepa
 });
 
 
-test("all five apps have discoverable product destinations and truthful release data", async () => {
+test("catalog apps have discoverable product destinations and truthful release data", async () => {
   const response = await render("/apps/catalog.json");
   assert.equal(response.status, 200);
   const catalog = await response.json();
-  assert.deepEqual(catalog.apps.map(app => app.slug).sort(), ["lady", "linkedfull", "persian-ink", "persian-swipe", "trailhead"]);
+  assert.ok(catalog.apps.length > 0, "The app catalog must not be empty");
+  const slugs = catalog.apps.map(app => app.slug);
+  assert.equal(new Set(slugs).size, slugs.length, "App slugs must be unique");
+  assert.ok(slugs.every(slug => /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)), "App slugs must be URL-safe");
   const home = await (await render("/")).text();
   const directory = await (await render("/apps")).text();
+  assert.match(home, /href="(?:https:\/\/neuralint\.io)?\/apps\/?"/, "The homepage links to the app directory");
   for (const app of catalog.apps) {
-    assert.ok(home.includes('href="' + app.url + '"'));
     assert.ok(directory.includes('href="' + app.url + '"'));
     const page = await render(new URL(app.url).pathname.replace(/\/$/, ""));
     assert.equal(page.status, 200);

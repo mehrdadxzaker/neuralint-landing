@@ -66,7 +66,7 @@ export default function AppsPage() {
                 <h2><a href={appUrl(app)}>{app.listingName}</a></h2>
                 <p className="app-card-summary">{app.description}</p>
                 <div className="app-capabilities">
-                  {capabilities[app.slug].map((capability) => (
+                  {(capabilities[app.slug] ?? app.features.slice(0, 3)).map((capability) => (
                     <span key={capability}>{capability}</span>
                   ))}
                 </div>

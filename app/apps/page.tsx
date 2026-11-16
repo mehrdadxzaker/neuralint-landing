@@ -73,7 +73,7 @@ export default function AppsPage() {
                   <p className="app-card-label">{app.accentLabel}</p>
                   <h2><a href={appUrl(app)}>{app.listingName}</a></h2>
                 </div>
-                {app.available && <a className="app-card-store" href={app.storeUrl} aria-label={`Open ${app.name} on the App Store`} title={`${app.name} on the App Store`}><DestinationIcon kind="store" /></a>}
+                {app.available && <a className="app-card-store" data-destination="store" href={app.storeUrl} aria-label={`Open ${app.name} on the App Store`} title={`${app.name} on the App Store`}><DestinationIcon kind="store" /></a>}
               </div>
               <div className="app-card-content">
                 <p className="app-card-summary"><PersianText text={app.description} /></p>

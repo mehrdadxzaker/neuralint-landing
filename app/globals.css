@@ -154,10 +154,12 @@ a {
   text-underline-offset: 0.25em;
 }
 
-.nav a:hover,
-.footer a:hover,
-.text-link:hover {
-  text-decoration: underline;
+@media (hover: hover) {
+  .nav a:hover,
+  .footer a:hover,
+  .text-link:hover {
+    text-decoration: underline;
+  }
 }
 
 .skip-link {
@@ -201,9 +203,11 @@ a {
     color 160ms ease;
 }
 
-.theme-toggle:hover {
-  border-color: var(--ink);
-  background: var(--paper-2);
+@media (hover: hover) {
+  .theme-toggle:hover {
+    border-color: var(--ink);
+    background: var(--paper-2);
+  }
 }
 
 .theme-toggle:focus-visible,
@@ -299,22 +303,18 @@ a {
     transform 160ms ease;
 }
 
-.button:hover {
-  transform: translateY(-2px);
-}
-
 .button.primary {
   background: var(--ink);
   color: var(--paper);
 }
 
-.button.primary:hover {
-  background: var(--blue);
-  border-color: var(--blue);
-}
-
-.button.secondary:hover {
-  background: var(--acid);
+@media (hover: hover) {
+  .button:hover { transform: translateY(-2px); }
+  .button.primary:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+  }
+  .button.secondary:hover { background: var(--acid); }
 }
 
 .persian-ink-install { margin-top: 28px; }
@@ -625,8 +625,10 @@ a {
   transition: transform 700ms cubic-bezier(0.2, 0.75, 0.2, 1);
 }
 
-.project-card:hover .project-visual img {
-  transform: scale(1.025);
+@media (hover: hover) {
+  .project-card:hover .project-visual img {
+    transform: scale(1.025);
+  }
 }
 
 .project-stamp {
@@ -1750,9 +1752,11 @@ a {
   font-size: 9px;
 }
 
-.legal-index a:hover {
-  color: var(--ink);
-  transform: translateX(3px);
+@media (hover: hover) {
+  .legal-index a:hover {
+    color: var(--ink);
+    transform: translateX(3px);
+  }
 }
 
 .legal-document {
@@ -1946,7 +1950,7 @@ a {
   transition: background-color 180ms ease;
 }
 
-.app-directory-card:hover { background: var(--visual-surface); }
+@media (hover: hover) { .app-directory-card:hover { background: var(--visual-surface); } }
 
 .app-directory-card.app-trailhead {
   --app-card-accent: #71916a;
@@ -1992,7 +1996,6 @@ a {
 }
 
 .app-card-store svg { width: 22px; height: 22px; }
-@media (hover: hover) { .app-card-store:hover { background: var(--inverse-bg); color: var(--inverse-fg); } }
 
 .app-card-label {
   margin: 0 0 6px;
@@ -2085,9 +2088,7 @@ a {
   border-color: rgba(243, 240, 231, 0.42);
 }
 
-.apps-trust-band .button:hover {
-  color: var(--dark-text);
-}
+@media (hover: hover) { .apps-trust-band .button:hover { color: var(--dark-text); } }
 
 @media (max-width: 980px) {
   .legal-layout,
@@ -2285,7 +2286,7 @@ a {
 .brand-mark { display: block; width: 54px; height: 40px; object-fit: contain; flex: 0 0 auto; }
 .nav { gap: 22px; font-size: 13px; }
 .nav .nav-cta { background: var(--ink); color: var(--paper); border-color: var(--ink); padding: 12px 20px; }
-.nav .nav-cta:hover { text-decoration: underline; }
+@media (hover: hover) { .nav .nav-cta:hover { text-decoration: underline; } }
 .theme-toggle { font-weight: 400; }
 .hero { display: block; min-height: 0; padding: 64px 0 85px; }
 .hero h1 { max-width: 1050px; font-family: var(--serif); font-size: clamp(56px, 7vw, 96px); font-weight: 700; letter-spacing: -0.055em; line-height: 1.03; }
@@ -2294,7 +2295,7 @@ a {
 .hero-copy p { font-size: clamp(17px, 1.55vw, 21px); line-height: 1.55; }
 .hero-orbit { display: none; }
 .button { font-weight: 400; }
-.button.primary:hover, .button.secondary:hover { background: var(--paper-2); border-color: var(--ink); color: var(--ink); }
+@media (hover: hover) { .button.primary:hover, .button.secondary:hover { background: var(--paper-2); border-color: var(--ink); color: var(--ink); } }
 .section { padding: 110px 0; }
 .section-title, .report-title, .project-copy h3, .program h3 { font-weight: 700; }
 .program { min-height: 280px; }
@@ -2304,7 +2305,7 @@ a {
 .studio-forward { background: #202020; }
 .studio-forward .portfolio-note-mark { box-shadow: none; }
 .apps-trust-band span { color: #c2ad7d; }
-.apps-trust-band .button:hover { background: #f3f3f3; border-color: #f3f3f3; color: #101010; }
+@media (hover: hover) { .apps-trust-band .button:hover { background: #f3f3f3; border-color: #f3f3f3; color: #101010; } }
 .persian-banner-links > .persian-language-link { background: transparent; color: var(--ink); border: 1px solid var(--line); }
 .site-mobile-menu { display: none; }
 .site-mobile-menu summary { list-style: none; cursor: pointer; border: 1px solid var(--line); border-radius: 999px; padding: 11px 17px; font-size: 13px; }
@@ -2313,7 +2314,7 @@ a {
 .site-mobile-menu-panel { position: absolute; top: calc(100% + 8px); right: 0; width: min(360px, calc(100vw - 32px)); padding: 20px 24px; background: var(--paper); border: 1px solid var(--line); z-index: 50; }
 .site-mobile-menu-links { display: grid; }
 .site-mobile-menu-links a { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
-.site-mobile-menu-links a:hover { color: var(--blue); }
+@media (hover: hover) { .site-mobile-menu-links a:hover { color: var(--blue); } }
 .site-mobile-menu-theme { padding-top: 18px; }
 @media (max-width: 1050px) {
   .topbar > .nav { display: none; }
@@ -2377,14 +2378,49 @@ a {
   border: 1px solid var(--line);
   border-radius: 50%;
   color: var(--ink);
-  transition: color 150ms ease, border-color 150ms ease, background-color 150ms ease;
 }
 .current-project-action svg { display: block; width: 22px; height: 22px; }
 .current-project-action:focus-visible,
 .current-project-body h3 a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 @media (hover: hover) {
-  .current-project-action:hover { color: var(--blue); border-color: var(--blue); background: var(--visual-surface); }
   .current-project-body h3 a:hover { color: var(--blue); }
+}
+
+/* Let destination marks reveal their own colors without changing the card layout. */
+.app-card-store,
+.current-project-action {
+  --store-hover-ink: #006bd6;
+  --store-hover-surface: #e6f1ff;
+  --github-hover-ink: #24292f;
+  --github-hover-surface: #eaeef2;
+}
+:root[data-theme="dark"] .app-card-store,
+:root[data-theme="dark"] .current-project-action {
+  --store-hover-ink: #58a6ff;
+  --store-hover-surface: #102a46;
+  --github-hover-ink: #f0f6fc;
+  --github-hover-surface: #30363d;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .app-card-store,
+  .current-project-action {
+    transition: color 520ms cubic-bezier(.2, .7, .2, 1),
+      border-color 520ms cubic-bezier(.2, .7, .2, 1),
+      background-color 520ms cubic-bezier(.2, .7, .2, 1);
+  }
+}
+@media (hover: hover) {
+  .app-card-store[data-destination="store"]:hover,
+  .current-project-action[data-destination="store"]:hover {
+    color: var(--store-hover-ink);
+    border-color: var(--store-hover-ink);
+    background-color: var(--store-hover-surface);
+  }
+  .current-project-action[data-destination="github"]:hover {
+    color: var(--github-hover-ink);
+    border-color: var(--github-hover-ink);
+    background-color: var(--github-hover-surface);
+  }
 }
 .current-project-body { min-width: 0; }
 .current-project-body h3 {
@@ -2426,3 +2462,36 @@ a {
 
 /* Persian uses a purpose-designed face rather than a system Arabic fallback. */
 :lang(fa) { font-family: "Persian Ink Vazirmatn", Tahoma, sans-serif; letter-spacing: normal; }
+
+/* A quiet, consistent response for links, buttons and disclosures. */
+@media (hover: hover) {
+  :is(.site, .app-legal-site, .keyboard-site, .pi-landing) :is(a, button, summary):not(.current-project-action):not(.app-card-store) {
+    transition: color 420ms cubic-bezier(0.2, 0, 0, 1),
+      background-color 420ms cubic-bezier(0.2, 0, 0, 1),
+      border-color 420ms cubic-bezier(0.2, 0, 0, 1),
+      text-decoration-color 420ms cubic-bezier(0.2, 0, 0, 1),
+      transform 420ms cubic-bezier(0.2, 0, 0, 1);
+  }
+  :is(.site, .app-legal-site, .keyboard-site, .pi-landing) a:not(.button):not(.pi-button):not(.current-project-action):not(.app-card-store):hover {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+  }
+  :is(.nav a:not(.nav-cta), .footer a, .site-mobile-menu-links a, .keyboard-header nav a, .keyboard-text-link, .keyboard-support a, .keyboard-footer a, .app-directory-card h2 a):hover {
+    color: var(--blue);
+  }
+  :is(.site-mobile-menu summary, .keyboard-questions summary):hover {
+    color: var(--blue);
+  }
+  .site-mobile-menu summary:hover {
+    border-color: var(--ink);
+    background-color: var(--paper-2);
+  }
+  :is(.pi-nav > a, .pi-footer nav a):hover { color: var(--pi-accent); }
+}
+
+/* Keep the visual hover state while removing physical movement for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  :is(.site, .app-legal-site, .keyboard-site, .pi-landing) :is(a, button, summary):hover,
+  .project-card:hover .project-visual img { transform: none !important; }
+}

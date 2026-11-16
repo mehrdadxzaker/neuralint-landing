@@ -145,7 +145,7 @@ export default function ResearchPage() {
                   <div className="current-project-mark">
                     <Image src={project.image} alt={project.alt} width={192} height={192} unoptimized loading="lazy" />
                   </div>
-                  {project.actionUrl && <a className="current-project-action" href={project.actionUrl} aria-label={project.actionLabel} title={project.actionLabel}>
+                  {project.actionUrl && <a className="current-project-action" data-destination={project.actionKind} href={project.actionUrl} aria-label={project.actionLabel} title={project.actionLabel}>
                     <DestinationIcon kind={project.actionKind === "store" ? "store" : "github"} />
                   </a>}
                 </div>

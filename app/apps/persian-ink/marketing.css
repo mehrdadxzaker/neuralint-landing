@@ -49,7 +49,7 @@
 .pi-identity span { font-family: "Iowan Old Style", Baskerville, "Times New Roman", serif; font-weight: 700; font-size: 30px; letter-spacing: -.045em; line-height: 1; }
 .pi-nav { display: flex; align-items: center; gap: 24px; font-size: 15px; }
 .pi-nav > a { border-bottom: 1px solid transparent; }
-.pi-nav > a:hover { border-bottom-color: currentColor; }
+@media (hover: hover) { .pi-nav > a:hover { border-bottom-color: currentColor; } }
 .pi-nav .theme-toggle { flex-shrink: 0; width: 44px; min-width: 44px; height: 44px; padding: 0; border-radius: 10px; color: var(--pi-purple); border-color: var(--pi-line); background: transparent; }
 .pi-nav .theme-toggle-label { display: none; }
 .pi-hero { display: grid; grid-template-columns: .95fr 1.05fr; gap: 38px; align-items: center; padding-block: 48px 56px; min-height: 0; }
@@ -75,8 +75,10 @@
 .pi-actions .button-row .button.primary { background: #91271f; border-color: #91271f; color: #fff; }
 .pi-actions .button-row .button.primary:disabled { background: #e3e0e5; border-color: #e3e0e5; color: #77717e; cursor: not-allowed; opacity: 1; }
 .pi-actions .button-row .button:last-child:nth-child(3) { flex-basis: 100%; border: 0; min-height: 26px; padding: 0; justify-content: flex-start; font-weight: 400; font-size: 13px; text-decoration: underline; text-underline-offset: .25em; margin-top: 3px; }
-.pi-actions .button-row a:hover { transform: translateY(-2px); background: color-mix(in srgb, var(--pi-accent) 7%, transparent); }
-.pi-actions .button-row a.primary:hover { background: #712019; }
+@media (hover: hover) {
+  .pi-actions .button-row a:hover { transform: translateY(-2px); background: color-mix(in srgb, var(--pi-accent) 7%, transparent); }
+  .pi-actions .button-row a.primary:hover { background: #712019; }
+}
 .pi-actions .persian-ink-install-status { font-size: 12px; color: var(--pi-muted); line-height: 1.6; margin-top: 14px; max-width: 460px; }
 .pi-workflow { background: #24201c; color: #f8f5ef; padding-block: 88px 54px; }
 .pi-workflow h2 { font-size: clamp(45px, 5.2vw, 76px); }
@@ -108,7 +110,7 @@
 .pi-feature-row h3 { font-size: 28px; color: var(--pi-purple); }
 .pi-feature-row p { margin-top: 14px; font-size: 16px; line-height: 1.65; color: var(--pi-muted); max-width: 510px; }
 .pi-text-link { display: inline-block; color: var(--pi-purple); border-bottom: 1px solid var(--pi-purple); font-size: 15px; margin-top: 14px; }
-.pi-text-link:hover { color: var(--pi-accent); }
+@media (hover: hover) { .pi-text-link:hover { color: var(--pi-accent); } }
 .pi-install { display: grid; grid-template-columns: .93fr 1.07fr; gap: 48px; border-top: 1px solid var(--pi-line); padding-block: 72px 64px; }
 .pi-install-offer { padding-right: 36px; border-right: 1px solid var(--pi-line); }
 .pi-install h2 { font-size: clamp(44px, 4.6vw, 66px); }
@@ -131,13 +133,13 @@
 .pi-beta-help a { text-decoration: underline; }
 .pi-beta-actions { display: flex; flex-direction: column; align-items: center; gap: 13px; }
 .pi-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 30px; padding: 17px 25px; width: 100%; min-height: 58px; color: #fff; background: #91271f; border: 1px solid #91271f; border-radius: 9px; font-size: 17px; font-weight: 600; transition: transform 180ms ease; }
-.pi-button:hover { transform: translateY(-2px); background: #712019; }
+@media (hover: hover) { .pi-button:hover { transform: translateY(-2px); background: #712019; } }
 .pi-beta-actions .pi-text-link { font-size: 13px; text-align: center; }
 .pi-requirements { padding-block: 23px; border-top: 1px solid var(--pi-line); font-size: 12px; color: var(--pi-muted); }
 .pi-footer { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 24px; padding-block: 32px 24px; border-top: 1px solid var(--pi-line); }
 .pi-footer > div > p { font-size: 13px; color: var(--pi-muted); margin-left: 67px; margin-top: 6px; }
 .pi-footer nav { display: flex; flex-wrap: wrap; gap: 24px; font-size: 14px; color: var(--pi-purple); }
-.pi-footer nav a:hover { text-decoration: underline; }
+@media (hover: hover) { .pi-footer nav a:hover { text-decoration: underline; } }
 .pi-copyright { flex-basis: 100%; font-size: 10px; color: var(--pi-muted); margin-top: 12px !important; }
 
 @media (min-width: 1500px) { .pi-shell { width: min(1360px, calc(100% - 160px)); } .pi-hero { gap: 70px; } }

@@ -25,9 +25,8 @@ test("exported theme control suppresses transitions through rapid switches", asy
   const button = () => {
     const attributes = {};
     const icon = { textContent: "" };
-    const label = { textContent: "" };
-    return { attributes, icon, label, setAttribute: (key, value) => { attributes[key] = value; },
-      querySelector: selector => selector === ".theme-toggle-icon" ? icon : label };
+    return { attributes, icon, setAttribute: (key, value) => { attributes[key] = value; },
+      querySelector: selector => selector === ".theme-toggle-icon" ? icon : null };
   };
   const buttons = [button(), button()];
   const document = {
@@ -48,13 +47,13 @@ test("exported theme control suppresses transitions through rapid switches", asy
   });
   const clickToggle = () => onClick({ target: { closest: () => buttons[0] } });
 
-  assert.ok(buttons.every(item => item.attributes["aria-label"] === "Dark mode" && item.attributes["aria-pressed"] === "true" && item.label.textContent === "Dark mode"));
+  assert.ok(buttons.every(item => item.attributes["aria-label"] === "Dark mode" && item.attributes["aria-pressed"] === "true" && item.icon.textContent === "☾"));
 
   clickToggle();
   assert.equal(root.dataset.theme, "light");
   assert.equal(values.get("nil-theme"), "light");
   assert.ok(classes.has("theme-switching"));
-  assert.ok(buttons.every(item => item.attributes["aria-label"] === "Dark mode" && item.attributes["aria-pressed"] === "false" && item.label.textContent === "Dark mode"));
+  assert.ok(buttons.every(item => item.attributes["aria-label"] === "Dark mode" && item.attributes["aria-pressed"] === "false" && item.icon.textContent === "☀"));
   flushFrame();
   assert.ok(classes.has("theme-switching"), "suppression remains through the first frame");
 

@@ -70,7 +70,6 @@
   .persian-banner-links > a { font-size: 13px; }
   .keyboard-header { flex-wrap: wrap; padding-block: 12px; }
   .keyboard-header nav { gap: 16px; font-size: 12px; flex-wrap: wrap; }
-  .keyboard-header .theme-toggle { min-width: 60px; }
   .keyboard-hero { padding-block: 46px 32px; }
   .keyboard-lede { font-size: 18px; }
   .keyboard-hero-actions { flex-direction: column; align-items: stretch; }

@@ -191,10 +191,10 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  min-width: 74px;
-  min-height: 40px;
-  padding: 0 12px;
+  width: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: transparent;
@@ -1423,24 +1423,6 @@ a {
 
   .nav {
     gap: 8px;
-  }
-
-  .theme-toggle {
-    width: 44px;
-    min-width: 44px;
-    min-height: 44px;
-    padding: 0;
-  }
-
-  .theme-toggle-label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
   }
 
   .nav .nav-cta {

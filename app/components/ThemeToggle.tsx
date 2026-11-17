@@ -76,13 +76,9 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       aria-label="Dark mode"
       aria-pressed={theme === "dark"}
-      title="Dark mode"
     >
       <span className="theme-toggle-icon" aria-hidden="true">
         {theme === "dark" ? "☾" : "☀"}
-      </span>
-      <span className="theme-toggle-label">
-        Dark mode
       </span>
     </button>
   );

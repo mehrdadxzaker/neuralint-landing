@@ -1,0 +1,47 @@
+.persian-guide [hidden] { display: none; }
+.persian-guide .persian-guide-main { max-width: 820px; padding-block: 28px 72px; }
+.persian-guide-breadcrumb { display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.persian-guide-heading { padding-block: 34px 36px; }
+.persian-guide-heading h1 { margin: 0 0 24px; color: var(--ink); font-family: var(--serif); font-size: clamp(38px, 5.6vw, 62px); font-weight: 700; line-height: 1.16; letter-spacing: -.04em; text-wrap: balance; }
+.persian-guide[lang="fa"] .persian-guide-heading h1 { font-family: "Persian Ink Vazirmatn", Tahoma, sans-serif; font-size: clamp(32px, 4.5vw, 48px); line-height: 1.7; letter-spacing: normal; }
+.persian-guide-heading > p { margin: 0; font-size: 20px; line-height: 1.8; color: var(--copy); }
+.persian-guide-section { padding-block: 34px; border-top: 1px solid var(--line); scroll-margin-top: 24px; }
+.persian-guide :is(.persian-guide-section, .persian-guide-tool) h2 { margin: 0 0 18px; color: var(--ink); font-size: 26px; font-weight: 550; line-height: 1.65; letter-spacing: normal; }
+.persian-guide-section h3 { margin: 0 0 8px; color: var(--ink); font-size: 18px; font-weight: 550; line-height: 1.7; }
+.persian-guide :is(.persian-guide-section, .persian-guide-tool) p { margin: 0 0 18px; color: var(--copy); font-size: 17px; line-height: 1.9; }
+.persian-guide :is(.persian-guide-section, .persian-guide-tool) p:last-child { margin-bottom: 0; }
+.persian-guide-section ol { padding-inline-start: 24px; color: var(--copy); font-size: 17px; line-height: 1.9; }
+.persian-guide-section li { padding-inline-start: 6px; margin-block: 0 16px; }
+.persian-guide-section .persian-guide-steps { margin-block: 0 24px; }
+.persian-guide-steps li { margin-bottom: 24px; }
+.persian-guide-steps li::marker { color: var(--ink); }
+.persian-guide :is(.persian-guide-section, .persian-guide-breadcrumb, .persian-guide-related) a:not(.button) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.persian-guide-tool { padding: 26px; margin-block: 0 32px; background: var(--paper-2); }
+.persian-guide-copy-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 20px; }
+.persian-guide-copy-controls label { flex-basis: 100%; color: var(--ink); font-size: 14px; line-height: 1.8; }
+.persian-guide-copy-input { width: 120px; min-width: 0; min-height: 50px; border: 1px solid var(--muted); border-radius: 0; background: var(--paper); color: var(--ink); font: inherit; text-align: center; }
+.persian-guide-copy-controls .button { min-height: 50px; font-family: inherit; white-space: normal; line-height: 1.8; text-align: center; }
+.persian-guide-copy-status { display: block; color: var(--ink); margin-block: 12px; font-size: 14px; line-height: 1.8; }
+.persian-guide .persian-guide-small { font-size: 14px; }
+.persian-guide-examples { margin-block: 24px; }
+.persian-guide-examples table { width: 100%; border-collapse: collapse; text-align: start; font-size: 16px; line-height: 1.8; }
+.persian-guide-examples caption { text-align: start; margin-bottom: 12px; color: var(--muted); font-size: 14px; }
+.persian-guide-examples :is(th, td) { padding: 14px 8px; border-bottom: 1px solid var(--line); text-align: start; font-weight: 400; }
+.persian-guide-examples th { color: var(--copy); }
+.persian-guide-examples td { color: var(--ink); font-size: 21px; white-space: nowrap; }
+.persian-guide-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 24px; margin-top: 24px; }
+.persian-guide-actions .button { min-height: 52px; white-space: normal; font-family: inherit; text-align: center; line-height: 1.8; }
+.persian-guide-related { display: grid; gap: 16px; border-top: 1px solid var(--line); padding-top: 30px; font-size: 16px; line-height: 1.8; }
+.persian-guide a:focus-visible, .persian-guide button:focus-visible, .persian-guide input:focus-visible { outline: 2px solid var(--blue); outline-offset: 5px; }
+@media (max-width: 700px) {
+  .persian-guide .persian-guide-main { padding-block: 22px 52px; }
+  .persian-guide-heading { padding-block: 28px 32px; }
+  .persian-guide-heading > p { font-size: 18px; }
+  .persian-guide-section { padding-block: 28px; }
+  .persian-guide :is(.persian-guide-section, .persian-guide-tool) h2 { font-size: 23px; }
+  .persian-guide-tool { padding: 22px 18px; }
+  .persian-guide-examples :is(th, td) { padding-inline: 4px; }
+  .persian-guide-examples th { font-size: 13px; }
+  .persian-guide-examples td { font-size: 18px; }
+  .persian-guide-actions { align-items: stretch; flex-direction: column; }
+}

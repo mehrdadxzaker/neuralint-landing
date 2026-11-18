@@ -18,17 +18,17 @@ export const keyboardLanguages = {
 export const keyboardCopy = {
   en: {
     title: "Persian Keyboards for iPhone & iPad | Swipe & Handwriting",
-    description: "Write Farsi your way: Persian Swipe for offline swipe typing on iPhone and iPad, or Persian Ink for Apple Pencil handwriting on iPad. Compare and download.",
+    description: "Compare Persian Swipe for typing on iPhone and iPad with Persian Ink for Apple Pencil handwriting on iPad. Check compatibility and setup before downloading.",
     eyebrow: "Persian keyboards for iPhone & iPad",
-    headline: "Persian, your way.",
-    intro: "A message to family. A line of poetry. A note you want to keep. Choose swipe typing on iPhone and iPad, or write Persian by hand with Apple Pencil on iPad.",
+    headline: "Two ways to write Persian.",
+    intro: "Swipe to type on iPhone and iPad, or write with Apple Pencil on iPad.",
     heroSwipe: "Get Persian Swipe · iPhone & iPad",
     heroInk: "Get Persian Ink · iPad & Pencil",
     quickFacts: "Two separate apps. US$1.99 each, paid once. No subscription. Local App Store prices and availability may vary.",
-    swipeTitle: "Move a finger. Write a word.",
+    swipeTitle: "Swipe or tap to type Persian.",
     swipeBody: "An offline Persian (Farsi) keyboard for iPhone and iPad. Trace through letters and lift to insert a word, or type with taps. Choose another suggestion whenever you need it.",
     swipeFacts: ["Swipe and tap typing", "Half-space (نیم‌فاصله) key", "Suggestions and local learning", "No Full Access required"],
-    inkTitle: "Write with your own hand.",
+    inkTitle: "Write Persian with Apple Pencil.",
     inkBody: "A Persian handwriting keyboard for iPad. Write with Apple Pencil in the keyboard panel, review recognition candidates, and insert text into Notes and other supported apps.",
     inkFacts: ["Apple Pencil handwriting", "Review before inserting", "Offline after model setup", "Persian and English character keys"],
     buySwipe: "Get Persian Swipe",
@@ -44,7 +44,7 @@ export const keyboardCopy = {
       ["Full Access", "Not required", "Temporarily needed for model setup; turn it off afterward"],
       ["Purchase", "US$1.99 once", "US$1.99 once, purchased separately"],
     ],
-    setupTitle: "From download to your first Persian words.",
+    setupTitle: "Add your Persian keyboard.",
     setupSteps: [
       ["Install your chosen app", "Open its App Store listing, check device compatibility and the local price, then install and open the app."],
       ["Add the keyboard", "Open Settings → General → Keyboard → Keyboards → Add New Keyboard and choose Persian Swipe or Persian Ink."],
@@ -63,18 +63,18 @@ export const keyboardCopy = {
   },
   fa: {
     title: "صفحه‌کلید فارسی آیفون و آیپد | Persian Swipe و Persian Ink",
-    description: "صفحه‌کلید فارسی برای آیفون و آیپد: نوشتن با کشیدن انگشت و نیم‌فاصله در Persian Swipe، یا برگرداندن دست‌نوشتهٔ فارسی به نوشتار با اپل پنسل در Persian Ink. سنجش و دریافت از اپ استور.",
-    eyebrow: "برای فارسیِ شما",
-    headline: "فارسی، درست و حسابی",
-    intro: "پیامی به خانواده، پاره‌ای از یک سروده یا یادداشتی برای خودتان. روی آیفون و آیپد با کشیدن انگشت بنویسید، یا روی آیپد با اپل پنسل به شیوهٔ خودتان بنویسید.",
+    description: "با Persian Swipe روی آیفون و آیپد تایپ کنید، یا با Persian Ink و اپل پنسل روی آیپد فارسی بنویسید. راه‌اندازی، سازگاری و خرید از اپ استور.",
+    eyebrow: "کیبورد فارسی برای آیفون و آیپد",
+    headline: "تایپ با انگشت، نوشتن با قلم.",
+    intro: "با Persian Swipe روی آیفون و آیپد تایپ کنید، یا با Persian Ink و اپل پنسل روی آیپد فارسی بنویسید.",
     heroSwipe: "دریافت Swipe · آیفون و آیپد",
     heroInk: "دریافت Ink · آیپد و اپل پنسل",
     quickFacts: "دو برنامهٔ جداگانه. بهای هر برنامه در اپ استور آمریکا ۱٫۹۹ دلار است، با یک‌بار پرداخت و بدون پرداخت دوره‌ای. بها و دسترسی در کشورهای دیگر می‌تواند متفاوت باشد.",
     swipeTitle: "انگشت را بکشید؛ واژه را بنویسید.",
-    swipeBody: "صفحه‌کلید فارسی برای آیفون و آیپد، بی‌نیاز از اینترنت. انگشت را روی نویسه‌های یک واژه بکشید و بردارید تا واژه نوشته شود؛ یا روی کلیدها بزنید. هر زمان خواستید، پیشنهاد دیگری را برگزینید.",
+    swipeBody: "کیبورد فارسی آفلاین برای آیفون و آیپد. انگشت را روی حروف یک کلمه بکشید و بردارید تا کلمه وارد شود، یا با زدن روی کلیدها تایپ کنید. اگر لازم بود، پیشنهاد دیگری را انتخاب کنید.",
     swipeFacts: ["نوشتن با کشیدن انگشت یا زدن روی کلیدها", "کلید نیم‌فاصله", "پیشنهاد واژه و یادگیری روی دستگاه", "بی‌نیاز از دسترسی کامل"],
     inkTitle: "با دست خودتان بنویسید.",
-    inkBody: "صفحه‌کلید دست‌نویس فارسی برای آیپد. با اپل پنسل در بخش صفحه‌کلید بنویسید، گزینه‌های بازشناسی را ببینید و نوشتار را به Notes و برنامه‌های سازگار بیفزایید.",
+    inkBody: "کیبورد دست‌نویس فارسی برای آیپد. با اپل پنسل در کادر کیبورد بنویسید، متن پیشنهادی را بررسی کنید و آن را در Notes یا برنامهٔ سازگار وارد کنید.",
     inkFacts: ["نوشتن با اپل پنسل", "بازبینی نوشتار پیش از افزودن", "کارکرد بی‌اینترنت پس از دریافت مدل", "کلیدهای فارسی و انگلیسی"],
     buySwipe: "دریافت Persian Swipe از اپ استور",
     buyInk: "دریافت Persian Ink از اپ استور",
@@ -130,6 +130,7 @@ export default function PersianKeyboardsPage({ language }: { language: "en" | "f
       <nav aria-label={fa ? "راهبری" : "Navigation"}>
         <a href="#compare">{fa ? "سنجش" : "Compare"}</a>
         <a href="#setup">{fa ? "راه‌اندازی" : "Setup"}</a>
+        <a href="#guides">{fa ? "راهنماها" : "Guides"}</a>
         <a href={fa ? "/persian-keyboards/" : "/fa/"} lang={fa ? "en" : "fa"} dir={fa ? "ltr" : "rtl"}>{fa ? "English" : "فارسی"}</a>
         <ThemeToggle />
       </nav>
@@ -158,6 +159,14 @@ export default function PersianKeyboardsPage({ language }: { language: "en" | "f
         <div className="keyboard-comparison"><table><thead><tr>{copy.compareHeaders.map((heading, index) => <th key={index} scope="col">{heading}</th>)}</tr></thead><tbody>{copy.rows.map(([label, a, b]) => <tr key={label}><th scope="row">{label}</th><td>{a}</td><td>{b}</td></tr>)}</tbody></table></div>
       </section>
       <section className="keyboard-section" id="setup"><h2>{copy.setupTitle}</h2><ol className="keyboard-steps">{copy.setupSteps.map(([title, body], i) => <li key={title}><span aria-hidden="true">0{i + 1}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}</ol></section>
+      <section className="keyboard-section" id="guides">
+        <h2>{fa ? "راهنمای تایپ و نوشتن فارسی" : "Persian typing and handwriting guides"}</h2>
+        <p>{fa ? "نیم‌فاصله را کپی کنید، یا مراحل راه‌اندازی دست‌نویس فارسی روی آیپد را بخوانید." : "Copy a Persian half-space, or follow the Apple Pencil setup steps."}</p>
+        <ul>
+          <li><a href={(fa ? "/fa" : "") + "/guides/persian-half-space/"}>{fa ? "نیم‌فاصله در آیفون و آیپد؛ راهنما و ابزار کپی" : "Persian half-space on iPhone and iPad, with a copy tool"}</a></li>
+          <li><a href={(fa ? "/fa" : "") + "/guides/persian-handwriting-ipad/"}>{fa ? "نوشتن فارسی با اپل پنسل روی آیپد" : "Write Persian with Apple Pencil on iPad"}</a></li>
+        </ul>
+      </section>
       <section className="keyboard-section keyboard-questions"><h2>{copy.faqTitle}</h2>{copy.questions.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</section>
       <section className="keyboard-support"><h2>{fa ? "برای آغاز آماده‌اید؟" : "Ready to write?"}</h2><div>{[swipe, ink].map(app => <p key={app.slug}><strong lang="en" dir="ltr">{app.name}</strong><a href={"/apps/" + app.slug + "/support/"} aria-label={`${copy.support} — ${app.name}`}>{copy.support}</a><a href={"/apps/" + app.slug + "/privacy/"} aria-label={`${copy.privacy} — ${app.name}`}>{copy.privacy}</a></p>)}</div></section>
     </main>

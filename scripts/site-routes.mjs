@@ -28,7 +28,7 @@ export async function exportRoutes(appDirectory = "app") {
   return pages.filter(source => !redirectRoutes.includes(source)).sort().map(source => ({
     source,
     output: source === "/" ? "index.html" : source.slice(1) + "/index.html",
-    ...(source === "/fa" ? { language: "fa" } : {}),
+    ...(source === "/fa" || source.startsWith("/fa/") ? { language: "fa" } : {}),
   }));
 }
 

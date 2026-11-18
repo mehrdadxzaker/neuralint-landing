@@ -29,7 +29,7 @@ export const apps: AppInfo[] = [
   {
     slug: "persian-ink", name: "Persian Ink", listingName: "Persian Ink",
     accentLabel: "Your handwriting. Persian text.",
-    description: "An offline Persian handwriting keyboard for iPad. Write Farsi with Apple Pencil, review recognition candidates, and insert text into Notes or another supported app.",
+    description: "A Persian handwriting keyboard for iPad. Write with Apple Pencil, review the recognized text, and insert it into a supported app. Works offline after model setup.",
     category: "UtilitiesApplication", operatingSystem: "iPadOS 16.0 or later",
     image: "/apps/persian-ink/app-icon-calligraphy.jpg", storeUrl: persianInkRelease.appStoreUrl,
     available: persianInkRelease.publicDownloadAvailable, price: 1.99,
@@ -41,8 +41,8 @@ export const apps: AppInfo[] = [
   },
   {
     slug: "persian-swipe", name: "Persian Swipe", listingName: "Persian Swipe",
-    accentLabel: "Persian, in one motion",
-    description: "An offline Persian and Farsi swipe keyboard for iPhone and iPad, with tap typing, نیم‌فاصله, word suggestions, and learning from your corrections. No Full Access required.",
+    accentLabel: "Swipe to type Persian",
+    description: "An offline Persian (Farsi) keyboard for iPhone and iPad, with swipe and tap typing, نیم‌فاصله, word suggestions, and learning from your corrections. No Full Access required.",
     category: "UtilitiesApplication", operatingSystem: "iOS 16.0 or later",
     image: "/apps/persian-swipe/app-icon-calligraphy.jpg",
     storeUrl: "https://apps.apple.com/us/app/persian-swipe/id6811263515",

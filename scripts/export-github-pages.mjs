@@ -2,6 +2,7 @@ import { cp, mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { addMissingCanonical, canonicalUrl, excludedFromIndex, exportRoutes, metaTags } from "./site-routes.mjs";
 import { stylesheetHref } from "./site-assets.mjs";
+import { staticGuideRuntime } from "./guide-runtime.mjs";
 
 const baseUrl = process.env.SITE_EXPORT_URL ?? "http://localhost:3001";
 const outputDir = path.resolve("static-site");
@@ -94,7 +95,7 @@ function makeStatic(html, route) {
       '<link rel="stylesheet" href="' + cssHref + '"/>',
     )
     .replace(/\sdata-rsc-[\w-]+="[^"]*"/gi, "")
-    .replace("</body>", `${staticThemeRuntime}</body>`);
+    .replace("</body>", `${staticThemeRuntime}${route.source.endsWith("/guides/persian-half-space") ? staticGuideRuntime : ""}</body>`);
   // Give every static page its own social title, summary and canonical URL.
   // Policy pages must not inherit the research homepage's share metadata.
   const title = completeDocument.match(/<title>([^<]+)<\/title>/)?.[1];
@@ -102,13 +103,14 @@ function makeStatic(html, route) {
   if (!title || !description) throw new Error("Missing page metadata: " + route.source);
   const canonical = "https://neuralint.io" + (route.source === "/" ? "/" : route.source + "/");
   const app = catalog.apps.find(app => route.source === "/apps/" + app.slug || route.source.startsWith("/apps/" + app.slug + "/"));
-  const isKeyboardGuide = route.source === "/fa" || route.source === "/persian-keyboards";
-  const image = app?.image ?? (isKeyboardGuide ? "https://neuralint.io/apps/persian-swipe/app-icon-calligraphy.jpg" : "https://neuralint.io/og.webp");
+  const isKeyboardGuide = route.source === "/fa" || route.source === "/persian-keyboards" || /\/(?:fa\/)?guides\/persian-/.test(route.source);
+  const guideApp = route.source.endsWith("/persian-handwriting-ipad") ? catalog.apps.find(app => app.slug === "persian-ink") : null;
+  const image = app?.image ?? guideApp?.image ?? (isKeyboardGuide ? "https://neuralint.io/apps/persian-swipe/app-icon-calligraphy.jpg" : "https://neuralint.io/og.webp");
   const escape = value => value.replace(/"/g, "&quot;");
   const social = {
     "og:title": title, "og:description": description, "og:url": canonical,
     "og:type": "website", "og:site_name": "Neural Intelligence Labs", "og:image": image,
-    "og:image:alt": app ? app.name + " app icon" : isKeyboardGuide ? "Persian Swipe" : "Neural Intelligence Labs",
+    "og:image:alt": app || guideApp ? (app ?? guideApp).name + " app icon" : isKeyboardGuide ? "Persian Swipe" : "Neural Intelligence Labs",
     "og:locale": route.language === "fa" ? "fa_IR" : "en_US",
     "twitter:card": app || isKeyboardGuide ? "summary" : "summary_large_image",
     "twitter:title": title, "twitter:description": description, "twitter:image": image,
@@ -207,6 +209,8 @@ await writeFile(path.join(outputDir, "llms.txt"),
   "## Product information\n\n" +
   "- [Persian keyboards for iPhone and iPad](https://neuralint.io/persian-keyboards/): Compare offline swipe typing with Apple Pencil handwriting, compatibility and setup.\n" +
   "- [راهنمای صفحه‌کلید فارسی](https://neuralint.io/fa/): Persian-language comparison, App Store links and keyboard setup for Persian Swipe and Persian Ink.\n" +
+  "- [Persian half-space on iPhone and iPad](https://neuralint.io/guides/persian-half-space/): Copy a half-space and see where it belongs in a Persian word. [فارسی](https://neuralint.io/fa/guides/persian-half-space/).\n" +
+  "- [Persian handwriting with Apple Pencil](https://neuralint.io/guides/persian-handwriting-ipad/): iPad requirements, keyboard setup, and how to review and insert text. [فارسی](https://neuralint.io/fa/guides/persian-handwriting-ipad/).\n" +
   "- [App directory](https://neuralint.io/apps/): Compare the apps and open each product page.\n" +
   "- [App catalog JSON](https://neuralint.io/apps/catalog.json): Structured descriptions, requirements, prices, and release status from the same product facts as the website.\n" +
   "- [App terms](https://neuralint.io/apps/terms/): Terms for the NeuralInt app family.\n\n" +

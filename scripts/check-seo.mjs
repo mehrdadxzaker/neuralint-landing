@@ -122,6 +122,29 @@ for (const url of new Set(Object.values(languagePages))) {
   assert.match(html, /id="setup"/);
 }
 assert.match(htmlByUrl.get(languagePages.fa), /<html\b[^>]*lang="fa"[^>]*dir="rtl"/);
+for (const slug of ["persian-half-space", "persian-handwriting-ipad"]) {
+  const alternatives = {
+    en: origin + "/guides/" + slug + "/",
+    fa: origin + "/fa/guides/" + slug + "/",
+    "x-default": origin + "/guides/" + slug + "/",
+  };
+  for (const [language, url] of Object.entries(alternatives).filter(([language]) => language !== "x-default")) {
+    const html = htmlByUrl.get(url);
+    assert.ok(html, "Writing guide exported and indexed in sitemap: " + url);
+    const languageLinks = [...html.matchAll(/<link\b[^>]*>/g)].map(match => attrs(match[0])).filter(tag => tag.rel === "alternate" && (tag.hreflang || tag.hrefLang));
+    assert.deepEqual(Object.fromEntries(languageLinks.map(tag => [tag.hreflang ?? tag.hrefLang, tag.href])), alternatives, "Guide language alternatives: " + url);
+    assert.match(html, new RegExp('<html\\b[^>]*lang="' + language + '"'), "Document language: " + url);
+    if (language === "fa") assert.match(html, /<html\b[^>]*dir="rtl"/, "RTL document: " + url);
+    const storeLinks = [...html.matchAll(/href="(https:\/\/apps\.apple\.com\/[^"]+)"/g)].map(match => new URL(decode(match[1])));
+    assert.ok(storeLinks.length, "Guide has a download destination: " + url);
+    assert.ok(storeLinks.every(link => !link.searchParams.has("ppid")), "Guide preserves the default product-page test destination: " + url);
+    if (slug === "persian-half-space") {
+      assert.match(html, /data-half-space-value[^>]*value="\u200c"|value="\u200c"[^>]*data-half-space-value/, "Copy field has exactly a ZWNJ: " + url);
+      assert.match(html, /data-guide-runtime/, "Copy works in static export: " + url);
+      assert.match(html, /data-copy-status[^>]*aria-live="polite"|aria-live="polite"[^>]*data-copy-status/, "Accessible copy feedback: " + url);
+    }
+  }
+}
 assert.ok(homepage.indexOf('class="persian-apps-banner"') < homepage.indexOf('class="hero"'), "Persian apps visible before research hero");
 assert.ok(homepage.includes('href="/fa/"'), "Persian guide reachable from homepage");
 const directory = schemasByUrl.get(origin + "/apps/").find(data => data["@type"] === "CollectionPage");

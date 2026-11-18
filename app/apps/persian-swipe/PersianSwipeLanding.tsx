@@ -5,7 +5,7 @@ function DownloadButton() {
   return <a className="button primary swipe-download" href={storeUrl} aria-label="Download Persian Swipe on the App Store">Download on the App Store <span aria-hidden="true">↗</span></a>;
 }
 export default function Page() {
-  return <AppLegalPage app={persianSwipeApp} eyebrow="Persian Swipe · iPhone & iPad" title="Persian, in one motion." lede="Swipe through the letters. Lift to write. An offline Farsi keyboard for everyday messages and your favorite verse." updated="November 8, 2026"
+  return <AppLegalPage app={persianSwipeApp} eyebrow="Persian Swipe · iPhone & iPad" title="Swipe to type Persian." lede="Trace the letters of a word and lift your finger to insert it. Works offline on iPhone and iPad." updated="November 18, 2026"
     hero={<div className="swipe-hero">
       <div className="swipe-pitch">
         <p className="swipe-persian" lang="fa" dir="rtl">فارسی را با کشیدن انگشت بنویسید.</p>
@@ -27,7 +27,7 @@ export default function Page() {
     <LegalSection id="learning" title="Learns from your corrections"><p>Delete or edit a wrong swipe, type the intended word, and finish with Space or Return. Similar future swipes can then prefer the corrected word. Personalization runs locally and can be disabled or cleared.</p></LegalSection>
     <LegalSection id="privacy" title="Your typing stays yours"><p>No account, ads, analytics SDK, servers, or Full Access. Recognition and learning run on your device. Available wherever iOS supports custom keyboards.</p></LegalSection>
     <LegalSection id="availability" title="Make Persian Swipe your keyboard"><p>A one-time paid App Store download for iPhone and iPad, with no subscriptions or in-app purchases. Apple displays the current price and availability for your storefront.</p><DownloadButton /></LegalSection>
-    <LegalSection id="persian-guide" title="A keyboard for the way you write"><p lang="fa" dir="rtl">برای آشنایی با صفحه‌کلید فارسی، نیم‌فاصله و روش راه‌اندازی، <a href="/fa/">راهنمای فارسی را بخوانید</a>.</p><p>Prefer handwriting with Apple Pencil on iPad? <a href="/apps/persian-ink/">Explore Persian Ink</a> or <a href="/persian-keyboards/">compare both Persian keyboards</a>.</p></LegalSection>
+    <LegalSection id="persian-guide" title="Persian typing guides"><p><a href="/guides/persian-half-space/">How to type a Persian half-space on iPhone and iPad</a>, with a free copy tool and examples.</p><p lang="fa" dir="rtl"><a href="/fa/guides/persian-half-space/">راهنمای نیم‌فاصله و ابزار کپی</a> یا <a href="/fa/">راهنمای فارسی نصب و انتخاب کیبورد</a> را بخوانید.</p><p>Prefer handwriting with Apple Pencil on iPad? <a href="/apps/persian-ink/">Explore Persian Ink</a> or <a href="/persian-keyboards/">compare both Persian keyboards</a>.</p></LegalSection>
     <AppPageLinks app={persianSwipeApp} />
   </AppLegalPage>;
 }

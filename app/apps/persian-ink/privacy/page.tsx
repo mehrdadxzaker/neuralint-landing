@@ -3,13 +3,13 @@ import { AppLegalPage, AppPageLinks, LegalSection, persianInkApp } from "../../.
 
 export const metadata: Metadata = {
   title: "Persian Ink Privacy Policy",
-  description: "How Persian Ink handles on-device handwriting, temporary ink, model downloads and Google ML Kit operational metrics.",
+  description: "How Persian Ink handles handwriting setup, saved preferences, model downloads and Google ML Kit operational metrics.",
   alternates: { canonical: "/apps/persian-ink/privacy/" },
 };
 
 const sections = [
   { id: "handwriting", label: "Handwriting and text" },
-  { id: "storage", label: "Temporary ink and models" },
+  { id: "storage", label: "Ink, setup and preferences" },
   { id: "google", label: "Google ML Kit" },
   { id: "access", label: "Keyboard access" },
   { id: "purchases", label: "Purchases and support" },
@@ -18,16 +18,20 @@ const sections = [
 
 export default function PersianInkPrivacyPage() {
   return (
-    <AppLegalPage app={persianInkApp} eyebrow="Persian Ink · Privacy" title="Your handwriting stays on your iPad."
+    <AppLegalPage app={persianInkApp} eyebrow="Persian Ink · Privacy" title="Your handwriting and privacy."
       lede="Recognition runs locally. This policy also explains the operational data collected by the Google SDK that supplies the recognizer."
-      updated="November 9, 2026" sections={sections}>
+      updated="November 18, 2026" sections={sections}>
       <LegalSection id="handwriting" title="Handwriting and text">
-        <p>Persian Ink does not send your handwriting, recognition results or inserted text to a server. We do not keep a typing history, sell typing data or use your writing to train a model. No account is required for local use.</p>
+        <p>Persian Ink does not send your handwriting, recognition results or inserted text to NeuralInt. We do not keep a typing history or sell typing data. No account is required for local use.</p>
         <p>After text is inserted into Notes or another app, that app controls its storage, backup and sharing. Persian Ink does not acquire access to that app’s note library or handwritten pages.</p>
       </LegalSection>
-      <LegalSection id="storage" title="Temporary ink and model files">
+      <LegalSection id="storage" title="Ink, setup and preferences">
         <p>Ink in the keyboard is temporary. It clears after insertion or deliberate discard and may be lost when the keyboard closes. Practice text stays on its practice screen; copy anything you want to retain before leaving.</p>
-        <p>The recognizer stores downloaded model files on your iPad. Model downloads and related SDK session files may use a container shared only between Persian Ink and its own keyboard. Handwriting and typed text are not stored in that shared area.</p>
+        <p>If you use handwriting setup, Persian Ink saves the Pencil samples you submit, check scores and calibration on your iPad. Device backups may include them. You can delete these in Handwriting setup. Calibration can adjust punctuation or spacing preferences using the samples you save; it does not retrain the underlying handwriting model.</p>
+        <p>Personal spellings you add are saved in a container shared by the app and its keyboard. The keyboard uses them when recognized letters match. Manage or delete them in Personal spellings.</p>
+        <p>If you explicitly choose Remember spacing and insert, the keyboard saves salted fingerprints of the two alternatives in its own storage on this iPad. It uses them to prioritize your choice when the same alternatives appear during manual recognition. This feature saves no strokes or readable text; fingerprints are not encryption and predictable phrases may be guessed. Its preference file is excluded from device backups. To remove it, choose Keyboard options → Forget remembered spacing.</p>
+        <p>The recognizer stores downloaded model files on your iPad. Model downloads and related SDK session files may use a container shared only between Persian Ink and its own keyboard. This shared container also stores personal spellings you choose to add; it does not store your handwriting samples.</p>
+        <p>When configured, the app can check for signed recognition updates. These checks do not include your handwriting, recognized text or keystrokes. After an update, the app may recalculate calibration on your iPad using your saved setup samples.</p>
       </LegalSection>
       <LegalSection id="google" title="Google ML Kit operational data">
         <p>Google ML Kit supplies the recognizer. Google states that input data and recognition output are processed on device and are not sent to Google. When network access is available, the SDK may contact Google for models, updates and operational metrics.</p>

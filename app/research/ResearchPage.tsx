@@ -116,10 +116,10 @@ export default function ResearchPage() {
           <div className="section-head">
             <span className="section-index">01 / Maker&apos;s portfolio</span>
             <div>
-              <h2 className="section-title">Apps and tools for everyday life.</h2>
+              <h2 className="section-title">Apps, tools, and books.</h2>
               <p className="lead">
-                Explore NeuralInt apps for Persian writing, focused work, family routines,
-                and fashion discovery, alongside open-source tools.
+                Explore our apps for Persian writing, focused work, family routines,
+                and fashion discovery, alongside our open-source tools and upcoming book.
               </p>
             </div>
           </div>
@@ -142,6 +142,32 @@ export default function ResearchPage() {
               </article>
             ))}
           </div>
+          <article className="current-project-card portfolio-book">
+            <Image
+              className="portfolio-book-cover"
+              src="/projects/architecting-multi-agent-systems.webp"
+              alt=""
+              width={244}
+              height={300}
+              unoptimized
+              loading="lazy"
+            />
+            <div className="current-project-body">
+              <h3>Architecting Multi-Agent Systems</h3>
+              <p>Design Patterns, Evaluation, and Production Practices for Enterprise Agentic Workflows</p>
+              <p>By Samira Ghodratnama and Mehrdad Zakershahrak</p>
+              <ul className="portfolio-book-editions">
+                <li>
+                  <a href="https://www.packtpub.com/en-us/product/architecting-multi-agent-systems-9781808089329">Packt ebook</a>
+                  {" · "}<time dateTime="2027-02-18">February 18, 2027</time>
+                </li>
+                <li>
+                  <a href="https://www.amazon.com/dp/1808089332/">Amazon paperback</a>
+                  {" · "}<time dateTime="2027-03-09">March 9, 2027</time>
+                </li>
+              </ul>
+            </div>
+          </article>
         </section>
 
 

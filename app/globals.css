@@ -2378,6 +2378,7 @@ a {
 }
 .current-project-action svg { display: block; width: 22px; height: 22px; }
 .current-project-action:focus-visible,
+.portfolio-book-editions a:focus-visible,
 .current-project-body h3 a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 @media (hover: hover) {
   .current-project-body h3 a:hover { color: var(--blue); }
@@ -2454,7 +2455,35 @@ a {
 }
 @media (min-width: 621px) and (max-width: 1100px) {
   .current-project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .current-project-card:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 140px) minmax(0, 1fr); align-items: start; }
+  .current-project-grid > .current-project-card:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 140px) minmax(0, 1fr); align-items: start; }
+}
+
+.portfolio-book {
+  flex-direction: row;
+  align-items: flex-start;
+  border-left: 1px solid var(--line);
+}
+.portfolio-book-cover {
+  width: clamp(64px, 10vw, 100px);
+  height: auto;
+  flex: none;
+  border-radius: 4px;
+}
+.portfolio-book .current-project-body p + p { margin-top: 4px; }
+.portfolio-book-editions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  margin: 12px 0 0;
+  padding: 0;
+  color: var(--copy);
+  font-size: 14px;
+  line-height: 1.6;
+  list-style: none;
+}
+.portfolio-book-editions a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 480px) {
+  .portfolio-book { flex-direction: column; }
 }
 
 /* Persian uses a purpose-designed face rather than a system Arabic fallback. */

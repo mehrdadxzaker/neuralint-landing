@@ -232,10 +232,35 @@ test("catalog apps have discoverable product destinations and truthful release d
   }
   const lady = await (await render("/apps/lady")).text();
   assert.match(lady, /do not start unattended/);
-  const trailhead = await (await render("/apps/trailhead")).text();
-  assert.match(trailhead, /Further hikes require Trailhead Plus/);
   const linkedfull = await (await render("/apps/linkedfull")).text();
   assert.match(linkedfull, /does not establish a garment/);
+});
+
+test("Trailhead pages describe repeat free sessions, one-time Plus, and legacy billing", async () => {
+  const responses = await Promise.all(
+    ["", "/review", "/support", "/privacy"].map(suffix => render("/apps/trailhead" + suffix)),
+  );
+  for (const response of responses) assert.equal(response.status, 200);
+  const [landing, review, support, privacy] = await Promise.all(responses.map(response => response.text()));
+
+  assert.match(landing, /Repeat focus sessions on one starter trail for free/);
+  assert.match(landing, /with no session limit/);
+  assert.match(review, /start a second session on the same starter trail/);
+  assert.match(review, /no purchase is required/);
+  assert.match(review, /Select a Plus-locked trail or soundscape/);
+  for (const page of [landing, review, support]) {
+    assert.match(page, /US\$14\.99/);
+    assert.match(page, /does not renew/);
+  }
+  for (const page of [review, support]) {
+    assert.match(page, /Restore Purchases/);
+    assert.match(page, /Manage existing subscription/);
+  }
+  assert.match(privacy, /processed by Apple through StoreKit/);
+  assert.match(privacy, /one-time/);
+  for (const page of [landing, review, support, privacy]) {
+    assert.doesNotMatch(page, /Further hikes require|14-day|4\.99 per month|34\.99/);
+  }
 });
 
 test("the former Persian Swipe marketing URL redirects to its product page", async () => {

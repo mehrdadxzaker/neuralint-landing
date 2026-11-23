@@ -31,7 +31,7 @@ export default function TrailheadPrivacyPage() {
       eyebrow="Trailhead · Privacy"
       title="Your focus stays yours."
       lede="Trailhead is built as a local-first focus tool. NeuralInt does not operate a Trailhead account system, advertising network, or developer analytics service in the current version."
-      updated="August 6, 2026"
+      updated="November 23, 2026"
       sections={sections}
     >
       <LegalSection id="summary" title="Summary">
@@ -66,7 +66,7 @@ export default function TrailheadPrivacyPage() {
           <li>Task text, duration, pause state, and focus progress</li>
           <li>Selected trail, park, soundscape, achievements, and streaks</li>
           <li>Cached public trail catalogs</li>
-          <li>Subscription entitlement state supplied by Apple</li>
+          <li>Purchase and entitlement state supplied by Apple</li>
         </ul>
         <p>
           An active session is shared only with Trailhead&apos;s own extensions through
@@ -95,15 +95,16 @@ export default function TrailheadPrivacyPage() {
 
       <LegalSection id="purchases" title="Subscriptions and purchases">
         <p>
-          Trailhead subscriptions are processed by Apple through StoreKit. NeuralInt
+          Trailhead purchases are processed by Apple through StoreKit. NeuralInt
           does not receive your payment-card number. Apple may provide the app with
           product, transaction, renewal, expiration, and refund status so Trailhead
           can unlock paid features and restore a purchase.
         </p>
         <p>
-          The planned launch offer is a 14-day free trial followed by an
-          auto-renewing subscription. The exact localized price and renewal terms
-          appear in Apple&apos;s purchase sheet before confirmation.
+          The current Trailhead Plus offer in the U.S. App Store is a one-time
+          purchase that does not renew. Older subscriptions may still renew if
+          they have not been canceled or discontinued. Apple shows the terms
+          that apply to a purchase before you confirm.
         </p>
       </LegalSection>
 

@@ -18,7 +18,7 @@ const sections = [
   { id: "identity", label: "App identity" },
   { id: "review-path", label: "Review path" },
   { id: "permissions", label: "Permission use" },
-  { id: "subscription", label: "Subscription" },
+  { id: "subscription", label: "Purchases" },
   { id: "network", label: "Network behavior" },
   { id: "contact", label: "Review contact" },
 ];
@@ -30,7 +30,7 @@ export default function TrailheadReviewPage() {
       eyebrow="Trailhead · App Review"
       title="A clear path through the app."
       lede="This public guide explains Trailhead's review path and platform permissions. Confidential reviewer contact details remain in App Store Connect."
-      updated="August 15, 2026"
+      updated="November 23, 2026"
       sections={sections}
     >
       <LegalSection id="identity" title="App identity">
@@ -48,10 +48,11 @@ export default function TrailheadReviewPage() {
         <ol>
           <li>Launch Trailhead. No sign-in or account creation is required.</li>
           <li>Set Focus length to 5 minutes. App selection through Apple&apos;s Family Activity Picker is optional.</li>
-          <li>Tap Begin focus hike and let the first free hike complete naturally.</li>
-          <li>Return to Focus and tap Begin focus hike again to open the StoreKit purchase screen.</li>
+          <li>Choose the free starter trail, tap Begin focus hike, and let the session complete naturally.</li>
+          <li>Return to Focus and start a second session on the same starter trail. Check that progress from the first session is saved and no purchase is required.</li>
+          <li>Select a Plus-locked trail or soundscape to check the Plus offer. In the U.S. storefront, verify that it is presented as a one-time purchase. No purchase is needed to review the offer.</li>
         </ol>
-        <p><strong>Returning installation:</strong> If the free completed hike is already recorded, launch Trailhead, open Focus, and tap Begin focus hike to open the purchase screen immediately.</p>
+        <p><strong>Returning installation:</strong> A free user can start another session on the starter trail. To check an existing paid entitlement, open Purchases and restore from Focus.</p>
         <LegalCallout>
           The national-park picker and focus simulation do not require an account.
           Screen Time selection is optional; the core timer can be reviewed without
@@ -69,21 +70,18 @@ export default function TrailheadReviewPage() {
         </dl>
       </LegalSection>
 
-      <LegalSection id="subscription" title="Subscription review">
+      <LegalSection id="subscription" title="StoreKit purchase and restore">
         <p>
-          Trailhead uses Apple StoreKit and has no developer-operated subscription
-          account or backend. Apple&apos;s current-entitlement state is the source of
-          truth. An expired subscription is no longer a current entitlement, so
-          Trailhead treats it as the free tier; after the free completed hike, the
-          same StoreKit purchase screen is presented.
+          Trailhead Plus is a non-consumable, one-time purchase in the U.S. App
+          Store. It costs US$14.99, does not renew, and unlocks all current trails
+          and soundscapes. Apple displays the purchase terms before confirmation.
+          Trailhead does not operate its own purchase account or backend.
         </p>
         <p>
-          The purchase screen offers $4.99 per month and $34.99 per year. For an
-          Apple Account that is eligible, StoreKit displays the configured 14-day
-          introductory free trial. StoreKit owns the eligibility, offer, price,
-          and renewal copy so returning subscribers see only the terms that apply
-          to them. Restore Subscription, Terms, and Privacy are available on that
-          screen, and subscription management remains accessible from Settings.
+          Existing verified paid Plus purchases keep permanent access. To restore
+          access, use Restore Purchases in Purchases and restore on the Focus
+          screen. Older subscriptions may still renew until canceled or
+          discontinued. Use Manage existing subscription in the app to review them.
         </p>
       </LegalSection>
 

@@ -61,14 +61,15 @@ export const apps: AppInfo[] = [
     image: "/apps/trailhead/app-icon.jpg",
     storeUrl: "https://apps.apple.com/us/app/trailhead-deep-focus/id6798798615",
     available: true, price: 0,
-    pricing: "Free to download, explore trails, and complete a first focus hike. Further hikes require Trailhead Plus: US$4.99/month or US$34.99/year. Eligible subscribers can receive a 14-day introductory trial. Local prices and eligibility are shown by Apple.",
+    pricing: "Repeat focus sessions on one starter trail for free and pick up where you left off. A US$14.99 one-time Trailhead Plus purchase in the U.S. App Store unlocks all current trails and soundscapes. The purchase does not renew.",
     requirements: "iOS 17 or later on a compatible device. Screen Time access is optional. An internet connection loads public trail data, which is cached for return visits. This is a simulated focus journey, not a navigation or trail-safety app.",
     features: ["A focus timer with progress saved across sessions", "National-park trails and a simulated hiking destination", "Optional shielding of distracting apps with Apple's Screen Time controls", "Soundscapes and Lock Screen Live Activities"],
     steps: ["Choose an intention, focus duration, national park, and trail.", "Optionally select distracting apps to shield and a soundscape.", "Begin a focus hike and build trail progress by completing work sessions."],
     questions: [
       { question: "Is Trailhead a hiking navigation app?", answer: "No. Trailhead represents your focused work as a simulated hike. Use official park guidance for real-world navigation and trail conditions." },
       { question: "Do I have to allow Screen Time access?", answer: "No. The focus timer can run without it. Screen Time access enables optional shielding of the distracting apps you choose." },
-      { question: "What can I use for free?", answer: "You can explore the parks and trails, preview soundscapes, configure Screen Time, and complete your first focus hike. Starting further hikes requires Trailhead Plus." },
+      { question: "What can I use for free?", answer: "You can browse parks and trails, preview soundscapes, and set up optional Screen Time blocking. Repeat sessions on your starter trail for free, with no session limit. Completed sessions save your trail progress." },
+      { question: "What does Trailhead Plus unlock?", answer: "Plus unlocks all current trails and soundscapes. In the U.S. App Store, it costs US$14.99 once and does not renew. Existing verified paid Plus purchases retain access. Older subscriptions may still renew until canceled or discontinued." },
     ], hasLocalPolicies: true,
   },
   {

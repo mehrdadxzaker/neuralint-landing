@@ -30,7 +30,7 @@ export default function TrailheadSupportPage() {
       eyebrow="Trailhead · Support"
       title="Keep moving forward."
       lede="Fast checks for the few things Trailhead depends on: iOS permissions, a focus session, audio, and a network connection for first-time trail loads."
-      updated="August 6, 2026"
+      updated="November 23, 2026"
       sections={sections}
     >
       <LegalSection id="contact" title="Contact support">
@@ -83,12 +83,21 @@ export default function TrailheadSupportPage() {
         </p>
       </LegalSection>
 
-      <LegalSection id="billing" title="Trial, subscription, and restore">
+      <LegalSection id="billing" title="Plus purchases and restore">
         <p>
-          Apple handles payment and cancellation. Use Restore Purchases in
-          Trailhead if an active subscription is not recognized. To manage or cancel,
-          open iPhone Settings → your name → Subscriptions. Cancel at least 24 hours
-          before renewal if you do not want the next period to begin.
+          You can keep using the starter trail for free. In the U.S. App Store,
+          Trailhead Plus is a US$14.99 one-time purchase for all current trails
+          and soundscapes. It does not renew.
+        </p>
+        <p>
+          Existing verified paid Plus purchases keep permanent access. If access
+          is missing, use Restore Purchases under Purchases and restore on the
+          Focus screen with the Apple Account used to purchase Plus.
+        </p>
+        <p>
+          Older subscriptions may still renew until canceled or discontinued.
+          To check or cancel one, use Manage existing subscription in Trailhead
+          or open iPhone Settings → your name → Subscriptions.
         </p>
       </LegalSection>
 

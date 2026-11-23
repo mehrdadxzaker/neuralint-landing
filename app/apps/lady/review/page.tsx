@@ -19,7 +19,7 @@ const sections = [
   { id: "requirements", label: "Review requirements" },
   { id: "review-path", label: "Review path" },
   { id: "permissions", label: "Permission use" },
-  { id: "subscription", label: "Subscription" },
+  { id: "subscription", label: "Purchases" },
   { id: "contact", label: "Review contact" },
 ];
 
@@ -30,7 +30,7 @@ export default function LadyReviewPage() {
       eyebrow="Lady · App Review"
       title="Review the real family workflow."
       lede="This guide documents Lady's complete local Cast path. No reviewer account or confidential Google credentials are required."
-      updated="August 7, 2026"
+      updated="November 23, 2026"
       sections={sections}
     >
       <LegalSection id="identity" title="App identity">
@@ -79,13 +79,21 @@ export default function LadyReviewPage() {
         </dl>
       </LegalSection>
 
-      <LegalSection id="subscription" title="Subscription review">
+      <LegalSection id="subscription" title="StoreKit purchase and restore">
         <p>
-          Lady uses Apple StoreKit. The launch plan is $4.99 per month with a 14-day
-          introductory free trial, plus a discounted annual option. The purchase
-          screen states trial duration, renewal price, auto-renewal, and cancellation
-          terms before confirmation. Restore Purchases and Manage Subscription are
-          available from the paywall/settings surface.
+          With no existing Plus access, create and save three complete routines.
+          Verify that each can be edited and played repeatedly for free. Try adding
+          a fourth routine to review the Plus offer in the U.S. storefront.
+        </p>
+        <p>
+          Lady Plus is a non-consumable StoreKit purchase. In the U.S. App Store,
+          it costs US$9.99 once and unlocks unlimited routines.
+        </p>
+        <p>
+          Existing verified paid Plus purchases keep permanent access. Open
+          Purchases and restore and tap Restore Purchases to restore access.
+          Older subscriptions may still renew until canceled or discontinued.
+          Use Manage existing subscription in Lady to review them.
         </p>
       </LegalSection>
 

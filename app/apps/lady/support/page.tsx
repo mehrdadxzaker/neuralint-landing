@@ -10,7 +10,7 @@ import {
 export const metadata: Metadata = {
   alternates: { canonical: "/apps/lady/support/" },
   title: "Lady Support",
-  description: "Help with Lady family routines, Cast speakers, reminders, and subscriptions.",
+  description: "Help with Lady family routines, Cast speakers, reminders, purchases, and existing subscriptions.",
 };
 
 const sections = [
@@ -30,7 +30,7 @@ export default function LadySupportPage() {
       eyebrow="Lady · Support"
       title="Less repeating. More rhythm."
       lede="Lady needs a compatible Cast speaker on the same Wi-Fi. It does not need a Google Account connection. These checks solve the most common setup issues."
-      updated="August 7, 2026"
+      updated="November 23, 2026"
       sections={sections}
     >
       <LegalSection id="contact" title="Contact support">
@@ -91,12 +91,23 @@ export default function LadySupportPage() {
         </p>
       </LegalSection>
 
-      <LegalSection id="billing" title="Trial, subscription, and restore">
+      <LegalSection id="billing" title="Plus purchases and billing">
         <p>
-          Apple handles payment and cancellation. Use Restore Purchases in Lady if
-          an active subscription is not recognized. To manage or cancel, open iPhone
-          Settings → your name → Subscriptions. Cancel at least 24 hours before
-          renewal if you do not want the next period to begin.
+          You can create and reuse three complete routines for free. In the U.S.
+          App Store, Lady Plus unlocks unlimited routines for a one-time payment of
+          US$9.99.
+        </p>
+        <p>
+          <strong>Restore Plus access.</strong> Existing verified paid Plus
+          purchases keep permanent access. In Lady, open Purchases and restore
+          and tap Restore Purchases. Use the Apple Account you used to buy Plus.
+        </p>
+        <p>
+          <strong>Manage an older subscription.</strong> Older subscriptions may
+          still renew until canceled or discontinued. Tap Manage existing
+          subscription in Lady or open iPhone Settings → your name → Subscriptions.
+          See <a href="https://support.apple.com/en-us/118428">Apple&apos;s cancellation instructions</a>{" "}
+          and <a href="https://support.apple.com/en-us/118223">Apple&apos;s refund instructions</a>.
         </p>
         <AppPageLinks app={ladyApp} />
       </LegalSection>

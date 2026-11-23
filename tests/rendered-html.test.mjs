@@ -205,6 +205,7 @@ test("catalog apps have discoverable product destinations and truthful release d
   assert.equal(response.status, 200);
   const catalog = await response.json();
   assert.ok(catalog.apps.length > 0, "The app catalog must not be empty");
+  assert.equal(catalog.apps.find(app => app.slug === "lady").priceUSD, 0);
   const slugs = catalog.apps.map(app => app.slug);
   assert.equal(new Set(slugs).size, slugs.length, "App slugs must be unique");
   assert.ok(slugs.every(slug => /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)), "App slugs must be URL-safe");
@@ -260,6 +261,37 @@ test("Trailhead pages describe repeat free sessions, one-time Plus, and legacy b
   assert.match(privacy, /one-time/);
   for (const page of [landing, review, support, privacy]) {
     assert.doesNotMatch(page, /Further hikes require|14-day|4\.99 per month|34\.99/);
+  }
+});
+
+test("Lady pages describe reusable free routines, one-time Plus, and legacy billing", async () => {
+  const responses = await Promise.all(
+    ["", "/review", "/support", "/privacy"].map(suffix => render("/apps/lady" + suffix)),
+  );
+  for (const response of responses) assert.equal(response.status, 200);
+  const [landing, review, support, privacy] = await Promise.all(responses.map(response => response.text()));
+
+  assert.match(landing, /Create and reuse three complete routines for free/);
+  assert.match(landing, /use them as often as you like/);
+  assert.match(review, /played repeatedly for free/);
+  assert.match(review, /a fourth routine to review the Plus offer/);
+  for (const page of [landing, review, support]) {
+    assert.match(page, /U\.S\. App Store/);
+    assert.match(page, /US\$9\.99/);
+    assert.match(page, /unlocks unlimited routines/);
+    assert.match(page, /Restore Purchases/);
+    assert.match(page, /keep permanent access/);
+  }
+  for (const page of [review, support]) {
+    assert.match(page, /may still renew until canceled or discontinued/);
+    assert.match(page, /Manage existing subscription/);
+  }
+  assert.match(support, /your name → Subscriptions/);
+  assert.match(support, /href="https:\/\/support\.apple\.com\/en-us\/118428"/);
+  assert.match(privacy, /processed by Apple through StoreKit/);
+  assert.match(privacy, /href="\/apps\/lady\/support\/#billing"/);
+  for (const page of [landing, review, support, privacy]) {
+    assert.doesNotMatch(page, /one complete routine|14-day|4\.99|34\.99/);
   }
 });
 

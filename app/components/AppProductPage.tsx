@@ -3,11 +3,11 @@ import StructuredData from "./StructuredData";
 import { type AppInfo, productStructuredData } from "../content/apps";
 import PersianText from "./PersianText";
 
-export default function AppProductPage({ app }: { app: AppInfo }) {
+export default function AppProductPage({ app, updated = "November 10, 2026" }: { app: AppInfo; updated?: string }) {
   return <>
     <StructuredData data={productStructuredData(app)} />
     <AppLegalPage app={app} eyebrow={"NeuralInt apps · " + app.accentLabel}
-      title={app.listingName} lede={app.description} updated="November 10, 2026"
+      title={app.listingName} lede={app.description} updated={updated}
       hero={<div className="app-product-intro">
         {/* App artwork from Apple's verified public listing. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -31,7 +31,7 @@ export default function LadyPrivacyPage() {
       eyebrow="Lady · Privacy"
       title="A parent stays in control."
       lede="Lady helps an adult save family prompts, receive scheduled iPhone reminders, and play spoken announcements on a nearby Cast speaker. It does not listen to the household, record people, or create child profiles."
-      updated="August 7, 2026"
+      updated="November 23, 2026"
       sections={sections}
     >
       <LegalSection id="summary" title="Summary">
@@ -54,7 +54,7 @@ export default function LadyPrivacyPage() {
           <li>Routine name, spoken message, type, days, time, and enabled state</li>
           <li>The selected Cast receiver&apos;s local address while an announcement is loading</li>
           <li>Local notification authorization and pending reminder requests</li>
-          <li>Apple subscription product and entitlement status</li>
+          <li>Apple purchase and entitlement status</li>
         </ul>
         <p>
           Lady does not ask for a child&apos;s name, birth date, contacts, photos, voice
@@ -89,7 +89,7 @@ export default function LadyPrivacyPage() {
           <div><dt>App functionality</dt><dd>Save, edit, pause, and delete routines and generate requested speech on the iPhone.</dd></div>
           <div><dt>Local notifications</dt><dd>Remind the adult at the days and times they chose.</dd></div>
           <div><dt>Local network</dt><dd>Find a user-selected Cast receiver and deliver one temporary announcement.</dd></div>
-          <div><dt>Purchases</dt><dd>Recognize Apple subscription access and restore eligible purchases.</dd></div>
+          <div><dt>Purchases</dt><dd>Recognize Lady Plus access and restore eligible Apple purchases.</dd></div>
         </dl>
         <p>
           NeuralInt does not use Lady data for third-party advertising or track you
@@ -99,15 +99,15 @@ export default function LadyPrivacyPage() {
 
       <LegalSection id="purchases" title="Subscriptions and purchases">
         <p>
-          Lady subscriptions are processed by Apple through StoreKit. NeuralInt does
+          Lady purchases are processed by Apple through StoreKit. NeuralInt does
           not receive your payment-card number. Apple may provide product,
           transaction, renewal, expiration, and refund status so Lady can unlock
           paid features and restore a purchase.
         </p>
         <p>
-          The planned launch offer is a 14-day free trial followed by an
-          auto-renewing subscription. The localized price and renewal terms appear
-          in Apple&apos;s purchase sheet before confirmation.
+          Lady Plus is available as a one-time purchase in the U.S. App Store.
+          Older subscriptions may still renew until canceled or discontinued.
+          See <a href="/apps/lady/support/#billing">Lady billing and restore help</a>.
         </p>
       </LegalSection>
 

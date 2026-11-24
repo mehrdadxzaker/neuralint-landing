@@ -22,17 +22,17 @@ const sections = [
 export default function LinkedFullPrivacyPage() {
   return (
     <AppLegalPage app={app} eyebrow="LinkedFull 2.0 · Privacy" title="LinkedFull 2.0 Privacy Policy"
-      lede="This policy describes LinkedFull 2.0 TestFlight for iPhone through internal build 3124."
+      lede="This policy describes LinkedFull 2.0 TestFlight for iPhone."
       updated="November 24, 2026" sections={sections}>
       <LegalSection id="photos" title="Photos and outfit previews">
         <p>LinkedFull accesses your iPhone Photos library through the system photo picker and receives the photos you choose there. The app saves a local copy of each garment you add. A personal portrait stays in memory for the session. You can also choose one of the sample models bundled with the app.</p>
         <p>Local-only builds such as build 3122 use Apple Vision and Core Image on your iPhone. Their outfit photos and previews stay on the device. In all builds, a preview stays in memory unless you save it to Looks. The app does not require a LinkedFull account.</p>
       </LegalSection>
       <LegalSection id="camera" title="Wardrobe camera">
-        <p>Internal build 3124 can use your rear camera with your permission while you scan clothes. LinkedFull processes live frames on your iPhone to capture still garment photos for review. The app does not record or transmit video. Only the still photos you confirm in the review are saved to your wardrobe.</p>
+        <p>With camera permission, LinkedFull processes the live view on your iPhone while you scan. It keeps candidate garment images for review during the scan. The live video stays on your iPhone and the app creates no video file. Only the images you confirm in the review are saved to your wardrobe.</p>
       </LegalSection>
       <LegalSection id="stores" title="Retail sites">
-        <p>In internal build 3124, you can open retailer sites in a temporary in-app browser session. Visiting a site or importing a product photo from a page can make requests to that site or the providers it uses. Those sites and providers handle your activity under their own privacy policies. LinkedFull saves a product photo to your wardrobe when you confirm the addition.</p>
+        <p>You can open retailer sites in a temporary in-app browser session. Visiting a site or importing a product photo from a page can make requests to that site or the providers it uses. Those sites and providers handle your activity under their own privacy policies. LinkedFull saves a product photo to your wardrobe when you confirm the addition.</p>
       </LegalSection>
       <LegalSection id="ai-try-on" title="AI try-on">
         <p>Starting with internal build 3123, you can choose <strong>Enable AI try-on</strong>. When you generate a look, LinkedFull uploads the portrait and garment photos you selected directly to the OpenAI Images API to create the preview. Choose photos you have permission to use.</p>

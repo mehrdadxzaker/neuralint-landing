@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { persianInkRelease } from "../apps/persian-ink/release";
 
 export const siteOrigin = "https://neuralint.io";
-export type AppSlug = "persian-ink" | "persian-swipe" | "trailhead" | "lady" | "linkedfull";
+export type AppSlug = "ava" | "persian-ink" | "persian-swipe" | "trailhead" | "lady" | "linkedfull";
 export type AppInfo = {
   slug: AppSlug;
   name: string;
@@ -21,11 +21,40 @@ export type AppInfo = {
   steps: string[];
   questions: { question: string; answer: string }[];
   hasLocalPolicies: boolean;
+  hasReviewGuide?: boolean;
+  availabilityLabel?: string;
+  availabilityStatus?: "testing";
+  schemaType?: "SoftwareApplication";
 };
 
-// Public facts checked against Apple's US listings; Persian app icons and Ink availability updated November 11, 2026.
+// Released apps follow Apple's US listings. Avā is explicitly marked as testing without an install or purchase offer.
 // Persian Ink availability follows the same gate as its visible download button.
 export const apps: AppInfo[] = [
+  {
+    slug: "ava", name: "Avā", listingName: "Avā",
+    accentLabel: "Persian dictation and captions",
+    description: "Turn speech into editable Persian text, caption an audio or video file, and follow live captions for a Mac app you choose. Speech recognition runs on your Mac after model setup.",
+    category: "ProductivityApplication", operatingSystem: "macOS 26 or later on a Mac with Apple silicon",
+    schemaType: "SoftwareApplication", image: "/apps/ava/app-icon.png", storeUrl: "",
+    available: false, availabilityStatus: "testing", availabilityLabel: "App Store release in preparation", price: 0,
+    pricing: "The planned release includes a free 72-hour trial and an optional one-time unlock. The trial starts when you choose to begin it and has no automatic charge.",
+    requirements: "A Mac with Apple silicon and macOS 26 or later. Model setup, purchases, and restoration need internet access. Available memory and storage can limit processing. Dictation recordings are limited to 29 seconds.",
+    features: [
+      "Record Persian dictation, listen back, edit the transcription, and copy or export the reviewed text.",
+      "Import audio or video, edit caption text and timing, and export a transcript, SRT, WebVTT, or captions on supported videos.",
+      "Follow live captions from Google Chrome or another Mac app selected through the macOS picker.",
+      "Save projects containing your media, text revisions, and captions to return to later.",
+    ],
+    steps: [
+      "Open Setup & access and download the Persian speech recognition model from Apple.",
+      "Finish model setup, then choose the free 72-hour trial or optional one-time unlock.",
+      "Record dictation, import a file for captions, or listen to a Mac app. Review the result before saving or exporting.",
+    ],
+    questions: [
+      { question: "Where is speech processed?", answer: "Recognition runs on your Mac after you download the Persian model from Apple. Avā requires no separate account." },
+      { question: "Which audio is included in live captions?", answer: "Avā listens to the Mac app you select. Other audible tabs or windows in that app can contribute audio. The microphone stays off." },
+    ], hasLocalPolicies: true, hasReviewGuide: false,
+  },
   {
     slug: "persian-ink", name: "Persian Ink", listingName: "Persian Ink",
     accentLabel: "Your handwriting. Persian text.",
@@ -121,6 +150,7 @@ export function appUrl(app: AppInfo) {
 
 export function appMetadata(app: AppInfo): Metadata {
   const titles: Record<AppSlug, string> = {
+    ava: "Avā — Persian Dictation and Captions for Mac",
     "persian-ink": "Persian Ink — Offline Persian Handwriting Keyboard",
     "persian-swipe": "Persian Swipe — Offline Farsi Keyboard for iPhone & iPad",
     trailhead: "Trailhead — Focus Timer & Screen Time App Blocker",
@@ -146,7 +176,7 @@ export function productStructuredData(app: AppInfo) {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "MobileApplication", "@id": url + "#app", name: app.listingName,
+        "@type": app.schemaType ?? "MobileApplication", "@id": url + "#app", name: app.listingName,
         url, description: app.description, applicationCategory: app.category,
         operatingSystem: app.operatingSystem, image: siteOrigin + app.image,
         featureList: app.features, publisher: { "@id": siteOrigin + "/#organization" },

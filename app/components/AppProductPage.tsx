@@ -9,10 +9,14 @@ export default function AppProductPage({ app, updated = "November 10, 2026" }: {
     <AppLegalPage app={app} eyebrow={"NeuralInt apps · " + app.accentLabel}
       title={app.listingName} lede={app.description} updated={updated}
       hero={<div className="app-product-intro">
-        {/* App artwork from Apple's verified public listing. */}
+        {/* Product icon. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={app.image} width="112" height="112" alt={app.name + " app icon"} />
-        <div><a className="button primary" href={app.storeUrl}>Download {app.name} on the App Store <span aria-hidden="true">↗</span></a><p>{app.pricing}</p></div>
+        <div>
+          {app.available ? <a className="button primary" href={app.storeUrl}>Download {app.name} on the App Store <span aria-hidden="true">↗</span></a>
+            : <p className="eyebrow">{app.availabilityLabel ?? "Public download pending"}</p>}
+          <p>{app.pricing}</p>
+        </div>
       </div>}
       sections={[{ id: "features", label: "What it does" }, { id: "getting-started", label: "Getting started" }, { id: "requirements", label: "Requirements" }, { id: "questions", label: "Common questions" }]}>
       <LegalSection id="features" title={"What you can do with " + app.name}><ul>{app.features.map(feature => <li key={feature}><PersianText text={feature} /></li>)}</ul></LegalSection>

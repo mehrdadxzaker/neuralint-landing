@@ -152,7 +152,7 @@ assert.equal(directory.mainEntity.itemListElement.length, catalog.apps.length);
 for (const app of catalog.apps) {
   assert.ok(urls.includes(app.url), "Product page in sitemap: " + app.name);
   assert.ok(directoryHtml.includes('href="' + app.url + '"'), "Product reachable from directory: " + app.name);
-  const data = schemasByUrl.get(app.url).filter(node => node["@type"] === "MobileApplication");
+  const data = schemasByUrl.get(app.url).filter(node => node["@type"] === app.applicationType);
   assert.equal(data.length, 1, "One app entity: " + app.name);
   const entity = data[0];
   assert.equal(entity.url, app.url);

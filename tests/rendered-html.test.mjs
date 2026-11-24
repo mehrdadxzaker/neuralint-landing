@@ -220,7 +220,7 @@ test("catalog apps have discoverable product destinations and truthful release d
     const entities = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(match => {
       const data = JSON.parse(match[1]); return data["@graph"] ?? [data];
     });
-    const entity = entities.find(data => data["@type"] === "MobileApplication");
+    const entity = entities.find(data => data["@type"] === app.applicationType);
     assert.equal(entity.url, app.url);
     if (app.availability === "available") {
       assert.equal(entity.installUrl, app.downloadUrl);
@@ -299,4 +299,31 @@ test("the former Persian Swipe marketing URL redirects to its product page", asy
   const response = await render("/apps/persian-swipe/review");
   assert.equal(response.status, 308);
   assert.equal(new URL(response.headers.get("location"), "http://localhost").pathname, "/apps/persian-swipe/");
+});
+
+test("Avā exposes support and privacy for its first Mac release", async () => {
+  const product = await (await render("/apps/ava")).text();
+  assert.match(product, /App Store release in preparation/);
+  assert.match(product, /macOS 26/);
+  assert.match(product, /72-hour trial/);
+  assert.doesNotMatch(product, /Download Avā on the App Store/);
+
+  const catalog = await (await render("/apps/catalog.json")).json();
+  const ava = catalog.apps.find(app => app.slug === "ava");
+  assert.equal(ava.applicationType, "SoftwareApplication");
+  assert.equal(ava.availability, "testing");
+  assert.equal(ava.downloadUrl, null);
+  assert.equal(ava.priceUSD, null);
+
+  const support = await render("/apps/ava/support");
+  assert.equal(support.status, 200);
+  const supportPage = await support.text();
+  assert.match(supportPage, /Listen to Chrome/);
+  assert.match(supportPage, /Restore Purchases/);
+
+  const privacy = await render("/apps/ava/privacy");
+  assert.equal(privacy.status, 200);
+  const privacyPage = await privacy.text();
+  assert.match(privacyPage, /system audio recording access/);
+  assert.match(privacyPage, /mailto:mehrdadz@neuralint.io/);
 });

@@ -17,6 +17,7 @@ const sections = [
   { id: "acceptable-use", label: "Acceptable use" },
   { id: "services", label: "Third-party services" },
   { id: "safety", label: "Safety and availability" },
+  { id: "linkedfull", label: "LinkedFull 2.0" },
   { id: "warranty", label: "Warranty and liability" },
   { id: "changes", label: "Changes and contact" },
 ];
@@ -27,7 +28,7 @@ export default function AppTermsPage() {
       eyebrow="NeuralInt apps · Terms"
       title="Clear terms for useful software."
       lede="These terms apply to Trailhead, Lady, and consumer apps published under the NeuralInt product identity. Apple's licensed application terms also apply to downloads from the App Store."
-      updated="August 7, 2026"
+      updated="November 24, 2026"
       sections={sections}
     >
       <LegalSection id="agreement" title="Agreement and license">
@@ -84,6 +85,13 @@ export default function AppTermsPage() {
           caregiving, medical, or child-monitoring service. Do not rely on either app
           where failure or delay could cause harm.
         </p>
+      </LegalSection>
+
+      <LegalSection id="linkedfull" title="LinkedFull 2.0 TestFlight">
+        <p>Use your own photos or photos you have permission to use. That includes permission from people shown in a portrait. Respect other people&apos;s privacy and rights when you save or share a look.</p>
+        <p>Outfit previews are approximate styling aids. Use garment measurements and the retailer&apos;s size guide to assess physical fit.</p>
+        <p>The version 2.0 TestFlight build has no purchases or subscriptions. For help with an earlier LinkedFull purchase, <a href="/apps/linkedfull/support/">contact LinkedFull support</a>.</p>
+        <p>See the <a href="/apps/linkedfull/privacy/">LinkedFull 2.0 Privacy Policy</a> for how the beta handles photos and saved looks.</p>
       </LegalSection>
 
       <LegalSection id="warranty" title="Warranty and liability">

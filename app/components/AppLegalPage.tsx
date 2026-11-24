@@ -136,13 +136,14 @@ export function LegalCallout({ children }: { children: ReactNode }) {
 }
 
 export function AppPageLinks({ app }: { app: NeuralIntApp }) {
+  const isLinkedFull = app.slug === "linkedfull";
   return (
     <div className="app-page-links" aria-label={`${app.name} information`}>
       <a href={"/apps/" + app.slug + "/"}>About {app.name}</a>
-      <a href={`/apps/${app.slug}/privacy/`}>Privacy</a>
+      <a href={`/apps/${app.slug}/privacy/`}>{isLinkedFull ? "Privacy (2.0)" : "Privacy"}</a>
       <a href={`/apps/${app.slug}/support/`}>Support</a>
       {app.hasReviewGuide !== false ? <a href={`/apps/${app.slug}/review/`}>App Review guide</a> : null}
-      <a href="/apps/terms/">Terms</a>
+      <a href={isLinkedFull ? "/apps/terms/#linkedfull" : "/apps/terms/"}>{isLinkedFull ? "Terms (2.0)" : "Terms"}</a>
     </div>
   );
 }

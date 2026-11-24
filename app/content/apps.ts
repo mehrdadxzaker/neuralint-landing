@@ -136,7 +136,7 @@ export const apps: AppInfo[] = [
     questions: [
       { question: "Can I search with a photo?", answer: "Yes. LinkedFull accepts visual inspiration as well as a written description to help find clothing across online stores." },
       { question: "Does virtual try-on guarantee fit?", answer: "No. It is a visual preview. Check the retailer's measurements, size information, and return terms before purchasing." },
-    ], hasLocalPolicies: false,
+    ], hasLocalPolicies: true, hasReviewGuide: false,
   },
 ];
 

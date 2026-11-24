@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { AppSlug } from "../content/apps";
 import ThemeToggle from "./ThemeToggle";
 import { BrandMark, SiteMobileMenu } from "./SiteNavigation";
 import PersianText from "./PersianText";
@@ -7,8 +8,9 @@ import PersianText from "./PersianText";
 export type NeuralIntApp = {
   name: string;
   listingName: string;
-  slug: "trailhead" | "lady" | "persian-swipe" | "persian-ink" | "linkedfull";
+  slug: AppSlug;
   accentLabel: string;
+  hasReviewGuide?: boolean;
 };
 
 type SectionLink = {
@@ -139,7 +141,7 @@ export function AppPageLinks({ app }: { app: NeuralIntApp }) {
       <a href={"/apps/" + app.slug + "/"}>About {app.name}</a>
       <a href={`/apps/${app.slug}/privacy/`}>Privacy</a>
       <a href={`/apps/${app.slug}/support/`}>Support</a>
-      <a href={`/apps/${app.slug}/review/`}>App Review guide</a>
+      {app.hasReviewGuide !== false ? <a href={`/apps/${app.slug}/review/`}>App Review guide</a> : null}
       <a href="/apps/terms/">Terms</a>
     </div>
   );

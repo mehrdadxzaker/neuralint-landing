@@ -10,13 +10,14 @@ import { BrandMark, SiteMobileMenu } from "../components/SiteNavigation";
 import DestinationIcon from "../components/DestinationIcon";
 
 const title = "Persian Keyboards, Focus & Family Apps";
-const description = "Explore NeuralInt apps: Persian Ink handwriting, Persian Swipe typing, Trailhead focus sessions, Lady family routines, and LinkedFull fashion search.";
+const description = "Explore NeuralInt apps: Avā Persian dictation and captions for Mac, Persian Ink handwriting, Persian Swipe typing, Trailhead focus sessions, Lady family routines, and LinkedFull fashion search.";
 export const metadata: Metadata = {
   alternates: { canonical: "/apps/" }, title, description,
   openGraph: { title, description, url: "https://neuralint.io/apps/", type: "website" },
   twitter: { card: "summary_large_image", title, description },
 };
 const capabilities: Record<string, string[]> = {
+  ava: ["Apple silicon · macOS 26+", "Local speech recognition", "File and live captions"],
   "persian-ink": ["Apple Pencil", "Offline after setup", "US$1.99 once"],
   "persian-swipe": ["Persian swipe typing", "On-device learning", "No Full Access"],
   trailhead: ["Focus timer", "Screen Time", "Live Activities"],
@@ -78,7 +79,7 @@ export default function AppsPage() {
               <div className="app-card-content">
                 <p className="app-card-summary"><PersianText text={app.description} /></p>
                 <div className="app-capabilities">
-                  {!app.available && <span>Not yet available</span>}
+                  {!app.available && <span>{app.availabilityLabel ?? "Not yet available"}</span>}
                   {(capabilities[app.slug] ?? app.features.slice(0, 3)).map((capability) => (
                     <span key={capability}>{capability}</span>
                   ))}
